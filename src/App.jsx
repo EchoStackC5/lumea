@@ -2,10 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import SignUp from "./Pages/SignUp"
-import Dermetologistdashboard from "./Pages/Dermetologistdashboard"
-import Clientdashboard from "./Pages/Clientdashboard"
+// import Dermetologistdashboard from "./Pages/Dermetologistdashboard"
+// import Clientdashboard from "./Pages/Clientdashboard"
 import Notfound from "./Pages/Notfound"
-import Clientdashboard from "./Pages/Clientdashboard"
+// import Clientdashboard from "./Pages/Clientdashboard"
+import Dermetologistdashboard from "./Pages/demertologistdashboard/Dermetologistdashboard"
+import Clientdashboard from "./Pages/Clientdashboard/Clientdashboard"
 
 
 
