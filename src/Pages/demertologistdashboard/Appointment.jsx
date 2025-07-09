@@ -1,4 +1,3 @@
-import Dashboardnavbar from "../../Components/Dashboardnavbar"
 
 export default function Appointment() {
     return(
