@@ -2,13 +2,10 @@ import { createBrowserRouter, RouterProvider } from "react-router"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import SignUp from "./Pages/SignUp"
-// import Dermetologistdashboard from "./Pages/Dermetologistdashboard"
-// import Clientdashboard from "./Pages/Clientdashboard"
 import Notfound from "./Pages/Notfound"
-// import Clientdashboard from "./Pages/Clientdashboard"
 import Dermetologistdashboard from "./Pages/demertologistdashboard/Dermetologistdashboard"
 import Clientdashboard from "./Pages/Clientdashboard/Clientdashboard"
-
+import AppointmentPage from "./Pages/AppointmentPage"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -17,6 +14,7 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/signUp", element: <SignUp/>},
   {path: "/dermetologistdashboard", element: <Dermetologistdashboard/>},
   {path: "/clientdashboard", element: <Clientdashboard/>},
+  {path: "/appointmentpage", element: <AppointmentPage />},
   {path: "*", element: <Notfound/>},
   
 ])
