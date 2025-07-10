@@ -5,10 +5,10 @@ export default function HowItWorks() {
     return (
 
        
-            <section id="how-it-works" className="flex flex-col gap-8">
+            <section id="how-it-works" className="flex flex-col gap-8 w-full">
                 <div>
                     <div className="max-w-md flex flex-col justify-self-end gap-2 sm:gap-4 md:gap-6 lg:gap-8">
-                        <h1 className="text-2xl md:text-3xl font-dm-sans font-medium text-left">Your <span className="font-system-curved">Skin </span>Your <span></span>Session</h1>
+                        <h1 className="text-2xl md:text-3xl font-dm-sans font-medium text-left">Your <span className="font-system-curved">Skin </span>Your <span className="font-system-curved">Session</span></h1>
                         <p className="text-[16px] font-inter text-left ">Our licensed cosmetologists are here for every skin type, every shade, and every face.</p>
                     </div>
 
