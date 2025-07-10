@@ -8,12 +8,12 @@ export default function Dermetologistdashboard() {
   return (
     <>
       <div>
-        <Dashboardnavbar/>
+        {/* <Dashboardnavbar/> */}
         <div>
           <Clientdetails/>
           <AppointmentsDem/>
-          <RecentSkinAnalysis/>
-          <SkinReport/>
+          {/* <RecentSkinAnalysis/>
+          <SkinReport/> */}
         </div>
         <h1>DERMETOLOGIST DASHBOARD</h1>
       </div>

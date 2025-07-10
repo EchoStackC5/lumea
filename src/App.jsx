@@ -6,6 +6,7 @@ import Notfound from "./Pages/Notfound"
 import Dermetologistdashboard from "./Pages/demertologistdashboard/Dermetologistdashboard"
 import Clientdashboard from "./Pages/Clientdashboard/Clientdashboard"
 import AppointmentPage from "./Pages/AppointmentPage"
+import Appointment from "./Pages/demertologistdashboard/Appointment"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -15,6 +16,7 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/dermetologistdashboard", element: <Dermetologistdashboard/>},
   {path: "/clientdashboard", element: <Clientdashboard/>},
   {path: "/appointmentpage", element: <AppointmentPage />},
+  {path: "/appointment", element: <Appointment />},
   {path: "*", element: <Notfound/>},
   
 ])
