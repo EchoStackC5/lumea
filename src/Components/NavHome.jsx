@@ -51,7 +51,7 @@ export default function HomeNav() {
                     <a href="#home" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Home</a>
                     <a href="#about-us"  className="hover:text-primary-color hover:font-bold transition-all duration-200 active:text-primary-color active:font-bold font-medium"> About Us</a>
                     <Link to="" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> How it Works</Link>
-                    <a href="#blogs" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
+                    <a href="#find-a-cosmotologist" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
                 </div>
                 <Link to="/sign-up" className=" px-6 py-2 rounded-full font-medium hover:bg-system-primary bg-[#9D82B6]  transition-all duration-200">Register as a Cosmetologist</Link>
             </div>
@@ -96,7 +96,7 @@ export default function HomeNav() {
                         > 
                            How it Works
                         </Link>
-                        <a href="#blogs"
+                        <a href="#find-a-cosmotologist"
                             to="/blogs" 
                             className="hover:text-primary-color transition-all duration-200 py-2"
                            
