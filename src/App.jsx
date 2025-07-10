@@ -8,7 +8,6 @@ import Clientdashboard from "./Pages/Clientdashboard/Clientdashboard"
 import AppointmentPage from "./Pages/AppointmentPage"
 import Appointment from "./Pages/demertologistdashboard/Appointment"
 
-
 const lumeaRoutes = createBrowserRouter([
   {path: "/", element: <Home/>},
   {path: "/login", element: <Login/>},
@@ -18,6 +17,7 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/appointmentpage", element: <AppointmentPage />},
   {path: "/appointment", element: <Appointment />},
   {path: "*", element: <Notfound/>},
+  
   
 ])
 
