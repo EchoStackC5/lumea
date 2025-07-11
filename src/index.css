@@ -5,7 +5,23 @@
 
 
 /* Typography */
+<<<<<<< HEAD
 
 
 
 
+=======
+@theme{
+    --font-system-curved: 'Oleo Script';
+    --font-dm-sans: 'DM Sans', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --font-poppins: 'Poppins',sans-serif;
+    --font-monserrat: 'Montserrat',sans-serif;
+
+    --color-system-primary: #4E1571;
+    --color-darkest:#09070A;
+    --color-primary-dark: #1A151D;
+    --color-backgrounds: #F6EBFD;
+    --color-secondary-text: #1A151D;
+}
+>>>>>>> b7c262cdc89866195d988509303bb822f89a1d83

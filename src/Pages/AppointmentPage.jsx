@@ -1,9 +1,9 @@
 
 
-export default function Findings() {
+export default function AppointmentPage() {
     return(
         <div>
-            <h1>Findings</h1>
+            <h1>Appointment</h1>
         </div>
     )
 }
