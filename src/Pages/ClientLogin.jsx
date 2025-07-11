@@ -1,6 +1,4 @@
 
-
-import upload from "../assets/images/upload.png";
 import google from "../assets/images/google.png";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";

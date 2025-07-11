@@ -3,7 +3,7 @@ import google from "../assets/images/google.png";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-export default function SignUp() {
+export default function ClientSignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
 
@@ -42,20 +42,8 @@ export default function SignUp() {
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
               />
             </div>
-            {/* expert input */}
-            <div className="space-y-2">
-              <label htmlFor="text" className="block text-sm text-gray-700">
-                What Is Your Area Of Expertise?
-              </label>
-              <input
-                type="text"
-                id=""
-                placeholder="Enter Area Of Expert"
-                className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
-              />
-            </div>
 
-            {/* Upload ur Image */}
+            {/* Upload Image */}
             <div className="space-y-2">
               <label htmlFor="fileUpload" className="block text-sm text-gray-700">
                 Upload A Picture Of Yourself
@@ -71,24 +59,8 @@ export default function SignUp() {
                 </div>
               </div>
             </div>
-            {/* Upload ur cert */}
-            <div className="space-y-2">
-              <label htmlFor="fileUpload" className="block text-sm text-gray-700">
-                Upload Your Certificate
-              </label>
-              <div className="relative w-full h-[48px]">
-                <input
-                  type="file"
-                  id=""
-                  className="absolute inset-0 opacity-0 cursor-pointer z-10"
-                />
-                <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
-                  <img src={upload} alt="Upload Icon" className="w-5 h-5" />
-                </div>
-              </div>
-            </div>
 
-            {/* ur Password */}
+            {/* Password */}
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm text-gray-700">
                 Password
