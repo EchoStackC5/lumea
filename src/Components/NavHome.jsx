@@ -53,7 +53,7 @@ export default function HomeNav() {
                     <Link to="" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> How it Works</Link>
                     <a href="#find-a-cosmotologist" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
                 </div>
-                <Link to="/sign-up" className=" px-6 py-2 rounded-full font-medium hover:bg-yellow-500 hover:text-darkest bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
+                <Link to="/signUp" className=" px-6 py-2 rounded-full font-medium hover:bg-yellow-500 hover:text-darkest bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
             </div>
 
             {/* Mobile Header */}

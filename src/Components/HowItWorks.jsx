@@ -18,7 +18,7 @@ export default function HowItWorks() {
                     <div className="bg-[#124946] text-white max-h-120 space-y-6 flex flex-col justify-between items-center p-6">
                         <h1 className="uppercase lg sm:xl md:xl lg:text-3xl text-center font-dm-sans font-semibold">Get Expert Skincare Advice</h1>
                         <p className="text-center font-inter font-normal text-sm sm:text-sm lg:text-[16px] md:text-[16px]">Book a session with a certified cosmetologist who understands your unique skin</p>
-                        <Link to= "/sign-up" className="bg-white text-darkest hover:bg-yellow-500 text-center max-w-3xl px-6 py-3 rounded-full font-medium  hover:bg-system-primary transition-all duration-200 ">Book Appointment</Link>
+                        <Link to= "/clientsignUp" className="bg-white text-darkest hover:bg-yellow-500 text-center max-w-3xl px-6 py-3 rounded-full font-medium  hover:bg-system-primary transition-all duration-200 ">Book Appointment</Link>
                     </div>
                     <img src={clearSkinImage} alt="Ice Image" className="w-full max-h-120  object-cover  " />
                 </div>

@@ -28,7 +28,7 @@ export default function HeroSection() {
             Analyze My Skin
           </Link>
           <Link
-            to="/skin-analysis-form"
+            to="/clientsignUp"
             className="bg-transparent border border-white text-white text-center px-6 py-3 rounded-full font-medium hover:bg-yellow-500 hover:text-darkest hover:border-none transition-all duration-200"
           >
             Book Appointment
