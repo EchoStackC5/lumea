@@ -7,9 +7,9 @@ export default function AppointmentForm() {
         <section className="min-h-screen bg-backgrounds flex flex-col p-4 sm:p-8 md:p-12 lg:p-16">
             <Navbar/>
             
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center mt-20  ">
                 <Step1 steps={steps}  />
-                </div>
+            </div>
         </section>
     )
 }

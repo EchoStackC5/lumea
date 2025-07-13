@@ -1,13 +1,16 @@
 export default function FormStep2( { onNext }) {
     return (
         <form onSubmit={(e) => { e.preventDefault(); onNext(); }}>
-            <label className="block mb-2 text-sm font-medium text-gray-700">
-                What is your skin Color<span className="text-red-400">*</span>
+            <div className="text-center mb-6 text-lg font-inter font-medium text-primary-dark">
+                <h1>Pick a Date and Time</h1>
+            </div>
+            <label className=" text-sm font-medium text-gray-700">
+                Pick a date<span className="text-red-400">*</span>
             </label>
             <input
-                type="text"
-                placeholder="Enter your skin type"
-                className="border p-2 rounded mb-4 w-full"
+                type="datetime-local"
+                required
+                className="w-full px-4 py-3 border border-light-border bg-white rounded-md outline-none focus:ring-purple-500 focus:border-purple-500"
             />
         </form>
     );
