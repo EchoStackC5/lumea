@@ -10,6 +10,8 @@ import Clientdashboard from "./Pages/Clientdashboard/Clientdashboard"
 import AppointmentPage from "./Pages/AppointmentPage"
 import Appointment from "./Pages/demertologistdashboard/Appointment"
 import SkinAnalysisForm from "./Pages/SkinAnalysisForm"
+import AppointmentForm from "./Pages/AppointmentForm"
+import DemCalls from "./Pages/DemCalls"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -24,6 +26,8 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/appointment", element: <Appointment />},
   {path: "*", element: <Notfound/>},
   {path: "/skin-analysis-form", element: <SkinAnalysisForm />},
+  {path: "/appointment-form", element: <AppointmentForm />},
+  {path: "/dem-calls", element: <DemCalls />},
   
 ])
 
