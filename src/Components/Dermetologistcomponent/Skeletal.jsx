@@ -1,9 +1,9 @@
-import skeleton from "../../assets/images/skeleton.png"
+import Model from "../../assets/images/Model.png"
 
 export default function Skeletal() {
     return (
-        <div className="bg-white rounded-lg px-8">
-            <img src={skeleton} alt="" className="w-full h-auto rounded" />
+        <div className="bg-white flex rounded-xl ">
+            <img src={Model} alt="" className="w-[703px] h-[684px]" />
         </div>
     )
 }
