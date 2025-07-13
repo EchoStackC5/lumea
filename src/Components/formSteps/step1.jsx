@@ -29,11 +29,11 @@ export default function Step1({ steps }) {
   };
     return (
         <div className="mx-auto w-full max-w-2xl px-4 pb-10">
-            <div className="before:transform-y-1/2 relative mt-14 flex justify-between before:absolute before:top-1/2 before:left-0 before:h-1 before:w-full before:bg-slate-200">
+            <div className="before:transform-y-1/2 relative mt-14 flex justify-between before:absolute before:top-1/2 before:left-0 before:h-1 before:w-full before:bg-light-border">
                 {steps.map(({ step, label }) => (
                     <div className="relative z-10" key={step}>
                         <div
-                            className={`flex size-16 items-center justify-center rounded-full border-2 border-light-border  transition-all delay-200 ease-in ${activeStep >= step ? 'border-purple-400 bg-system-primary' : 'bg-white'
+                            className={`flex size-16 items-center justify-center rounded-full border-2 border-light-border  transition-all delay-200 ease-in ${activeStep >= step ? 'border-purple-400 bg-system-primary' : 'bg-white text-primary-dark'
                                 }`}
                         >
                             {activeStep > step ? (
