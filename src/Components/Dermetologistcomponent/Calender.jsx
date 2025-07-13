@@ -141,7 +141,7 @@ export default function CalendarIcon() {
                     onClick={goToPreviousMonth}
                     className=" hover:bg-[#BF04A6] rounded-lg transition-colors"
                 >
-                    <ChevronLeft className="w-3 h-3 text-gray-600" />
+                    <ChevronLeft className="w-4 h-4 text-gray-600" />
                 </button>
 
                 <div className="flex items-center gap-1">
@@ -174,7 +174,7 @@ export default function CalendarIcon() {
                     onClick={goToNextMonth}
                     className=" hover:bg-[#BF04A6] rounded-full transition-colors"
                 >
-                    <ChevronRight className="w-3 h-3 text-gray-600" />
+                    <ChevronRight className="w-4 h-4 text-gray-600" />
                 </button>
             </div>
 

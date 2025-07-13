@@ -1,7 +1,9 @@
 import Skeletal from "../../Components/Dermetologistcomponent/Skeletal";
-import Cliendetails from "../../Components/Dermetologistcomponent/Clientdetails"
-import RecentSkinAnalysis from "../../Components/Dermetologistcomponent/RecentSkinAnalysis"
+import UserDetails from "@/Components/Clientdashboardcomponent/UserDetails";
+import ClientAppointment from "../../Components/Clientdashboardcomponent/ClientAppointment"
 import SkinReport from "../../Components/Dermetologistcomponent/SkinReport"
+import ClientRecentSkinAnalysis from "@/Components/Clientdashboardcomponent/ClientRecentSkinAnalysis";
+import Dashboardnavbar from "@/Components/Dashboardnavbar";
 
 export default function Clientdashboard() {
   return (
@@ -10,8 +12,9 @@ export default function Clientdashboard() {
         {/* <Dashboardnavbar/> */}
         <div className="flex gap-6">
           <div>
-            <Cliendetails />
-            <RecentSkinAnalysis />
+            <UserDetails />
+            <ClientAppointment />
+            <ClientRecentSkinAnalysis />
           </div>
           <Skeletal />
           <SkinReport />

@@ -1,7 +1,7 @@
 import Calender from "../../Components/Dermetologistcomponent/Calender"
 import ClientTableDetail from "../../Components/Dermetologistcomponent/ClientTableDetail"
 import AppointmentTable from "../../Components/Dermetologistcomponent/AppointmentTable"
-
+import Dashboardnavbar from "@/Components/Dashboardnavbar"
 
 export default function Appointment() {
     return(
