@@ -7,11 +7,13 @@ import ClientLogin from "./Pages/ClientLogin"
 import Notfound from "./Pages/Notfound"
 import Dermetologistdashboard from "./Pages/demertologistdashboard/Dermetologistdashboard"
 import Clientdashboard from "./Pages/Clientdashboard/Clientdashboard"
-import AppointmentPage from "./Pages/AppointmentPage"
+import AppointmentPage from "./Pages/Clientdashboard/AppointmentPage"
 import Appointment from "./Pages/demertologistdashboard/Appointment"
+import DemOverview from "./Pages/demertologistdashboard/DemOverview"
 import SkinAnalysisForm from "./Pages/SkinAnalysisForm"
 import AppointmentForm from "./Pages/AppointmentForm"
 import DemCalls from "./Pages/DemCalls"
+import AiAnalysisResult from "./Pages/AiAnalysisResult"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -22,12 +24,14 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/clientlogin", element: <ClientLogin/>},
   {path: "/dermetologistdashboard", element: <Dermetologistdashboard/>},
   {path: "/clientdashboard", element: <Clientdashboard/>},
+  {path: "/aianalyze", element: <AiAnalysisResult/>},
   {path: "/appointmentpage", element: <AppointmentPage />},
   {path: "/appointment", element: <Appointment />},
   {path: "*", element: <Notfound/>},
   {path: "/skin-analysis-form", element: <SkinAnalysisForm />},
   {path: "/appointment-form", element: <AppointmentForm />},
   {path: "/dem-calls", element: <DemCalls />},
+  {path: "/demoverview", element: <DemOverview />},
   
 ])
 
