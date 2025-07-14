@@ -40,7 +40,7 @@ export default function Navbar() {
     };
     return (
         <nav className="
-            fixed top-0 left-0 right-0 z-50 isolate transition-all duration-300 ease-in-out bg-darkest text-white
+            sticky top-0 bottom-0 left-0 right-0 z-50 isolate transition-all duration-300 ease-in-out bg-darkest text-white
             
         ">
             {/* Desktop Navigation */}
