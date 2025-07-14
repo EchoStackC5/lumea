@@ -55,10 +55,10 @@ const DermatologistAppointments = () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white min-h-screen ">
+    <div className="max-w-6xl mx-auto p-6 bg-white border-1 rounded-2xl  shadow-md mt-5 w-[686px] h-[444px] ">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Appointments</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Appointments</h1>
         
         {/* Search Bar */}
         <div className="flex items-center space-x-4">
@@ -82,7 +82,7 @@ const DermatologistAppointments = () => {
       </div>
 
       {/* Appointments Table */}
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden ">
+      <div className=" overflow-hidden ">
         {/* Table Header */}
         <div className="bg-purple-100 px-6 py-4 border-b border-gray-200">
           <div className="grid grid-cols-3 gap-4">
