@@ -2,6 +2,7 @@ import SkinAnalysisNav from "../Components/SkinAnalysNav";
 import { CloudUpload, Glasses } from 'lucide-react';
 import { useState } from "react";
 import useSWR from "swr";
+import { apiClient, apiFetcher } from "@/api/client";
 
 import {
     Dialog,
@@ -15,7 +16,26 @@ import { useNavigate } from "react-router";
 export default function SkinAnalysisForm() {
 
     const navigate = useNavigate();
-    const {data, isLoading , error} = useSWR
+    // const {data, isLoading , error} = useSWR ("/skin-reports/upload",apiFetcher);
+
+    const postSkin = async (data) => {
+        try {
+            const response = await apiClient.post("/skin-reports/upload", data, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(`ACCESS_TOKEN`)}`
+                }
+
+            })
+            console.log(response.data);
+            navigate("/ai-analyze");
+        } catch (error) {
+
+        }
+
+    }
+    if (!localStorage.getItem("ACCESS_TOKEN")) {
+        return <navigate to={"login"} />
+    }
 
 
 
@@ -39,7 +59,7 @@ export default function SkinAnalysisForm() {
                         Analyze your Skin
                     </h1>
 
-                    <form className="bg-white h-[300px] flex flex-col justify-center items-center w-full p-6 rounded-lg border border-light-border space-y-6">
+                    <form action={postSkin} className="bg-white h-[300px] flex flex-col justify-center items-center w-full p-6 rounded-lg border border-light-border space-y-6">
 
                         <label className="flex flex-col items-center justify-center w-full max-w-md h-48 p-6 gap-2 bg-[#F4E8FC] rounded-lg cursor-pointer">
                             <CloudUpload className="text-[#322F2F]" />
@@ -55,7 +75,7 @@ export default function SkinAnalysisForm() {
                             />
                         </label>
 
-                        <button className="bg-primary-dark font-poppins font-medium hover:bg-yellow-500 hover:text-darkest active:bg-yellow-500 active:text-darkest text-white rounded-full py-3 w-3/5 lg:w-3/8 px-4 cursor-pointer">Analyze Skin</button>
+                        <button type="submit" className="bg-primary-dark font-poppins font-medium hover:bg-yellow-500 hover:text-darkest active:bg-yellow-500 active:text-darkest text-white rounded-full py-3 w-3/5 lg:w-3/8 px-4 cursor-pointer">Analyze Skin</button>
 
 
 
