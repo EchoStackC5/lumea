@@ -1,6 +1,8 @@
 import { useState } from "react";
 import FormStep1 from "./FormStep1";
 import FormStep2 from "./FormStep2";
+import FormStep3 from "./FormStep3";
+import { ArrowLeft } from 'lucide-react';
 export default function Step1({ steps }) {
 
     const [activeStep, setActiveStep] = useState(1)
@@ -23,12 +25,14 @@ export default function Step1({ steps }) {
         return <FormStep1 />;
       case 2:
         return <FormStep2 />;
+        case 3:
+        return <FormStep3 />;
       default:
         return null;
     }
   };
     return (
-        <div className="mx-auto w-full max-w-2xl px-4 pb-10">
+        <div className="mx-auto w-full max-w-5xl px-4 pb-10">
             <div className="before:transform-y-1/2 relative mt-14 flex justify-between before:absolute before:top-1/2 before:left-0 before:h-1 before:w-full before:bg-light-border">
                 {steps.map(({ step, label }) => (
                     <div className="relative z-10" key={step}>
@@ -56,18 +60,19 @@ export default function Step1({ steps }) {
       
             </div>
                             {/* Form Step Component */}
-      <div className="flex flex-col justify-center items-center mt-30">{renderStepForm()}</div>
+      <div className="flex flex-col w-full justify-center items-center mt-30">{renderStepForm()}</div>
        
             <div className="mt-28 flex justify-between">
                 <button
-                    className="rounded-md border bg-gray-500 px-8 py-1.5 text-base font-medium text-white hover:bg-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-700"
+                    className=" flex justify-center items-center gap-2  rounded-full px-8 py-3 text-purple-900 text-base font-medium  hover:bg-yellow-500 hover:text-darkest disabled:cursor-not-allowed disabled:bg-purple-300 disabled:text-purple-700"
                     onClick={prevStep}
                     disabled={activeStep === 1}
                 >
+                    <ArrowLeft/>
                     Previous
                 </button>
                 <button
-                    className="rounded-md border bg-gray-500 px-8 py-1.5 text-base font-medium text-white hover:bg-gray-600 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-700"
+                    className="rounded-full border bg-system-primary px-8 py-1.5 text-base font-medium text-white hover:bg-yellow-500 hover:text-darkest disabled:cursor-not-allowed disabled:bg-purple-300 disabled:text-purple-700"
                     onClick={nextStep}
                     disabled={activeStep === totalSteps}
                 >
