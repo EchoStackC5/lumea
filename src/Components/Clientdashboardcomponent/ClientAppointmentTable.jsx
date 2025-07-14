@@ -54,9 +54,9 @@ const DermatologistAppointments = () => {
   );
 
   return (
-    <div className="flex space-x-6">
+    <div className="flex space-x-6 w-[686px] h-[444px] ">
       {/* Appointments Table */}
-      <div className="max-w-6xl p-6 bg-white rounded-2xl shadow-md w-[686px] h-[444px] mt-5">
+      <div className="max-w-6xl p-6 bg-white rounded-2xl shadow-md  mt-5">
         <div className="flex items-center justify-between mb-6 space-x-3">
           <h1 className="text-[16px] font-bold text-gray-900">Appointments</h1>
           
