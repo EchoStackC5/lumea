@@ -1,6 +1,7 @@
 import SkinAnalysisNav from "../Components/SkinAnalysNav";
 import { CloudUpload, Glasses } from 'lucide-react';
 import { useState } from "react";
+import useSWR from "swr";
 
 import {
     Dialog,
@@ -10,7 +11,15 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/Components/ui/dialog"
+import { useNavigate } from "react-router";
 export default function SkinAnalysisForm() {
+
+    const navigate = useNavigate();
+    const {data, isLoading , error} = useSWR
+
+
+
+
     const [open, setOpen] = useState(false);
     const [hasSeenDialog, setHasSeenDialog] = useState(false);
 
