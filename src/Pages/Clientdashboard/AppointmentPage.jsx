@@ -8,20 +8,20 @@ export default function Appointment() {
   return (
    <>
   <div 
-  className="grid gap-1 justify-center"
+  className="grid justify-around  bg-[#F6EBFD] h-screen"
   style={{ gridTemplateColumns: '358px 686px 296px' }}
 >
-  <div className="w-[358px] h-[444px] ml-7">
+  <div className="w-[358px] h-[444px] ml-10">
     <AppointmentCalender />
   </div>
 
-  <div className="w-[686px] h-[444px] mr-2">
+  <div className="w-[686px] h-[444px] ">
     <ClientAppointmentTable />
   </div>
 
-  <div className="w-[296px] h-[444px] mr-4 ">
+  {/* <div className="w-[296px] h-[444px] mr-6 ">
     <AppointmentDetailsCard />
-  </div>
+  </div> */}
 </div>
 
 </>
