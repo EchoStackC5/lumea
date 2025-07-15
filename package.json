@@ -10,18 +10,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-table": "^8.21.3",
+    "@cometchat-pro/chat": "^3.0.13",
+    "@cometchat/calls-sdk-javascript": "^4.1.0",
+    "@cometchat/chat-uikit-react": "^6.0.7",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
     "@radix-ui/react-slot": "^1.2.3",
+    "@tanstack/react-table": "^8.21.3",
     "axios": "^1.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3",
+    "swr": "^2.3.4",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {

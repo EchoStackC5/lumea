@@ -2,10 +2,36 @@ import upload from "../assets/images/upload.png";
 import google from "../assets/images/google.png";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import SubmitButton from "../Components/SubmitButton"
+import { useNavigate } from "react-router";
+import { Link } from "react-router";
+import { apiClient } from "../api/client";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+
+  const signUpUser = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Optionally, you can check if passwords match here
+    // if (form.password.value !== form.repassword.value) { ... }
+
+    try {
+      const response = await apiClient.post("cosmetologist/register", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      console.log(response);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full min-h-screen flex justify-center items-start py-10 px-4 bg-[#F6EBFD]">
@@ -14,7 +40,7 @@ export default function SignUp() {
           Create an account
         </h1>
 
-        <form className="space-y-8">
+        <form className="space-y-8" onSubmit={signUpUser}>
           {/* Input Fields Section */}
           <div className="space-y-6">
             {/* Name */}
@@ -23,10 +49,11 @@ export default function SignUp() {
                 Your Name
               </label>
               <input
+                name="name"
                 type="text"
-                id=""
                 placeholder="First and Last Name"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
+                required
               />
             </div>
 
@@ -36,35 +63,39 @@ export default function SignUp() {
                 Email
               </label>
               <input
+                name="email"
                 type="email"
-                id=""
                 placeholder="ayimaah@gmail.com"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
+                required
               />
             </div>
             {/* expert input */}
             <div className="space-y-2">
-              <label htmlFor="text" className="block text-sm text-gray-700">
+              <label htmlFor="areaOfExpertise" className="block text-sm text-gray-700">
                 What Is Your Area Of Expertise?
               </label>
               <input
+                name="areaOfExpertise"
                 type="text"
-                id=""
                 placeholder="Enter Area Of Expert"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
+                required
               />
             </div>
 
             {/* Upload ur Image */}
             <div className="space-y-2">
-              <label htmlFor="fileUpload" className="block text-sm text-gray-700">
+              <label htmlFor="picture" className="block text-sm text-gray-700">
                 Upload A Picture Of Yourself
               </label>
               <div className="relative w-full h-[48px]">
                 <input
+                  name="picture"
                   type="file"
-                  id=""
+                  accept="image/*"
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                  required
                 />
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
                   <img src={upload} alt="Upload Icon" className="w-5 h-5" />
@@ -73,14 +104,16 @@ export default function SignUp() {
             </div>
             {/* Upload ur cert */}
             <div className="space-y-2">
-              <label htmlFor="fileUpload" className="block text-sm text-gray-700">
+              <label htmlFor="certificate" className="block text-sm text-gray-700">
                 Upload Your Certificate
               </label>
               <div className="relative w-full h-[48px]">
                 <input
+                  name="certificate"
                   type="file"
-                  id=""
+                  accept="image/*,application/pdf"
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                  required
                 />
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
                   <img src={upload} alt="Upload Icon" className="w-5 h-5" />
@@ -88,7 +121,7 @@ export default function SignUp() {
               </div>
             </div>
 
-            {/* ur Password */}
+            {/* Password */}
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm text-gray-700">
                 Password
@@ -96,9 +129,10 @@ export default function SignUp() {
               <div className="relative">
                 <input
                   type={showPassword ? "password" : "text"}
-                  id=""
+                  name="password"
                   placeholder="Enter your password"
                   className="w-full h-[48px] px-4 pr-10 border-2 border-[#F6EBFD] rounded-md"
+                  required
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
@@ -117,9 +151,10 @@ export default function SignUp() {
               <div className="relative">
                 <input
                   type={showRePassword ? "password" : "text"}
-                  id=""
+                  name="repassword"
                   placeholder="Re-enter your password"
                   className="w-full h-[48px] px-4 pr-10 border-2 border-[#F6EBFD] rounded-md"
+                  required
                 />
                 <span
                   onClick={() => setShowRePassword(!showRePassword)}
@@ -133,28 +168,23 @@ export default function SignUp() {
 
           {/* Buttons Section */}
           <div className="space-y-6">
-            <button
-              type="submit"
-              className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  hover:border-transparent transition"
-            >
-              Create Account
-            </button>
-
-            <button
-              type="button"
-              className="w-full h-[48px] bg-none text-black rounded-full flex items-center justify-center border-black border-1 hover:border-transition"
-            >
-              <img src={google} alt="Google" className="h-8 w-8 mr-2" />
-              continue with google
-            </button>
-
-            <p className="text-center  text-xl text-gray-600">
-              Already have an account?{" "}
-              <a href="/login" className="text-[#0066CC] font-medium hover:underline">
-                Login
-              </a>
-            </p>
+            <SubmitButton className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  " title={"Create Account"} />
           </div>
+
+          <button
+            type="button"
+            className="w-full h-[48px] bg-none text-black rounded-full flex items-center justify-center border-black border-1 hover:border-transition"
+          >
+            <img src={google} alt="Google" className="h-8 w-8 mr-2" />
+            continue with google
+          </button>
+
+          <p className="text-center  text-xl text-gray-600">
+            Already have an account?{" "}
+            <Link to="/login" className="text-[#0066CC] font-medium hover:underline">
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>

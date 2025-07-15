@@ -12,7 +12,7 @@ import Appointment from "./Pages/demertologistdashboard/Appointment"
 import DemOverview from "./Pages/demertologistdashboard/DemOverview"
 import SkinAnalysisForm from "./Pages/SkinAnalysisForm"
 import AppointmentForm from "./Pages/AppointmentForm"
-import DemCalls from "./Pages/DemCalls"
+import DemCalls from "./Pages/demertologistdashboard/DemCalls"
 import AiAnalysisResult from "./Pages/AiAnalysisResult"
 
 
@@ -24,7 +24,7 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/clientlogin", element: <ClientLogin/>},
   {path: "/dermetologistdashboard", element: <Dermetologistdashboard/>},
   {path: "/clientdashboard", element: <Clientdashboard/>},
-  {path: "/aianalyze", element: <AiAnalysisResult/>},
+  {path: "/ai-analyze", element: <AiAnalysisResult/>},
   {path: "/appointmentpage", element: <AppointmentPage />},
   {path: "/appointment", element: <Appointment />},
   {path: "*", element: <Notfound/>},

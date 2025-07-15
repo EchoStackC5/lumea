@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export default function HeroSection() {
   return (
-    <section className="bg-[url(./assets/skincare8.jpg)] bg-cover bg-center h-screen relative">
+    <section className="bg-[url(./assets/skincare7.jpg)] bg-cover bg-center h-screen relative">
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
       <div className="flex flex-col justify-center items-center h-full relative z-10 text-white px-4 text-center">
@@ -23,7 +23,7 @@ export default function HeroSection() {
         <div className="flex flex-col md:flex-row gap-4 mt-8 w-full max-w-md px-2">
           <Link
             to="/skin-analysis-form"
-            className="bg-[#9D82B6] text-white text-center px-6 py-3 rounded-full font-medium hover:bg-yellow-500 hover:text-darkest transition-all duration-200"
+            className="hover:bg-[#9D82B6] hover:text-white text-center px-6 py-3 rounded-full font-medium bg-yellow-500 text-darkest transition-all duration-200"
           >
             Analyze My Skin
           </Link>
