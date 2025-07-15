@@ -1,4 +1,4 @@
-import lumeaLogo from "../assets/lumeaLogo.svg";
+import lumeaLogo from "../assets/lumeaYellow.svg";
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router"
@@ -46,14 +46,14 @@ export default function HomeNav() {
         `}>
             {/* Desktop Navigation */}
             <div className="hidden lg:flex justify-between items-center text-white px-6 sm:px-8 py-4">
-                <img src={lumeaLogo} alt="Lumea Logo" className="cursor-pointer"></img>
-                <div className="cursor-pointer font-roboto font-light text-[16px] flex gap-4">
+                <img src={lumeaLogo} alt="Lumea Logo" className="cursor-pointer w-28"></img>
+                <div className="cursor-pointer font-roboto font-light text-[14px] flex gap-4">
                     <a href="#home" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Home</a>
                     <a href="#about-us"  className="hover:text-primary-color hover:font-bold transition-all duration-200 active:text-primary-color active:font-bold font-medium"> About Us</a>
                     <Link to="" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> How it Works</Link>
                     <a href="#find-a-cosmotologist" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
                 </div>
-                <Link to="/signUp" className=" px-6 py-2 rounded-full font-medium hover:bg-yellow-500 hover:text-darkest bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
+                <Link to="/signUp" className=" text-sm px-6 py-2 rounded-full hover:text-white font-medium bg-yellow-500 text-darkest hover:bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
             </div>
 
             {/* Mobile Header */}
@@ -105,7 +105,7 @@ export default function HomeNav() {
                         </a>
                         <Link 
                             to="/sign-up" 
-                            className="bg-[#9D82B6] px-6 py-3 rounded-full font-medium text-darkest-heading hover:bg-primary-color transition-all duration-200 text-center mt-2"
+                            className="hover:bg-[#9D82B6] bg-yellow-500 text-darkest hover:text-white px-6 py-3 rounded-full text-sm font-medium text-darkest-heading hover:bg-primary-color transition-all duration-200 text-center mt-2"
                           
                         >
                            Register as a Cosmetologist

@@ -7,7 +7,8 @@ import sdate from "../../assets/images/sdate.png";
 import cream1 from "../../assets/images/a.png";
 import cream2 from "../../assets/images/b.png";
 import cream3 from "../../assets/images/c.png";
-import Rating from "../../assets/images/Rating.png";
+import Rating from "../../assets/images/RatingHalf.svg";
+
 
 export default function AnalysisSidePanel() {
   const skinTags = [
@@ -25,7 +26,7 @@ export default function AnalysisSidePanel() {
 
   return (
     <div className="flex flex-col space-y-4 lg:space-y-6 w-full max-w-[296px] mx-auto">
-      <div className="bg-white rounded-xl p-4 shadow-md w-full h-auto lg:h-[239.2px] space-y-4">
+      <div className="bg-white rounded-xl p-4 border border-light-border w-full h-auto lg:h-[239.2px] space-y-4">
         <h3 className="font-semibold">Your Skin Analysis</h3>
         <div className="grid grid-cols-2 gap-3 text-sm">
           {skinTags.map(({ img, label, value, bg }, idx) => (
@@ -50,8 +51,8 @@ export default function AnalysisSidePanel() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl p-3 shadow-md w-full h-auto lg:h-[239.2px]">
-        <div className="bg-[#F6EBFD] rounded-xl shadow-md w-full max-w-[268px] h-auto lg:h-[178px] mx-auto mt-4">
+      <div className="bg-white rounded-xl p-3 border border-light-border w-full h-auto lg:h-[239.2px]">
+        <div className="bg-[#F6EBFD] rounded-xl border border-light-border w-full max-w-[268px] h-auto lg:h-[178px] mx-auto mt-4">
           <h3 className="font-semibold pt-2 ml-2">Recommended Products</h3>
           <div className="grid grid-cols-3 gap-3 sm:gap-5 px-4 mt-4">
             {products.map((item, idx) => (
@@ -59,12 +60,12 @@ export default function AnalysisSidePanel() {
                 <div className={`w-[67.17px] h-[85.26px] bg-[#EFD6FF] flex items-center justify-center ${idx === 1 ? 'rounded-full' : ''}`}>
                   <img src={item.img} alt={item.label} className="object-cover max-h-full" />
                 </div>
-                <p className="text-[7.52px] mt-2">{item.label}</p>
-                <div className="flex items-center justify-between text-[3.55px]">
-                  <p>{item.price}</p>
+                <p className="text-sm mt-2">{item.label}</p>
+                <div className="flex items-center justify-between ">
+                  <p className='text-[12px]'>{item.price}</p>
                   <div className="flex items-center gap-1">
-                    <img src={Rating} alt="Rating" />
-                    <p>4.0</p>
+                    <img src={Rating} alt="Rating" className='w-12' />
+                    <p className='text-[12px]'>4.0</p>
                   </div>
                 </div>
               </div>
