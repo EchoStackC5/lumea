@@ -125,7 +125,7 @@ export default function CalendarIcon() {
     };
 
     return (
-        <div className="h-[695px] w-[300px]  bg-white rounded-xl shadow-lg p-4">
+        <div className="h-[695px] w-[25%]  bg-white rounded-xl shadow-lg p-4">
             {/* Header */}
             <div className="flex items-center justify-between mb-4 ">
                 <div className="flex justify-between md:gap-40">
