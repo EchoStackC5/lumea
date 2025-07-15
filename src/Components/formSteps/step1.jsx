@@ -32,7 +32,7 @@ export default function Step1({ steps }) {
     }
   };
     return (
-        <div className="mx-auto w-full max-w-5xl px-4 pb-10">
+        <div className="mx-auto w-full max-w-2xl px-4 pb-10">
             <div className="before:transform-y-1/2 relative mt-14 flex justify-between before:absolute before:top-1/2 before:left-0 before:h-1 before:w-full before:bg-light-border">
                 {steps.map(({ step, label }) => (
                     <div className="relative z-10" key={step}>

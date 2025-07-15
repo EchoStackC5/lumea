@@ -6,12 +6,9 @@ export default function FormStep3({ onNext, cosmetologists = [] }) {
                 <h1>Based on your concerns and skin type, here are experts for you.</h1>
             </div>
 
-             <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {[1, 2, 3].map(n => <CosmetologistList key={n} />)}
-            </div>
-
-           
-           
+             <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-2 gap-5">
+                {[1, 2, 3,4].map(n => <CosmetologistList key={n} />)}
+            </div>         
         </form>
     );
 }
