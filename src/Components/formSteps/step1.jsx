@@ -37,17 +37,21 @@ export default function Step1({ steps }) {
                 {steps.map(({ step, label }) => (
                     <div className="relative z-10" key={step}>
                         <div
-                            className={`flex size-16 items-center justify-center rounded-full border-2 border-light-border  transition-all delay-200 ease-in ${activeStep >= step ? 'border-purple-400 bg-system-primary' : 'bg-white text-primary-dark'
-                                }`}
-                        >
-                            {activeStep > step ? (
-                                <div className="-scale-x-100 rotate-45 text-2xl font-semibold text-white">
-                                    L
-                                </div>
-                            ) : (
-                                <span className="text-lg font-medium text-primary-dark">{step}</span>
-                            )}
-                        </div>
+  className={`flex size-16 items-center justify-center rounded-full border-2 border-light-border transition-all delay-200 ease-in 
+    ${activeStep >= step 
+      ? 'border-purple-400 bg-system-primary text-white' 
+      : 'bg-white text-primary-dark'
+    }`}
+>
+  {activeStep > step ? (
+    <div className="-scale-x-100 rotate-45 text-2xl font-semibold">
+      L
+    </div>
+  ) : (
+    <span className="text-lg font-medium">{step}</span>
+  )}
+</div>
+
                         <div className="absolute top-24 left-1/2 -translate-x-2/4 -translate-y-2/4">
                             <span className="text-sm font-semibold text-primary-dark text-center text-nowrap">{label}</span>
                         </div>
