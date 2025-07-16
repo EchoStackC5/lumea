@@ -1,11 +1,32 @@
+import { useNavigate } from "react-router";
 import upload from "../assets/images/upload.png";
 import google from "../assets/images/google.png";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { apiClient } from "../api/client";
+import { Link } from "react-router";
 
 export default function ClientSignUp() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+
+  const signUpUser = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Optionally, you can check if passwords match here
+    // if (form.password.value !== form.repassword.value) { ... }
+
+    try {
+      const response = await apiClient.post("auth/register", formData);
+      console.log(response);
+      navigate("/clientlogin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full min-h-screen flex justify-center items-start py-10 px-4 bg-[#F6EBFD]">
@@ -14,7 +35,7 @@ export default function ClientSignUp() {
           Create an account
         </h1>
 
-        <form className="space-y-8">
+        <form className="space-y-8" onSubmit={signUpUser}>
           {/* Input Fields Section */}
           <div className="space-y-6">
             {/* Name */}
@@ -24,9 +45,10 @@ export default function ClientSignUp() {
               </label>
               <input
                 type="text"
-                id=""
+                name="name" 
                 placeholder="First and Last Name"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
+                required
               />
             </div>
 
@@ -37,9 +59,10 @@ export default function ClientSignUp() {
               </label>
               <input
                 type="email"
-                id=""
+                name="email" 
                 placeholder="ayimaah@gmail.com"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
+                required
               />
             </div>
 
@@ -50,9 +73,11 @@ export default function ClientSignUp() {
               </label>
               <div className="relative w-full h-[48px]">
                 <input
+                  name="picture"
+                  accept="image/*"
                   type="file"
-                  id=""
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
+                  required
                 />
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
                   <img src={upload} alt="Upload Icon" className="w-5 h-5" />
@@ -67,10 +92,11 @@ export default function ClientSignUp() {
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? "password" : "text"}
-                  id=""
+                  name="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="w-full h-[48px] px-4 pr-10 border-2 border-[#F6EBFD] rounded-md"
+                  required
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
@@ -88,10 +114,11 @@ export default function ClientSignUp() {
               </label>
               <div className="relative">
                 <input
-                  type={showRePassword ? "password" : "text"}
-                  id=""
+                  name="repassword"
+                  type={showRePassword ? "text" : "password"}
                   placeholder="Re-enter your password"
                   className="w-full h-[48px] px-4 pr-10 border-2 border-[#F6EBFD] rounded-md"
+                  required
                 />
                 <span
                   onClick={() => setShowRePassword(!showRePassword)}
@@ -122,9 +149,9 @@ export default function ClientSignUp() {
 
             <p className="text-center  text-xl text-gray-600">
               Already have an account?{" "}
-              <a href="#" className="text-[#0066CC] font-medium hover:underline">
+              <Link to="/clientlogin" className="text-[#0066CC] font-medium hover:underline">
                 Login
-              </a>
+              </Link>
             </p>
           </div>
         </form>
