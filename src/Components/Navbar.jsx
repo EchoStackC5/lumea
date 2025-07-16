@@ -113,6 +113,7 @@ export default function Navbar() {
                         >
                             Calls
                         </Link>
+                         <UserProfile/>
                      
                     </div>
                 </div>

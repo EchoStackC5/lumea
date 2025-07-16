@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import { ChevronDown, User } from "lucide-react";
 import {
   DropdownMenu,
@@ -7,8 +8,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+} from "@/Components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/Components/ui/avatar";
 // import { apiFetcher } from "@/api/client";
 // import { useNavigate } from "react-router";
 // import useSWR from "swr";
@@ -23,9 +24,9 @@ export default function UserProfile() {
   // }
 
   return (
-    <div className="bg-white text-darkest-heading rounded-full hover:bg-none">
+    <div className="bg-white max-w-xs text-darkest-heading rounded-full hover:bg-none">
       <DropdownMenu >
-        <DropdownMenuTrigger asChild className="ml-auto ">
+        <DropdownMenuTrigger asChild className="">
          <Button variant="ghost" className="  flex gap-x-1 md:gap-x-3 items-center p-2 md:p-6 hover:bg-transparent border-none">
            
               <Avatar className="w-8 h-8 ml-0 mt-2">
