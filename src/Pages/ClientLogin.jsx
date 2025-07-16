@@ -22,7 +22,8 @@ export default function ClientLogin() {
     try {
       const response = await apiClient.post("/auth/login", form);
       
-      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", response.data.token);
+      localStorage.setItem("ACCESS_TOKEN", response.data.token);
       
       navigate("/clientdashboard"); 
     } catch (err) {

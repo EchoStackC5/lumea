@@ -20,8 +20,9 @@ export default function ClientLogin() {
     setError("");
     try {
       const response = await apiClient.post("/auth/login", form);
+      localStorage.setItem("ACCESS_TOKEN", response.data.token);
       
-      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", response.data.token);
       
       navigate("/dermetologistdashboard"); 
     } catch (err) {
