@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import Face from "../../assets/images/u.png";
-import AppointmentDetailsCard from '../../Components/Clientdashboardcomponent/AppointmentDetails'; 
+import AppointmentDetailsCard from '../../Components/Clientdashboardcomponent/AppointmentDetails';
 
 const DermatologistAppointments = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 3;
 
-  const [appointments] = useState([
+  const appointments = [
     {
       id: 1,
       doctorName: 'Dr. Naa Mensima',
@@ -31,8 +33,16 @@ const DermatologistAppointments = () => {
       time: '09:30AM - 10:00 AM',
       status: 'In progress',
       avatar: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face'
+    },
+    {
+      id: 4,
+      doctorName: 'Dr. John Doe',
+      date: '20th July 2025',
+      time: '10:00AM - 10:30 AM',
+      status: 'Completed',
+      avatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&h=150&fit=crop&crop=face'
     }
-  ]);
+  ];
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -47,33 +57,50 @@ const DermatologistAppointments = () => {
     }
   };
 
+  // Filter first
   const filteredAppointments = appointments.filter(appointment =>
     appointment.doctorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredAppointments.length / limit);
+  const paginatedAppointments = filteredAppointments.slice((currentPage - 1) * limit, currentPage * limit);
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(prev => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1);
+    }
+  };
+
   return (
-    <div className="flex space-x-6 w-[686px] h-[444px] ">
+    <div className="flex space-x-6 w-[686px] h-[500px]">
       {/* Appointments Table */}
-      <div className="max-w-6xl p-6 bg-white rounded-2xl shadow-md  mt-5">
+      <div className="max-w-6xl p-6 bg-white rounded-2xl mt-5">
         <div className="flex items-center justify-between mb-6 space-x-3">
           <h1 className="text-[16px] font-bold text-gray-900">Appointments</h1>
-          
+
           <div className="flex items-center space-x-4">
             <div className="relative">
               <input
                 type="text"
                 placeholder="search list"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
                 className="w-80 pl-4 pr-12 py-3 border-0 rounded-full focus:outline-none bg-purple-50 text-gray-700 placeholder-gray-500"
               />
               <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition-colors">
                 <Search size={16} />
               </button>
             </div>
-            
+
             <button className="bg-black text-white text-[8px] px-7 py-3 rounded-full hover:bg-gray-800 transition-colors font-medium">
               Book Appointment
             </button>
@@ -90,14 +117,10 @@ const DermatologistAppointments = () => {
           </div>
 
           <div className="divide-y divide-gray-100">
-            {filteredAppointments.map((appointment) => (
+            {paginatedAppointments.map((appointment) => (
               <div
                 key={appointment.id}
-                className={`px-6 py-5 cursor-pointer transition-colors rounded-lg ${
-                  selectedAppointment?.id === appointment.id
-                    ? 'bg-purple-50'
-                    : 'hover:bg-purple-100'
-                }`}
+                className={`px-6 py-5 cursor-pointer transition-colors rounded-lg ${selectedAppointment?.id === appointment.id ? 'bg-purple-50' : 'hover:bg-purple-100'}`}
                 onMouseEnter={() => setSelectedAppointment(appointment)}
                 onClick={() => setSelectedAppointment(appointment)}
               >
@@ -128,11 +151,28 @@ const DermatologistAppointments = () => {
             ))}
           </div>
 
-          {filteredAppointments.length === 0 && (
+          {paginatedAppointments.length === 0 && (
             <div className="text-center py-8">
-              <p className="text-gray-500">No appointments found matching your search.</p>
+              <p className="text-gray-500">No appointments found.</p>
             </div>
           )}
+        </div>
+
+        <div className='flex justify-center items-center mt-3 space-x-5'>
+          <button
+            onClick={handlePrev}
+            disabled={currentPage === 1}
+            className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            Prev
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={currentPage === totalPages}
+            className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            Next
+          </button>
         </div>
       </div>
 

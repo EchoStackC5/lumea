@@ -23,7 +23,7 @@ const AppointmentDetailsCard = () => {
   }
 
   return (
-    <div className="bg-white rounded-2xl border shadow-xl max-w-md w-[296px] h-[444px] p-4 relative flex flex-col justify-between mt-5">
+    <div className="bg-white rounded-2xl border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
       
       {/* Close Button */}
       <button
@@ -52,12 +52,12 @@ const AppointmentDetailsCard = () => {
           <h3 className="text-xl font-semibold text-gray-900 mb-1">Dr. Naa Mensima</h3>
 
           {/* Appointment Date and Time */}
-          <p className="text-gray-600 text-sm mb-3">
+          <p className="text-gray-600 text-sm pt-3">
             July 10, 2025 – 10:00 AM - 11:00 AM
           </p>
 
           {/* Status Badge */}
-          <div className="mb-3">
+          <div className="mt-5">
             <span className="inline-flex justify-center items-center w-[244px] h-[34px] text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 rounded-full">
               In progress
             </span>
@@ -65,8 +65,8 @@ const AppointmentDetailsCard = () => {
         </div>
 
         {/* Action Buttons - FLEXED SIDE BY SIDE */}
-        <div className="flex flex-row gap-2 w-full px-4">
-          <button className="flex-1 bg-black text-xs text-white h-[36px] rounded-full hover:bg-gray-800 transition-colors font-medium">
+        <div className="flex flex-row gap-2 w-full px-4 ">
+          <button className="flex-1 bg-black text-[10px] text-white h-[36px] rounded-full  hover:bg-gray-800 transition-colors font-medium">
             View Skin Report
           </button>
           <button className="flex-1 bg-transparent text-xs text-gray-900 h-[36px] rounded-full border border-gray-300 hover:bg-gray-50 transition-colors font-medium">

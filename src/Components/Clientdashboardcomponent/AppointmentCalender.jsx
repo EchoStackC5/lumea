@@ -104,21 +104,21 @@ export default function CalendarComponent() {
   };
 
   return (
-    <div className='bg-white border shadow-md rounded-xl w-[296px] h-[444px] mt-5 p-3 flex flex-col justify-between'>
+    <div className='bg-white border  rounded-xl w-[296px] h-[484px] mt-5 p-3 flex flex-col justify-between'>
 
       {/* Top Header - Calendar Icon & Plus Button */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-1">
           <CalendarIcon className="w-5 h-5 text-[black]" />
           <h2 className="font-semibold text-sm">Calendar</h2>
         </div>
-        <button className="p-1 rounded-full bg-[black] text-white hover:opacity-90">
+        {/* <button className="p-1 rounded-full bg-[black] text-white hover:opacity-90">
           <Plus size={14} />
-        </button>
+        </button> */}
       </div>
 
       {/* Calendar Box */}
-      <div className="bg-[#EAD7FB] rounded-xl p-3 shadow-md text-gray-800 w-full">
+      <div className="bg-[#EAD7FB] rounded-xl p-2 mb-8 text-gray-800 w-full ">
         <div className="flex items-center justify-between mb-2">
           <button onClick={goToPreviousMonth} className="p-1 rounded-lg hover:bg-white">
             <ChevronLeft className="w-3 h-3 text-gray-700" />
@@ -169,7 +169,7 @@ export default function CalendarComponent() {
       </div>
 
       {/* Today Section */}
-      <div className="bg-[#EAD7FB] p-3 rounded-md w-full h-[124px] mt-2 flex flex-col justify-between">
+      <div className="bg-[#EAD7FB] p-3 rounded-md w-full h-[124px] mt-2 flex flex-col justify-between mb-7">
         <div className="flex justify-between text-sm font-semibold text-gray-800 mb-2">
           <h1>Today</h1>
           <h2>5th July 2025</h2>
