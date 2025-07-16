@@ -104,7 +104,7 @@ export default function HomeNav() {
                             Find a Cosmetologist
                         </a>
                         <Link 
-                            to="/sign-up" 
+                            to="/signUp" 
                             className="hover:bg-[#9D82B6] bg-yellow-500 text-darkest hover:text-white px-6 py-3 rounded-full text-sm font-medium text-darkest-heading hover:bg-primary-color transition-all duration-200 text-center mt-2"
                           
                         >
