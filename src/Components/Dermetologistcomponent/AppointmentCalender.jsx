@@ -148,7 +148,7 @@ export default function CalendarIcon() {
                     <select
                         value={currentDate.getMonth()}
                         onChange={(e) => goToMonth(parseInt(e.target.value))}
-                        className="px-1  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#BF04A6] focus:border-transparent"
+                        className="px-1  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
                     >
                         {months.map((month, index) => (
                             <option key={month} value={index}>
