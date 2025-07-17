@@ -66,7 +66,7 @@ export default function SkinAnalysisForm() {
                             <p className="text-system-primary font-medium text-sm text-center">
                                 Click to upload or <span className="text-dashboar-secondary">drag and drop your image</span>
                             </p>
-                            <input type="file" className="hidden" accept="image/*"
+                            <input type="file" name="image" className="hidden" accept="image/*"
                                 // onClick={() => setOpen(true)}
                                 // onFocus={() => setOpen(true)}
                                 onClick={handleInputClick}

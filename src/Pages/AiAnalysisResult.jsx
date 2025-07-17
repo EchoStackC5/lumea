@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Download } from 'lucide-react';
 import AnalysisImageSection from '../Components/AIAnalysisResult/AnalysisImageSection';
 import AnalysisSummaryCard from '../Components/AIAnalysisResult/AnalysisSummaryCard';
 import AnalysisSidePanel from '../Components/AIAnalysisResult/AnalysisSidePanel';
 import SkinAnalysisNav from '@/Components/SkinAnalysNav';
+import useSWR from 'swr';
+import { apiFetcher } from '@/api/client';
+import Loaders from '@/Components/Loaders';
 
 export default function AIAnalysisResult() {
+  const {data, isLoading, error} = useSWR('/users/me/history', apiFetcher);
+
+  if (isLoading) 
+    return
+  <Loaders/>;
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-500">Failed to load analysis results. Please try again later.</p>
+      </div>
+    );
+  }
+
+const latestReport = data?.[0]; 
+const analysis = latestReport?.analysis;
+  console.log("Analysis data:", analysis);
+
   return (
     <>
     <SkinAnalysisNav />
@@ -19,9 +40,9 @@ export default function AIAnalysisResult() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] xl:grid-cols-[579px_312px_296px]  gap-4 lg:gap-6 justify-center">
-          <AnalysisImageSection />
-          <AnalysisSummaryCard />
-          <AnalysisSidePanel />
+          <AnalysisImageSection  analysis = {analysis}/>
+          <AnalysisSummaryCard analysis = {analysis} />
+          <AnalysisSidePanel analysis={analysis} />
         </div>
       </div>
     </div>

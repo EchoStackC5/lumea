@@ -10,13 +10,13 @@ import cream3 from "../../assets/images/c.png";
 import Rating from "../../assets/images/RatingHalf.svg";
 
 
-export default function AnalysisSidePanel() {
+export default function AnalysisSidePanel({analysis}) {
   const skinTags = [
-    { img: high, label: "Pore Visibility", value: "High", bg: "#F5DBED" },
-    { img: oil, label: "Oil Level", value: "Elevated", bg: "#F2DEDF" },
-    { img: acne, label: "Condition Flags", value: "Acne", bg: "#D6E0F2" },
-    { img: uneven, label: "Texture", value: "Uneven", bg: "#D9D2F9" }
-  ];
+  { img: high, label: "Pore Visibility", value: analysis?.poreVisibility || "N/A", bg: "#F5DBED" },
+  { img: oil, label: "Oil Level", value: analysis?.oilLevel || "N/A", bg: "#F2DEDF" },
+  { img: acne, label: "Condition Flags", value: analysis?.conditions?.join(", ") || "None", bg: "#D6E0F2" },
+  { img: uneven, label: "Texture", value: analysis?.texture || "N/A", bg: "#D9D2F9" }
+];
 
   const products = [
     { img: cream1, label: "Blush", price: "$20" },
@@ -47,7 +47,7 @@ export default function AnalysisSidePanel() {
             <img src={sdate} alt="Scan Date" className="w-4 h-4" />
             <p>Scan Date</p>
           </div>
-          <p>July 5th 2025</p>
+          <p>{analysis?.createdAt ? new Date(analysis.createdAt).toLocaleDateString() : "No date"}</p>
         </div>
       </div>
 
