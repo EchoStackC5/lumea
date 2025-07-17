@@ -3,7 +3,7 @@ import face from "../../assets/images/face.jpg"
 
 export default function Findings() {
     return (
-        <section className="h-[150px] w-[270px] bg-[#F6EBFD] rounded-lg p-2">
+        <section className="h-[150px] w-auto bg-[#F6EBFD] rounded-lg p-2">
             <div>
                 <h1 className="font-inter">Findings</h1>
                 <p className="text-xs text-[#6B6A6C] font-inter">Visible signs of congestion on T-zone, mid inflamation on cheeks. Recommending oil-free hydrating cleanser and daily SPF</p>
