@@ -2,7 +2,7 @@ import { useState } from "react";
 export default function FormStep1({ onNext, defaultValues }) {
     const [form, setForm] = useState({
         skinType: defaultValues?.skinType || "",
-        tone: defaultValues?.tone || "",
+        concern: defaultValues?.concern || "",
         description: defaultValues?.description || "",
         weight: defaultValues?.weight || "",
         height: defaultValues?.height || "",
@@ -33,7 +33,7 @@ export default function FormStep1({ onNext, defaultValues }) {
                 <option value="sensitive">Sensitive</option>
             </select>
             <label className=" mt-2 text-sm font-medium text-gray-700">What is your current concern?<span className="text-red-400">*</span></label>
-            <select required name="tone" onChange={handleChange} value={form.tone} className=" w-full px-4 py-3   border border-light-border bg-white rounded-md outline-none focus:ring-purple-500 focus:border-purple-500">
+            <select required name="concern" onChange={handleChange} value={form.tone} className=" w-full px-4 py-3   border border-light-border bg-white rounded-md outline-none focus:ring-purple-500 focus:border-purple-500">
                 <option value="" >Select your concern</option>
                 <option value="acne">Acne</option>
                 <option value="wrinkles">Wrinkles</option>

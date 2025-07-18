@@ -1,12 +1,15 @@
-import lumeaLogo from "../assets/lumeaLogo.svg";
+
+import lumeaLogo from "@/assets/lumeaLogo.svg";
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router"
 import { useLocation } from "react-router";
-import UserProfile from "./custom/UserProfile";
-import lumiaLogo from "../assets/lumeaLogoWHite.svg";
+// import UserProfile from "./custom/UserProfile";
+import UserProfile from "../custom/UserProfile";
+// import lumiaLogo from "../assets/lumeaLogoWHite.svg";
+import lumiaLogo from "@/assets/lumeaLogoWHite.svg";
 
-export default function Navbar() {
+export default function ClientDashboardNav() {
     // const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
@@ -48,14 +51,14 @@ export default function Navbar() {
                 <img src={lumiaLogo} alt="Lumea Logo" className="cursor-pointer"></img>
                 <div className="cursor-pointer font-roboto font-light text-[16px] flex gap-4">
                     <Link
-                        to="/dermetologistdashboard"
-                        className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/dermetologistdashboard" ? "text-active-state font-bold" : ""
+                        to="/clientdashboard"
+                        className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/clientdashboard" ? "text-active-state font-bold" : ""
                             }`}
                     >
                         Overview
                     </Link>
                     <Link
-                        to="/appointment"
+                        to="/appointmentpage"
                         className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/appointmentpage" ? "text-active-state font-bold" : ""
                             }`}
                     >
@@ -93,15 +96,15 @@ export default function Navbar() {
                 <div className="px-6 pb-4 space-y-4  backdrop-blur-md ">
                     <div className="flex flex-col space-y-3 text-white">
                         <Link
-                            to="/dermetologistdashboard"
-                            className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/dermetologistdashboard" ? "text-active-state font-bold" : ""
+                            to="/clientdashboard"
+                            className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/clientdashboard" ? "text-active-state font-bold" : ""
                                 }`}
                         >
                             Overview
                         </Link>
                         <Link
-                            to="/appointment"
-                            className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/appointment" ? "text-active-state font-bold" : ""
+                            to="/appointmentpage"
+                            className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/appointmentpage" ? "text-active-state font-bold" : ""
                                 }`}
                         >
                             Appointments
