@@ -55,7 +55,7 @@ export default function Navbar() {
                         Overview
                     </Link>
                     <Link
-                        to="/appointmentpage"
+                        to="/appointment"
                         className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/appointmentpage" ? "text-active-state font-bold" : ""
                             }`}
                     >
@@ -100,7 +100,7 @@ export default function Navbar() {
                             Overview
                         </Link>
                         <Link
-                            to="/appointmentpage"
+                            to="/appointment"
                             className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/appointmentpage" ? "text-active-state font-bold" : ""
                                 }`}
                         >

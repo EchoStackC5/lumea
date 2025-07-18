@@ -1,4 +1,4 @@
-import tablevideo from "../../assets/images/tablevideo.png"
+import { Video } from "lucide-react"
 
 
 export default function Today() {
@@ -16,7 +16,7 @@ export default function Today() {
                 <p>Monthly skin checkup</p>
                 </div>
                 <div className=" bg-[#1056D326] h-8 w-8 rounded-full p-1.5 ">
-                    <img src={tablevideo} alt="" className="h-5 w-5"/>
+                    <Video className="h-5 w-5 text-[#1056D3]"/>
                 </div>
             </div>
             <div className="flex items-center">
@@ -27,7 +27,7 @@ export default function Today() {
                 <p>Monthly skin checkup</p>
                 </div>
                 <div className=" bg-[#1056D326] h-8 w-8 rounded-full p-1.5 ">
-                    <img src={tablevideo} alt="" className="h-5 w-5"/>
+                    <Video className="h-5 w-5 text-[#1056D3]"/>
                 </div>
             </div>
         </section>

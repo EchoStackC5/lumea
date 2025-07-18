@@ -2,7 +2,7 @@ import { Ellipsis } from "lucide-react"
 
 export default function RecommendedActions() {
     return (
-        <section className="w-[270px] bg-[#F6EBFD] rounded-lg p-2 mt-3">
+        <section className="w-auto bg-[#F6EBFD] rounded-lg p-2 mt-3">
             <div>
                 <div className="flex gap-13">
                     <h1 className="font-md font-inter text-[#1A151D]">Recommended Actions</h1>

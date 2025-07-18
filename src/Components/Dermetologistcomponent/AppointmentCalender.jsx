@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import Today from "../../Components/Dermetologistcomponent/Today"
-import AvailableSlot from '../../Components/Dermetologistcomponent/AvailableSlot'
+import AppointmentRequest from '../../Components/Dermetologistcomponent/AppointmentRequest'
+
 
 export default function CalendarIcon() {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -128,9 +129,8 @@ export default function CalendarIcon() {
         <div className="h-[695px] w-[300px]  bg-white rounded-xl shadow-lg p-4">
             {/* Header */}
             <div className="flex items-center justify-between mb-4 ">
-                <div className="flex justify-between md:gap-40">
+                <div className="flex justify-between">
                     <h1 className="text-xl font-inter text-[#1A151D]">Calender</h1>
-                    <button className="md:h-[25px] md:w-[25px] h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-3xl text-white flex justify-center items-center cursor-pointer">+</button>
                 </div>
             </div>
 
@@ -193,7 +193,7 @@ export default function CalendarIcon() {
             </div>
             </div>
             <Today />
-            <AvailableSlot />
+            <AppointmentRequest />
         </div>
     );
 }

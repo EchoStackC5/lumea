@@ -18,7 +18,7 @@ export default function ClientTableDetail({detail, visible, setShowDetail}) {
                 <p>{detail.skinType}</p>
             </div>
             <p className="text-[#6B6A6C] px-2 ">{detail.description}</p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 py-4">
                 <button
                     className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer">+ Add new note
                 </button>
