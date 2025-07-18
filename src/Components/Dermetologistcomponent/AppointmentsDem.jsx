@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import { ArrowUpRight } from "lucide-react"
 import cheekbone from "../../assets/images/cheekbone.jpg"
 import face1 from "../../assets/images/face1.jpg"
@@ -5,12 +6,17 @@ import face2 from "../../assets/images/face2.jpg"
 import face3 from "../../assets/images/face3.jpg"
 import { ChevronRight } from "lucide-react"
 
+
 export default function AppointmentsDem() {
+    const navigate = useNavigate()
+
+
     return (
         <section className="bg-white rounded-xl p-3 shadow-md w-[296px] h-[303.2px] space-y-4 mb-4">
             <div className="flex justify-between">
                 <h1 className="text-lg font-inter text-[#1A151D]">Appointments</h1>
-                <button className="md:h-[20px] md:w-[20px] h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83]  text-white flex justify-center items-center"><ArrowUpRight /></button>
+                <button onClick={() => navigate("/appointment")}
+                className="md:h-[20px] md:w-[20px] h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83]  text-white flex justify-center items-center"><ArrowUpRight /></button>
             </div>
             {/* Cards */}
             <div className="flex flex-col gap-3">
