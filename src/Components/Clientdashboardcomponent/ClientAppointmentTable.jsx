@@ -1,48 +1,26 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
-import Face from "../../assets/images/u.png";
-import AppointmentDetailsCard from '../../Components/Clientdashboardcomponent/AppointmentDetails';
+import useSWR from 'swr';
+import axios from 'axios';
+import { Link } from 'react-router';
 
-const DermatologistAppointments = () => {
+const apiFetcher = async (url) => {
+  const token = localStorage.getItem('token');
+  
+  const response = await axios.get(`https://lumea-api.onrender.com${url}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
+  const { data, isLoading, error } = useSWR("/api/appointments", apiFetcher);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 3;
-
-  const appointments = [
-    {
-      id: 1,
-      doctorName: 'Dr. Naa Mensima',
-      date: '15th July 2025',
-      time: '09:30AM - 10:00 AM',
-      status: 'Completed',
-      avatar: Face
-    },
-    {
-      id: 2,
-      doctorName: 'Dr. Naa Mensima',
-      date: '15th July 2025',
-      time: '09:30AM - 10:00 AM',
-      status: 'Rejected',
-      avatar: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: 3,
-      doctorName: 'Dr. Naa Mensima',
-      date: '15th July 2025',
-      time: '09:30AM - 10:00 AM',
-      status: 'In progress',
-      avatar: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      id: 4,
-      doctorName: 'Dr. John Doe',
-      date: '20th July 2025',
-      time: '10:00AM - 10:30 AM',
-      status: 'Completed',
-      avatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&h=150&fit=crop&crop=face'
-    }
-  ];
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -57,90 +35,87 @@ const DermatologistAppointments = () => {
     }
   };
 
-  // Filter first
+  if (isLoading) {
+    return <div className="p-6 text-center">Loading appointments...</div>;
+  }
+
+  if (error) {
+    return <div className="p-6 text-center text-red-500">Failed to load appointments.</div>;
+  }
+
+  const appointments = data?.data || []; // Use fetched data
+
+  // Filter by search term
   const filteredAppointments = appointments.filter(appointment =>
     appointment.doctorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Pagination logic
+  // Pagination
   const totalPages = Math.ceil(filteredAppointments.length / limit);
   const paginatedAppointments = filteredAppointments.slice((currentPage - 1) * limit, currentPage * limit);
 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(prev => prev + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
-    }
+  const handleAppointmentClick = (appointment) => {
+    setDetail(appointment);
+    setShowDetail(true);
   };
 
   return (
-    <div className="flex space-x-6 w-[686px] h-[500px]">
-      {/* Appointments Table */}
-      <div className="max-w-6xl p-6 bg-white rounded-2xl mt-5">
-        <div className="flex items-center justify-between mb-6 space-x-3">
-          <h1 className="text-[16px] font-bold text-gray-900">Appointments</h1>
+    <div className="w-[686px] h-[500px]">
+      <div className="p-6 bg-white rounded-2xl shadow-md mt-5">
 
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-[16px] font-bold text-gray-900">Appointments</h1>
           <div className="flex items-center space-x-4">
             <div className="relative">
               <input
                 type="text"
-                placeholder="search list"
+                placeholder="Search list"
                 value={searchTerm}
                 onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-                className="w-80 pl-4 pr-12 py-3 border-0 rounded-full focus:outline-none bg-purple-50 text-gray-700 placeholder-gray-500"
+                className="w-80 pl-4 pr-12 py-3 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 focus:outline-none"
               />
-              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition-colors">
+              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800">
                 <Search size={16} />
               </button>
             </div>
-
-            <button className="bg-black text-white text-[8px] px-7 py-3 rounded-full hover:bg-gray-800 transition-colors font-medium">
+            <Link to = "/appointment-form"className="bg-black text-white text-[8px] px-7 py-3 rounded-full hover:bg-gray-800">
               Book Appointment
-            </button>
+            </Link>
           </div>
         </div>
 
+        {/* Table */}
         <div className="overflow-hidden">
-          <div className="bg-purple-100 px-6 py-4 border-b border-gray-200">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="font-semibold text-gray-900 text-sm">Dermatologist Name</div>
-              <div className="font-semibold text-gray-900 text-sm">Appointment Date</div>
-              <div className="font-semibold text-gray-900 text-sm">Appointment Status</div>
-            </div>
+          <div className="bg-purple-100 px-6 py-4 border-b grid grid-cols-3 font-semibold text-sm text-gray-900">
+            <div>Dermatologist Name</div>
+            <div>Appointment Date</div>
+            <div>Appointment Status</div>
           </div>
 
           <div className="divide-y divide-gray-100">
             {paginatedAppointments.map((appointment) => (
               <div
                 key={appointment.id}
-                className={`px-6 py-5 cursor-pointer transition-colors rounded-lg ${selectedAppointment?.id === appointment.id ? 'bg-purple-50' : 'hover:bg-purple-100'}`}
-                onMouseEnter={() => setSelectedAppointment(appointment)}
-                onClick={() => setSelectedAppointment(appointment)}
+                onClick={() => handleAppointmentClick(appointment)}
+                className={`px-6 py-5 cursor-pointer rounded-lg transition-colors ${
+                  showDetail && detail?.id === appointment.id ? 'bg-purple-50' : 'hover:bg-purple-100'
+                }`}
               >
                 <div className="grid grid-cols-3 gap-4 items-center">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border-2 border-purple-200">
+                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-purple-200">
                       <img
-                        src={appointment.avatar}
+                        src={appointment.avatar || 'https://via.placeholder.com/150'}
                         alt={appointment.doctorName}
                         className="w-full h-full object-cover"
-                        onError={(e) => { e.target.src = ''; }}
                       />
                     </div>
                     <span className="text-sm font-medium text-gray-900">{appointment.doctorName}</span>
                   </div>
-
-                  <div className="text-[14px] text-gray-700">
-                    {appointment.date}, {appointment.time}
-                  </div>
-
+                  <div className="text-[14px] text-gray-700">{appointment.date}, {appointment.time}</div>
                   <div>
                     <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-medium ${getStatusColor(appointment.status)}`}>
                       {appointment.status}
@@ -149,45 +124,33 @@ const DermatologistAppointments = () => {
                 </div>
               </div>
             ))}
+
+            {paginatedAppointments.length === 0 && (
+              <div className="text-center py-8 text-gray-500">No appointments found.</div>
+            )}
           </div>
 
-          {paginatedAppointments.length === 0 && (
-            <div className="text-center py-8">
-              <p className="text-gray-500">No appointments found.</p>
-            </div>
-          )}
-        </div>
-
-        <div className='flex justify-center items-center mt-3 space-x-5'>
-          <button
-            onClick={handlePrev}
-            disabled={currentPage === 1}
-            className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-          >
-            Prev
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-            className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
-          >
-            Next
-          </button>
-        </div>
-      </div>
-
-      {/* Appointment Details */}
-      <div className="w-[296px] h-[444px]">
-        {selectedAppointment ? (
-          <AppointmentDetailsCard appointment={selectedAppointment} />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center border rounded-2xl bg-white text-gray-400">
-            Hover or click a doctor to view details
+          {/* Pagination */}
+          <div className="flex justify-between mt-3 space-x-5">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              Prev
+            </button>
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              Next
+            </button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default DermatologistAppointments;
+export default AppointmentTable;
