@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import cheekbone from "../../assets/images/cheekbone.jpg"
+import { Search } from "lucide-react";
 import { apiFetcher } from "@/api/client";
 import useSWR from "swr";
 
@@ -75,14 +76,13 @@ const appointmentstable = [
     gender: 'Male',
     description: 'I am currently suffering from Korshiokor'
   },
-  
+
 ];
 
 
 
-export default function AppointmentTable({setDetail, setShowDetail, showDetail}) {
- const {data, isLoading, error} = useSWR("/appointments/cosmetologist", apiFetcher)
- console.log(data)
+export default function AppointmentTable({ setDetail, setShowDetail, showDetail }) {
+  const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher)
 
   const statusColors = {
     Accepted: "bg-[#079C4326] text-[#079C43]",
@@ -138,19 +138,35 @@ export default function AppointmentTable({setDetail, setShowDetail, showDetail})
     }
 
     const remaining = endIndex - startIndex;
-      let newStartIndex = startIndex - limit;
-      let newEndIndex = endIndex - remaining;
+    let newStartIndex = startIndex - limit;
+    let newEndIndex = endIndex - remaining;
 
-      const items = appointmentstable.slice(newStartIndex, newEndIndex)
-      setsubArray(items);
-      setstartindex(newStartIndex)
-      setendIndex(newEndIndex)
+    const items = appointmentstable.slice(newStartIndex, newEndIndex)
+    setsubArray(items);
+    setstartindex(newStartIndex)
+    setendIndex(newEndIndex)
   }
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+
   return (
-    <section style={{width: showDetail?'53%':'75%'}} className="h-auto w-[686px] bg-white rounded-lg">
-      <div className="mt-5 px-5">
-        <h1 className="font-bold">Appointments & Client List</h1>
+    <section style={{ width: showDetail ? '53%' : '75%' }} className="h-auto w-[686px] bg-white rounded-lg">
+      <div className="mt-5 px-5 flex justify-between items-center">
+        <h1 className="font-bold text-xl">Appointments & Client List</h1>
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search list"
+            value={searchTerm}
+            onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
+            className="w-80 pl-4 pr-12 py-3 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 focus:outline-none"
+          />
+          <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800">
+            <Search size={16} />
+          </button>
+        </div>
       </div>
       <div className="p-4 max-w-5xl mx-auto">
         <table className="w-full border-separate border-spacing-y-3">
@@ -163,23 +179,28 @@ export default function AppointmentTable({setDetail, setShowDetail, showDetail})
             </tr>
           </thead>
           <tbody className="">
-            {subArray.map((app) => (
+            {data?.map((app) => (
               <tr key={app.id} className="bg-white shadow rounded-lg hover:bg-backgrounds cursor-pointer"
-               onClick={() => {setDetail(app); setShowDetail(true)}}
+                onClick={() => { setDetail(app); setShowDetail(true) }}
               >
-                <td className="py-2 px-4 flex items-center gap-3">
+                <td className="py-2 px-0 flex items-center gap-1">
                   <img
                     src={cheekbone}
                     alt={app.name}
-                    className="w-14 h-10 rounded-full object-cover"
+                    className="w-14 h-14 mr-1 rounded-full object-cover"
                   />
-                  <span>{app.name}</span>
+                  <span>{app.user.name}</span>
                 </td>
                 <td className="py-2 px-4 text-[#6B6A6C]">{app.skinType}</td>
                 <td className="py-2 px-4 text-[#6B6A6C] text-sm">{app.date}</td>
                 <td className="py-2 px-4">
                   <span
-                    className={`px-4 py-1 rounded-full text-sm font-medium ${statusColors[app.status]}`}
+                    className={`px-4 py-1 rounded-full text-sm font-medium ${app.status === "accepted"
+                      ? statusColors.Accepted
+                      : app.status === "rejected"
+                        ? statusColors.Rejected
+                        : statusColors.Pending
+                      }`}
                   >
                     {app.status}
                   </span>
@@ -189,7 +210,7 @@ export default function AppointmentTable({setDetail, setShowDetail, showDetail})
           </tbody>
         </table>
       </div>
-      <div className="flex md:px-8 md:gap-95">
+      <div className="flex md:px-8 justify-between">
         <button className="h-8 w-25 rounded-full border hover:bg-[#1A151D] hover:text-white cursor-pointer"
           onClick={() => { showPrevious() }}
         >Previous

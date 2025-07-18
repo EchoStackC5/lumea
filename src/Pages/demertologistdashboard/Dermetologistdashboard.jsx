@@ -10,7 +10,7 @@ export default function Dermetologistdashboard() {
 
   return (
     <>
-      <section className="bg-[#F6EBFD] h-full p-5">
+      <section className="bg-[#F6EBFD] h-full">
         <Navbar/>
         <div className="flex gap-6">
           <div>

@@ -125,12 +125,11 @@ export default function CalendarIcon() {
     };
 
     return (
-        <div className="h-[695px] w-[25%]  bg-white rounded-xl shadow-lg p-4">
+        <div className="h-full  w-[25%]  bg-white rounded-xl shadow-lg p-4">
             {/* Header */}
             <div className="flex items-center justify-between mb-4 ">
                 <div className="flex justify-between md:gap-40">
                     <h1 className="text-xl font-inter text-[#1A151D]">Calender</h1>
-                    <button className="md:h-[25px] md:w-[25px] h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-3xl text-white flex justify-center items-center cursor-pointer">+</button>
                 </div>
             </div>
 
