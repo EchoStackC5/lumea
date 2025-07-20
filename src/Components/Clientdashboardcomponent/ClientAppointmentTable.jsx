@@ -20,9 +20,11 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'Completed':
+      case 'completed':
         return 'bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3';
-      case 'Rejected':
+      case 'accepted':
+        return 'bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3';
+      case 'regected':
         return 'bg-red-100 text-red-700 border border-red-200 w-[101px] ml-4';
       case 'In progress':
         return 'bg-blue-100 text-blue-700 border border-blue-200 w-[101px] ml-4';
@@ -64,8 +66,8 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
   };
 
   return (
-    <div className="w-[686px] h-[500px]">
-      <div className="p-6 bg-white rounded-2xl shadow-md mt-5">
+    <div className="w-[686px] h-[550px] ">
+      <div className="p-6 bg-white rounded-2xl border-1 border-gray-200 mt-5">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -90,7 +92,7 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
         </div>
 
         {/* Table */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden overflow-x-auto">
           <div className="bg-purple-100 px-6 py-4 border-b grid grid-cols-3 font-semibold text-sm text-gray-900">
             <div>Dermatologist Name</div>
             <div>Appointment Date</div>
