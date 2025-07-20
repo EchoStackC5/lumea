@@ -1,6 +1,7 @@
 import { X } from "lucide-react"
 import cheekbone from "../../assets/images/cheekbone.jpg"
 import { Download } from "lucide-react"
+import { Link } from "react-router"
 
 export default function ClientTableDetail({detail, visible, setShowDetail}) {
     return (
@@ -19,12 +20,12 @@ export default function ClientTableDetail({detail, visible, setShowDetail}) {
             </div>
             <p className="text-[#6B6A6C] px-2 ">{detail.description}</p>
             <div className="flex gap-3 py-4">
-                <button
-                    className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer">+ Add new note
-                </button>
+                <Link to="/demoverview" 
+                    className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">+ Add new note
+                </Link>
                 <div className="md:h-10 md:w-35 text-xs border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">
                     <Download  className="h-3 w-3"/>
-                    <button className="">View Ai Skin Report</button>
+                    <Link to="/AIAnalysisResult" className="">View Ai Skin Report</Link>
                 </div>
             </div>
         </section>

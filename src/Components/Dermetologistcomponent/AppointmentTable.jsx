@@ -1,4 +1,4 @@
-import React from "react";
+import Loaders from "../Loaders";
 import { useState, useEffect } from "react";
 import cheekbone from "../../assets/images/cheekbone.jpg"
 import { Search } from "lucide-react";
@@ -26,56 +26,6 @@ const appointmentstable = [
     gender: 'Male',
     description: 'I am currently dealing with acne and hyperpigmentation'
   },
-  {
-    id: 3,
-    image: "/cheekbone/3.jpg",
-    name: "Ethan Alex Monroe",
-    skinType: "Oily",
-    date: "15th July 2025, 09:30AM - 10:00AM",
-    status: "Accepted",
-    gender: 'Female',
-    description: 'I am currently dealing with acne and hyperpigmentation'
-  },
-  {
-    id: 4,
-    image: "/cheekbone/3.jpg",
-    name: "Ethan Alex Monroe",
-    skinType: "Oily",
-    date: "15th July 2025, 09:30AM - 10:00AM",
-    status: "Accepted",
-    gender: 'Female',
-    description: 'I am currently dealing with acne and hyperpigmentation'
-  },
-  {
-    id: 5,
-    image: "/cheekbone/3.jpg",
-    name: "Ethan Alex Monroe",
-    skinType: "Oily",
-    date: "15th July 2025, 09:30AM - 10:00AM",
-    status: "Rejected",
-    gender: 'Male',
-    description: 'I am currently dealing with acne and hyperpigmentation'
-  },
-  {
-    id: 6,
-    image: "/avatars/3.jpg",
-    name: "Ethan Alex Monroe",
-    skinType: "Oily",
-    date: "15th July 2025, 09:30AM - 10:00AM",
-    status: "Pending",
-    gender: 'Female',
-    description: 'I am currently dealing with acne and hyperpigmentation'
-  },
-  {
-    id: 7,
-    image: "/avatars/3.jpg",
-    name: "Ethan Monroe",
-    skinType: "Oily",
-    date: "15th July 2025, 09:30AM - 10:00AM",
-    status: "Pending",
-    gender: 'Male',
-    description: 'I am currently suffering from Korshiokor'
-  },
 
 ];
 
@@ -83,6 +33,9 @@ const appointmentstable = [
 
 export default function AppointmentTable({ setDetail, setShowDetail, showDetail }) {
   const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher)
+
+
+
 
   const statusColors = {
     Accepted: "bg-[#079C4326] text-[#079C43]",
@@ -97,24 +50,27 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
   const [subArray, setsubArray] = useState([]);
 
   useEffect(() => {
-    if (appointmentstable.length >= limit) {
+    if (!isLoading) {
+      if (data?.length >= limit) {
 
-      const items = appointmentstable.slice(startIndex, endIndex)
-      setsubArray(items);
+        const items = data.slice(startIndex, endIndex)
+        setsubArray(items);
+      }
+      else {
+        setsubArray(data)
+      }
     }
-    else {
-      setsubArray(appointmentstable)
-    }
-  }, []);
+
+  }, [isLoading]);
 
   function showNext() {
-    const remaining = appointmentstable.length - endIndex;
+    const remaining = data?.length - endIndex;
 
     if (remaining >= limit) {
       const newStartIndex = endIndex
       const newEndIndex = endIndex + limit;
 
-      const items = appointmentstable.slice(newStartIndex, newEndIndex)
+      const items = data.slice(newStartIndex, newEndIndex)
       setsubArray(items);
       setstartindex(newStartIndex)
       setendIndex(newEndIndex)
@@ -124,7 +80,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
         const newStartIndex = endIndex
         const newEndIndex = endIndex + remaining;
 
-        const items = appointmentstable.slice(newStartIndex, newEndIndex)
+        const items = data.slice(newStartIndex, newEndIndex)
         setsubArray(items);
         setstartindex(newStartIndex)
         setendIndex(newEndIndex)
@@ -141,7 +97,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
     let newStartIndex = startIndex - limit;
     let newEndIndex = endIndex - remaining;
 
-    const items = appointmentstable.slice(newStartIndex, newEndIndex)
+    const items = data.slice(newStartIndex, newEndIndex)
     setsubArray(items);
     setstartindex(newStartIndex)
     setendIndex(newEndIndex)
@@ -149,6 +105,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
 
 
   return (
@@ -179,16 +136,20 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
             </tr>
           </thead>
           <tbody className="">
-            {data?.map((app) => (
+            {subArray?.map((app) => (
               <tr key={app.id} className="bg-white shadow rounded-lg hover:bg-backgrounds cursor-pointer"
                 onClick={() => { setDetail(app); setShowDetail(true) }}
               >
                 <td className="py-2 px-0 flex items-center gap-1">
-                  <img
-                    src={cheekbone}
-                    alt={app.name}
-                    className="w-14 h-14 mr-1 rounded-full object-cover"
-                  />
+                  {app?.user ? (
+                    <img
+                      src={data?.profile?.image}
+                      alt="userProfile"
+                      className="w-14 h-14 mr-1 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-14 h-14 mr-1 rounded-full bg-gray-200" />
+                  )}
                   <span>{app.user.name}</span>
                 </td>
                 <td className="py-2 px-4 text-[#6B6A6C]">{app.skinType}</td>

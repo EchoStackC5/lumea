@@ -1,9 +1,11 @@
 import lipgloss from "../../assets/images/lipgloss.png"
 import Balm from "../../assets/images/Balm.png"
 import lipstick from "../../assets/images/lipstick.png"
+import { Download } from "lucide-react"
+import { Ellipsis } from "lucide-react"
 
 
-export default function RecommendedProducts() {
+export default function ClientRecommendedProduct() {
     return (
         <div>
             <div className="bg-[#F6EBFD] rounded-md p-3 ">
@@ -18,7 +20,8 @@ export default function RecommendedProducts() {
                 </div>
             </div>
             <button className=" w-full py-3 hover:bg-yellow-500 hover:text-darkest bg-[#1A151D] rounded-full text-white flex justify-center items-center cursor-pointer gap-1 mt-5">
-                 + add new note
+                <Download className="h-5 w-5" />
+                 Download Report
             </button>
         </div>
     )
