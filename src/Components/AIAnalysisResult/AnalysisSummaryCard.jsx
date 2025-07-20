@@ -10,7 +10,7 @@ export default function AnalysisSummaryCard({ analysis }) {
           <Scan size={16} />
         </div>
 
-        <p className="text-sm mb-6">Your skin health is good, showing balanced hydration and strong elasticity.</p>
+        <p className="text-sm mb-6">{analysis?.skinSummary || "Your skin health is good, showing balanced hydration and strong elasticity."}</p>
 
         <section className="flex flex-col items-center">
           <div className="relative flex justify-center items-center  h-28 sm:h-32">
@@ -46,12 +46,13 @@ export default function AnalysisSummaryCard({ analysis }) {
         </div>
 
         <div className="text-sm mt-4 ">
-          <h3 className="font-semibold mb-1 font-inter">Quantitative Analysis</h3>
-          <p className='font-poppins text-white/80'>Your hydration is 78% showing great moisture balance, and elasticity is 85% indicating firmness.</p>
+          <h3 className="font-medium mb-1 font-inter">Quantitative Analysis</h3>
+          <p className='font-poppins text-white/80'>{analysis?.quantitativeAnalysis
+|| "loading..."}</p>
         </div>
 
         <div className="text-sm mt-4 ">
-          <h3 className="font-semibold mb-1 font-inter">Precautions</h3>
+          <h3 className="font-medium mb-1 font-inter">Precautions</h3>
           {Array.isArray(analysis?.precautions) && analysis.precautions.length > 0 ? (
             analysis.precautions.map((precaution, idx) => (
               <p key={idx} className="mb-2 text-white/90 font-poppins">{precaution}</p>
