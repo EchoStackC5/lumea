@@ -1,6 +1,7 @@
 import Loaders from "../Loaders";
 import { useState, useEffect } from "react";
 import cheekbone from "../../assets/images/cheekbone.jpg"
+import format from "date-fns/format";
 import { Search } from "lucide-react";
 import { apiFetcher } from "@/api/client";
 import useSWR from "swr";
@@ -105,7 +106,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-
+  // const formattedDate = format(new Date(app.date), "dd MMM yyyy, h:mm a");
 
 
   return (
@@ -126,21 +127,21 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
         </div>
       </div>
       <div className="p-4 max-w-5xl mx-auto">
-        <table className="w-full border-separate border-spacing-y-3">
+        <table className="w-full table-fixed border-collapse">
           <thead>
-            <tr className="bg-backgrounds text-left text-secondary-text font-semibold">
-              <th className="py-2 px-2 rounded-l-md">Client Name</th>
-              <th className="py-2 px-2">Skin Type</th>
-              <th className="py-2 px-2">Appointment Date</th>
-              <th className="py-2 px-2 rounded-r-md">Appointment Status</th>
+            <tr className="bg-light-border text-left text-secondary-text text-lg font-semibold h-16">
+              <th className="py-2 w-[30%] px-2 rounded-l-md">Client Name</th>
+              <th className="py-2 w-[15%] px-2">Skin Type</th>
+              <th className="py-2 w-[30%] px-2">Appointment Date</th>
+              <th className="py-2 w-[20%] px-2 rounded-r-md">Appointment Status</th>
             </tr>
           </thead>
           <tbody className="">
             {subArray?.map((app) => (
-              <tr key={app.id} className="bg-white shadow rounded-lg hover:bg-backgrounds cursor-pointer"
+              <tr key={app.id} className="border-b border-gray-200 hover:bg-backgrounds cursor-pointer"
                 onClick={() => { setDetail(app); setShowDetail(true) }}
               >
-                <td className="py-2 px-0 flex items-center gap-1">
+                <td className="py-2 px-0 flex items-center gap-1 text-lg">
                   {app?.user ? (
                     <img
                       src={data?.profile?.image}
@@ -152,11 +153,11 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
                   )}
                   <span>{app.user.name}</span>
                 </td>
-                <td className="py-2 px-4 text-[#6B6A6C]">{app.skinType}</td>
-                <td className="py-2 px-4 text-[#6B6A6C] text-sm">{app.date}</td>
+                <td className="py-2 px-4 text-[#6B6A6C] text-lg">{app.skinType}</td>
+                <td className="py-2 px-4 text-[#6B6A6C] text-md">{format(new Date(app.date), "dd MMM yyyy, h:mm a")}</td>
                 <td className="py-2 px-4">
                   <span
-                    className={`px-4 py-1 rounded-full text-sm font-medium ${app.status === "accepted"
+                    className={`px-4 py-1 rounded-full text-lg font-medium ${app.status === "accepted"
                       ? statusColors.Accepted
                       : app.status === "rejected"
                         ? statusColors.Rejected

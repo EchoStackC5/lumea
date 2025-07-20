@@ -1,4 +1,4 @@
-import Skeletal from "../../Components/Dermetologistcomponent/Skeletal";
+import Modal from "../demertologistdashboard/Modal"
 import UserDetails from "@/Components/Clientdashboardcomponent/UserDetails";
 import ClientAppointment from "../../Components/Clientdashboardcomponent/ClientAppointment"
 import ClientSkinReport from "@/Components/Clientdashboardcomponent/ClientSkinReport";
@@ -18,7 +18,7 @@ export default function Clientdashboard() {
             <ClientRecentSkinAnalysis />
           </div>
           <div className="flex flex-col gap-6 lg:flex-row md:flex-col">
-            <Skeletal />
+            <Modal />
            <ClientSkinReport />
           </div>
           
