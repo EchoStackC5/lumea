@@ -4,13 +4,14 @@ import oildrop from "../../assets/images/oildrop.png"
 import linewater from "../../assets/images/linewater.png"
 import waves from "../../assets/images/waves.png"
 import dateline from "../../assets/images/dateline.png"
+import { Link } from "react-router"
 
 export default function ClientRecentSkinAnalysis() {
     return(
-        <section className="bg-white rounded-xl p-4 shadow-md w-[296px] h-[239.2px] space-y-4">
+        <section className="bg-white rounded-xl p-4 border border-light-border w-full md:w-[296px] h-[239.2px] space-y-4">
             <div className="flex justify-between">
                 <h1 className="text-lg font-dm-sans text-[#1A151D]">Recent skin Analysis</h1>
-                <button className="md:h-[20px] md:w-[20px] h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-white flex justify-center items-center"><ArrowUpRight /></button>
+                <Link to="/ai-analyze" className=" h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-white flex justify-center items-center"><ArrowUpRight /></Link>
             </div>
             
             <div className="grid grid-cols-2 gap-3 text-sm">

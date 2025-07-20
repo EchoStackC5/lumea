@@ -6,7 +6,7 @@ export default function RecommendedActions() {
             <div>
                 <div className="flex gap-13">
                     <h1 className="font-md font-inter text-[#1A151D]">Recommended Actions</h1>
-                    <Ellipsis className="text=[#1A151D]"/>
+                    {/* <Ellipsis className="text=[#1A151D]"/> */}
                 </div>
                 <div className="text-xs ">
                     <h1 className="py-1.5 text-[#6B6A6C] font-bold font-inter">Hydration-focused routine</h1>
