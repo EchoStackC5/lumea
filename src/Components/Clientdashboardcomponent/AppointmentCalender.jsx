@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, VideoIcon, Plus } from 'lucide-react';
 
+
 export default function CalendarComponent() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
+  
 
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',

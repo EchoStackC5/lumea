@@ -1,10 +1,12 @@
 import lipgloss from "../../assets/images/lipgloss.png"
 import Balm from "../../assets/images/Balm.png"
 import lipstick from "../../assets/images/lipstick.png"
+import { Download } from "lucide-react"
 import Rating from "../../assets/images/RatingHalf.svg";
 
 
-export default function RecommendedProducts() {
+
+export default function ClientRecommendedProduct() {
     const products = [
         { img: lipgloss, label: "Blush", price: "$20" },
         { img: Balm, label: "Face mask", price: "$23" },
@@ -34,7 +36,8 @@ export default function RecommendedProducts() {
                 </div>
             </div>
             <button className=" w-full py-3 hover:bg-yellow-500 hover:text-darkest bg-[#1A151D] rounded-full text-white flex justify-center items-center cursor-pointer gap-1 mt-5">
-                + Add new note
+                <Download className="h-5 w-5" />
+                Download Report
             </button>
         </div>
     )

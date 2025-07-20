@@ -4,6 +4,10 @@ import { apiClient, apiFetcher } from "@/api/client";
 export default function AppointmentRequest() {
     const { data, isLoading, error } = useSWR("/appointments/cosmetologist?status=pending", apiFetcher)
 
+    // if (isLoading) return <p className="text-xl flex justify-center items-center text-white">Loading...</p>
+    // if (error) return <p>Failed to load</p>
+    
+
     function reject(id) {
         apiClient.patch(`https://lumea-api.onrender.com/api/appointments/${id}`, {status: 'rejected'}, {
             headers: {
@@ -41,7 +45,7 @@ export default function AppointmentRequest() {
             <h1 className="text-white py-1">Appointment Requests</h1>
             {
                 data?.map((app) => (
-                    <div className="h-[90px] rounded-md w-auto bg-backgrounds border border-backgrounds mt-2 px-2">
+                    <div key={app.id} className="h-[90px] rounded-md w-auto bg-backgrounds border border-backgrounds mt-2 px-2">
                         <p className="">{app.date}</p>
                         <h1 className="text-[#6B6A6C] text-sm">{app.time}</h1>
                         <div className=" flex mt-2 gap-3">

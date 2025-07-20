@@ -3,30 +3,28 @@ import { Search } from 'lucide-react';
 import useSWR from 'swr';
 import axios from 'axios';
 import { Link } from 'react-router';
+import { apiFetcher } from '@/api/client';
+import { format } from 'date-fns';
 
-const apiFetcher = async (url) => {
-  const token = localStorage.getItem('token');
-  
-  const response = await axios.get(`https://lumea-api.onrender.com${url}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
 
-  return response.data;
-};
+
 
 const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
-  const { data, isLoading, error } = useSWR("/api/appointments", apiFetcher);
+  const { isLoading, error, data } = useSWR("/appointments", apiFetcher);
+
+
+
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 3;
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'Completed':
+      case 'completed':
         return 'bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3';
-      case 'Rejected':
+      case 'accepted':
+        return 'bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3';
+      case 'regected':
         return 'bg-red-100 text-red-700 border border-red-200 w-[101px] ml-4';
       case 'In progress':
         return 'bg-blue-100 text-blue-700 border border-blue-200 w-[101px] ml-4';
@@ -43,27 +41,33 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
     return <div className="p-6 text-center text-red-500">Failed to load appointments.</div>;
   }
 
-  const appointments = data?.data || []; // Use fetched data
+  const appointments = data || []; // Use fetched data
 
   // Filter by search term
   const filteredAppointments = appointments.filter(appointment =>
-    appointment.doctorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (appointment.cosmetologist?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
     appointment.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
 
   // Pagination
   const totalPages = Math.ceil(filteredAppointments.length / limit);
   const paginatedAppointments = filteredAppointments.slice((currentPage - 1) * limit, currentPage * limit);
 
   const handleAppointmentClick = (appointment) => {
-    setDetail(appointment);
+    const detailData = {
+      ...appointment,
+      doctorName: appointment.cosmetologist?.name,
+      avatar: appointment.cosmetologist?.profile?.image
+    };
+    setDetail(detailData);
     setShowDetail(true);
   };
 
   return (
-    <div className="w-[686px] h-[500px]">
-      <div className="p-6 bg-white rounded-2xl shadow-md mt-5">
+    <div className="w-[686px] h-[550px] ">
+      <div className="p-6 bg-white rounded-2xl border-1 border-gray-200 mt-5">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -81,14 +85,14 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
                 <Search size={16} />
               </button>
             </div>
-            <Link to = "/appointment-form"className="bg-black text-white text-[8px] px-7 py-3 rounded-full hover:bg-gray-800">
+            <Link to="/appointment-form" className="bg-black text-white text-[8px] px-7 py-3 rounded-full hover:bg-gray-800">
               Book Appointment
             </Link>
           </div>
         </div>
 
         {/* Table */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden overflow-x-auto">
           <div className="bg-purple-100 px-6 py-4 border-b grid grid-cols-3 font-semibold text-sm text-gray-900">
             <div>Dermatologist Name</div>
             <div>Appointment Date</div>
@@ -100,22 +104,21 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
               <div
                 key={appointment.id}
                 onClick={() => handleAppointmentClick(appointment)}
-                className={`px-6 py-5 cursor-pointer rounded-lg transition-colors ${
-                  showDetail && detail?.id === appointment.id ? 'bg-purple-50' : 'hover:bg-purple-100'
-                }`}
+                className={`px-6 py-5 cursor-pointer rounded-lg transition-colors ${showDetail && detail?.id === appointment.id ? 'bg-purple-50' : 'hover:bg-purple-100'
+                  }`}
               >
                 <div className="grid grid-cols-3 gap-4 items-center">
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-purple-200">
                       <img
-                        src={appointment.avatar || 'https://via.placeholder.com/150'}
-                        alt={appointment.doctorName}
+                        src={appointment.cosmetologist?.profile?.image || 'https://via.placeholder.com/150'}
+                        alt={appointment.cosmetologist?.name || "Doctor"}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <span className="text-sm font-medium text-gray-900">{appointment.doctorName}</span>
+                    <span className="text-sm font-medium text-gray-900">{appointment.cosmetologist?.name || "Unknown Doctor"}</span>
                   </div>
-                  <div className="text-[14px] text-gray-700">{appointment.date}, {appointment.time}</div>
+                  <div className="text-[14px] text-gray-700">{format(new Date(appointment.date), "MMMM d,yyyy")}</div>
                   <div>
                     <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-medium ${getStatusColor(appointment.status)}`}>
                       {appointment.status}

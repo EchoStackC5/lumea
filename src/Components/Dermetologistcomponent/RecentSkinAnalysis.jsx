@@ -5,6 +5,8 @@ import linewater from "../../assets/images/linewater.png"
 import waves from "../../assets/images/waves.png"
 import dateline from "../../assets/images/dateline.png"
 import { Download } from "lucide-react"
+import { Link } from "react-router"
+
 
 export default function RecentSkinAnalysis() {
     return(
@@ -63,9 +65,9 @@ export default function RecentSkinAnalysis() {
              </div>
              <p className="text-xs">July 5th 2025</p>
            </div>
-            <div className="h-10 w-[268px] rounded-full border hover:bg-[#1A151D] hover:text-white cursor-pointer flex justify-center items-center gap-1 mt-10">
+            <div className="h-10 w-[268px] rounded-full border hover:bg-system-primary hover:text-white cursor-pointer flex justify-center items-center gap-1 mt-10">
               <Download className="h-4 w-4"/>
-              <button>Download AI Skin Report</button>
+              <Link to="/ai-analyze" className="">Download AI Skin Report</Link>
             </div>
         </section>
     )

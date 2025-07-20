@@ -1,6 +1,6 @@
-import Findings from "./Findings"
-import RecommendedActions from "./RecommendedActions"
-import RecommendedProducts from "../Dermetologistcomponent/RecommendedProducts"
+import Findings from "../Dermetologistcomponent/Findings"
+import RecommendedActions from "../Dermetologistcomponent/RecommendedActions"
+import ClientRecommendedProduct from "../../Components/Clientdashboardcomponent/ClientRecommendedProduct"
 import { X } from "lucide-react"
 
 export default function SkinReport() {
@@ -13,7 +13,7 @@ export default function SkinReport() {
             </div>
             <Findings/>
             <RecommendedActions/>
-            <RecommendedProducts/>
+            <ClientRecommendedProduct/>
         </section>
     )
 }
