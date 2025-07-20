@@ -1,6 +1,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import Face from "../../assets/images/u.png";
+import { format } from 'date-fns';
 
 const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   if (!visible) return null;
@@ -29,7 +30,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
           <h3 className="text-xl font-semibold text-gray-900 mb-1">{detail.doctorName}</h3>
 
           <p className="text-gray-600 text-sm pt-3">
-            {detail.date} – {detail.time}
+            {format(new Date(detail.date), "MMMM d,yyyy")} – {detail.time}
           </p>
 
           <div className="mt-5">

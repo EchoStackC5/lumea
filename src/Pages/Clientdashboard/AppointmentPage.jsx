@@ -9,12 +9,13 @@ export default function Appointment() {
   const [showDetail, setShowDetail] = useState(false);
 
   return (
-    <section className="bg-[#F6EBFD] h-full px-5">
+    <section className="bg-[#F6EBFD] h-screen px-5 ">
       <Navbar />
-      <div className="flex gap-6">
+      <div className="flex flex-col md:flex-row gap-6">
         <Calender />
 
-        <AppointmentTable 
+       <div className='flex-1 flex flex-col md:flex-row gap-6'>
+         <AppointmentTable 
           setDetail={setAppointmentDetail} 
           setShowDetail={setShowDetail} 
           showDetail={showDetail} 
@@ -25,6 +26,7 @@ export default function Appointment() {
           visible={showDetail} 
           setShowDetail={setShowDetail} 
         />
+       </div>
       </div>
     </section>
   );
