@@ -4,11 +4,25 @@ import useSWR from "swr"
 import { ArrowUpRight } from "lucide-react"
 import cheekbone from "../../assets/images/cheekbone.jpg"
 import { ChevronRight } from "lucide-react"
+import { BeatLoader } from "react-spinners"
 import { format } from "date-fns"
 
 
 export default function AppointmentsDem() {
     const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher)
+
+    //  if (isLoading)
+    //             return(
+    //                 <BeatLoader />
+    //         )
+            
+        
+            if (error) 
+                return(
+            <div>
+                <p className="text-red-600 text-center">Something went wrong</p>
+            </div>)
+
     const navigate = useNavigate()
     
 

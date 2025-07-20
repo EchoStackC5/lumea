@@ -63,7 +63,7 @@ export default function RecentSkinAnalysis() {
              </div>
              <p className="text-xs">July 5th 2025</p>
            </div>
-            <div className="h-10 w-[268px] rounded-full border hover:bg-[#1A151D] hover:text-white cursor-pointer flex justify-center items-center gap-1 mt-10">
+            <div className="h-10 w-[268px] rounded-full border hover:bg-system-primary hover:text-white cursor-pointer flex justify-center items-center gap-1 mt-10">
               <Download className="h-4 w-4"/>
               <button>Download AI Skin Report</button>
             </div>

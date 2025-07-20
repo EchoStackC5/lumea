@@ -1,7 +1,7 @@
 import Skeletal from "../../Components/Dermetologistcomponent/Skeletal";
 import UserDetails from "@/Components/Clientdashboardcomponent/UserDetails";
 import ClientAppointment from "../../Components/Clientdashboardcomponent/ClientAppointment"
-import SkinReport from "../../Components/Dermetologistcomponent/SkinReport"
+import ClientSkinReport from "@/Components/Clientdashboardcomponent/ClientSkinReport";
 import ClientRecentSkinAnalysis from "@/Components/Clientdashboardcomponent/ClientRecentSkinAnalysis";
 import ClientDashboardNav from "@/Components/Clientdashboardcomponent/ClientDashboardNav";
 
@@ -19,7 +19,7 @@ export default function Clientdashboard() {
           </div>
           <div className="flex flex-col gap-6 lg:flex-row md:flex-col">
             <Skeletal />
-           <SkinReport />
+           <ClientSkinReport />
           </div>
           
         </div>

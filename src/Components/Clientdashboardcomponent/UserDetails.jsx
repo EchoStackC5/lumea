@@ -54,7 +54,7 @@ export default function UserDetails() {
                     
                     <div className=" flex flex-col text-xs items-center">
                         <h1 className="text-[#6B6A6C] font-inter">Weight</h1>
-                        <h2 className="font-inter text-[#1A151D]">{appointment.weight}</h2>
+                        <h2 className="font-inter text-[#1A151D]">{appointment?.weight}</h2>
                     </div>
                 </div>
                 <div className=" flex  rounded-md border border-white bg-[#F6EBFD] p-2 gap-3">
@@ -72,7 +72,7 @@ export default function UserDetails() {
                     
                     <div className="text-xs">
                         <h1 className="text-[#6B6A6C] font-inter">SkinType</h1>
-                        <h2 className="font-inter text-[#1A151D]">{appointment.skinType}</h2>
+                        <h2 className="font-inter text-[#1A151D]">{appointment?.skinType}</h2>
                     </div>
                 </div>
             </div>
