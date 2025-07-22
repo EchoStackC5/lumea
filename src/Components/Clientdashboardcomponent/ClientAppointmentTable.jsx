@@ -24,8 +24,10 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
         return 'bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3';
       case 'accepted':
         return 'bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3';
-      case 'regected':
+      case 'rejected':
         return 'bg-red-100 text-red-700 border border-red-200 w-[101px] ml-4';
+      case 'pending':
+        return 'bg-blue-100 text-blue-600 border border-blue-200 w-[101px] ml-4';
       case 'In progress':
         return 'bg-blue-100 text-blue-700 border border-blue-200 w-[101px] ml-4';
       default:
@@ -85,7 +87,7 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
                 <Search size={16} />
               </button>
             </div>
-            <Link to="/appointment-form" className="bg-black text-white text-[8px] px-7 py-3 rounded-full hover:bg-gray-800">
+            <Link to="/appointment-form" className="bg-black text-white text-[13px] px-7 py-3 rounded-full hover:bg-gray-800">
               Book Appointment
             </Link>
           </div>
