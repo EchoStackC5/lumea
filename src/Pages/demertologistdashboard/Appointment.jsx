@@ -7,7 +7,7 @@ import { useState } from "react"
 export default function Appointment() {
   const [appointmentDetail, setAppointmentDetail] = useState({});
   const [showDetail, setShowDetail] = useState(false);
-  const [] = useState();
+  const [reload, setReload] = useState(false);
   const [] = useState();
 
     return(
@@ -15,8 +15,8 @@ export default function Appointment() {
         <Navbar/>
         <section className="bg-[#F6EBFD] h-full">
         <div className="flex gap-6 py-5 px-3 flex-col md:flex-row">
-            <Calender />
-            <AppointmentTable setDetail={setAppointmentDetail} setShowDetail={setShowDetail} showDetail={showDetail} />
+            <Calender setReload={setReload}/>
+            <AppointmentTable setDetail={setAppointmentDetail} setShowDetail={setShowDetail} showDetail={showDetail} setReload={setReload} reload={reload} />
           <ClientTableDetail detail={appointmentDetail} visible={showDetail} setShowDetail={setShowDetail} />
         </div>
       </section>

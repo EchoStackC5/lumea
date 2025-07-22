@@ -40,7 +40,7 @@ export default function AppointmentsDem() {
             {/* Cards */}
             <div className="flex flex-col gap-3">
                 {data?.length > 0 ? (
-                    data.map((appointment) => (
+                    data.slice(0, 4).map((appointment) => (
                         <AppointmentCard key={appointment.id} appointment={appointment} />
                     ))
                 ) : (
