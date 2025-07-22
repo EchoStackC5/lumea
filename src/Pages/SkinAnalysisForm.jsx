@@ -1,6 +1,6 @@
 import SkinAnalysisNav from "../Components/SkinAnalysNav";
 import { CloudUpload, Sun, Flame } from 'lucide-react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { apiClient } from "@/api/client";
 import glassesOff from "../assets/glassesOff.svg";
@@ -48,10 +48,11 @@ export default function SkinAnalysisForm() {
         }
     };
 
+    useEffect(() => {
     if (!localStorage.getItem("ACCESS_TOKEN")) {
-        navigate("login");
-        return null;
+        navigate("/clientlogin");
     }
+}, []);
 
     if (isLoading) {
         return <Loaders />;

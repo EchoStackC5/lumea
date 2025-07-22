@@ -26,6 +26,7 @@ export default function ClientLogin() {
       localStorage.setItem("ACCESS_TOKEN", response.data.token);
       
       navigate("/clientdashboard"); 
+      // navigate(from, { replace: true });
     } catch (err) {
       setError(
         err.response?.data?.message ||
@@ -115,7 +116,7 @@ export default function ClientLogin() {
 
             <p className="text-center  text-xl text-gray-600">
               Don't Have An Account Yet?{" "}
-              <Link to="/clientdashboard" className="text-[#0066CC] font-medium hover:underline">
+              <Link to="/clientsignUp" className="text-[#0066CC] font-medium hover:underline">
                 Sign Up
               </Link>
             </p>
