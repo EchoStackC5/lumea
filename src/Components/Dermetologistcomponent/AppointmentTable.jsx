@@ -34,7 +34,7 @@ const appointmentstable = [
 
 export default function AppointmentTable({ setDetail, setShowDetail, showDetail }) {
   const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher)
-
+console.log("data", data)
 
 
 
@@ -144,7 +144,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
                 <td className="py-2 px-0 flex items-center gap-1 text-lg">
                   {app?.user ? (
                     <img
-                      src={data?.profile?.image}
+                      src={data?.profile?.image || cheekbone}
                       alt="userProfile"
                       className="w-14 h-14 mr-1 rounded-full object-cover"
                     />
@@ -172,7 +172,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail 
           </tbody>
         </table>
       </div>
-      <div className="flex md:px-8 justify-between">
+      <div className="flex px-8 justify-between">
         <button className="h-8 w-25 rounded-full border hover:bg-[#1A151D] hover:text-white cursor-pointer"
           onClick={() => { showPrevious() }}
         >Previous
