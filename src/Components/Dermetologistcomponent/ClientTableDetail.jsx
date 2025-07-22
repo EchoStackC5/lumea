@@ -8,7 +8,7 @@ export default function ClientTableDetail({detail, visible, setShowDetail}) {
         <section className="bg-white rounded-xl p-3 shadow-md w-[22%] h-auto space-y-4 mb-4" style={{display:visible?'block':'none'}}>
             <div className="flex justify-between">
                 <h1 className="md:text-lg text-md">Client Details</h1>
-                <button onClick={() => {setShowDetail(false)}} className="md:h-[20px] md:w-[20px] h-4 w-4 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-white flex justify-center items-center"><X /></button>
+                <button onClick={() => {setShowDetail(false)}} className="md:h-[25px] md:w-[25px] h-4 w-4 rounded-full bg-gradient-to-r from-[#1A151D] to-[#755F83] text-white flex justify-center items-center"><X /></button>
             </div>
             <div className="flex flex-col justify-center mt-3 items-center">
                 <img src={cheekbone} alt="" className="rounded-full md:h-[185px] md:w-[185px]" />
@@ -24,8 +24,7 @@ export default function ClientTableDetail({detail, visible, setShowDetail}) {
                     className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">+ Add new note
                 </Link>
                 <div className="md:h-10 md:w-35 text-xs border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">
-                    <Download  className="h-3 w-3"/>
-                    <Link to="/AIAnalysisResult" className="">View Ai Skin Report</Link>
+                    <Link to="/ai-analyze" className="">View Ai Skin Report</Link>
                 </div>
             </div>
         </section>

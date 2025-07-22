@@ -11,13 +11,15 @@ export default function Appointment() {
   const [] = useState();
 
     return(
-        <section className="bg-[#F6EBFD] h-full">
+        <>
         <Navbar/>
-        <div className="flex gap-6">
+        <section className="bg-[#F6EBFD] h-full">
+        <div className="flex gap-6 py-5 px-3 flex-col md:flex-row">
             <Calender />
             <AppointmentTable setDetail={setAppointmentDetail} setShowDetail={setShowDetail} showDetail={showDetail} />
           <ClientTableDetail detail={appointmentDetail} visible={showDetail} setShowDetail={setShowDetail} />
         </div>
       </section>
+      </>
     )
 }

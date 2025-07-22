@@ -11,23 +11,12 @@ import { format } from "date-fns"
 export default function AppointmentsDem() {
     const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher)
 
-    //  if (isLoading)
-    //             return(
-    //                 <BeatLoader />
-    //         )
-            
         
-            if (error) 
-                return(
-            <div>
-                <p className="text-red-600 text-center">Something went wrong</p>
-            </div>)
-
     const navigate = useNavigate()
     
 
     return (
-        <section className="bg-white rounded-xl p-3 shadow-md w-[296px] h-[303.2px] space-y-4 mb-4">
+        <section className="bg-white rounded-xl p-3 border-light-border w-[296px] h-[303.2px] space-y-4 mb-4">
             <div className="flex justify-between">
                 <h1 className="text-lg font-inter text-[#1A151D]">Appointments</h1>
                 <button onClick={() => navigate("/appointment")}

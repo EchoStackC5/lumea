@@ -10,9 +10,9 @@ export default function Dermetologistdashboard() {
 
   return (
     <>
+    <Navbar/>
       <section className="bg-[#F6EBFD] h-full">
-        <Navbar/>
-        <div className="flex gap-6">
+        <div className="flex gap-6 py-5 flex-col justify-between md:flex-row md:px-6">
           <div>
             <AppointmentCalender />
           </div>
