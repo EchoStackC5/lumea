@@ -26,6 +26,7 @@ export default function UserDetails() {
         </div>
         )
         const appointment = data?.[0];
+        
     return (
         <section className="bg-white rounded-xl p-3 border border-light-border max-w-full md:max-w-xs space-y-4 mb-4">
             <div className="flex justify-between">

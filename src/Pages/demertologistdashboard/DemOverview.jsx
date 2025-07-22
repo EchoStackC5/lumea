@@ -2,6 +2,7 @@ import Modal from "../demertologistdashboard/Modal"
 import Cliendetails from "../../Components/Dermetologistcomponent/Clientdetails"
 import RecentSkinAnalysis from "../../Components/Dermetologistcomponent/RecentSkinAnalysis"
 import SkinReport from "../../Components/Dermetologistcomponent/SkinReport"
+import AnalysisImageSection from "@/Components/AIAnalysisResult/AnalysisImageSection"
 import Navbar from "@/Components/Navbar";
 
 export default function DemOverview() {
@@ -14,7 +15,7 @@ export default function DemOverview() {
             <Cliendetails />
             <RecentSkinAnalysis />
           </div>
-          <Modal />
+          <AnalysisImageSection />
           <SkinReport />
         </div>
       </section>

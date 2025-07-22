@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import Today from "../../Components/Dermetologistcomponent/Today"
 import AppointmentRequest from '../../Components/Dermetologistcomponent/AppointmentRequest'
 
-export default function CalendarIcon() {
+export default function CalendarIcon({setReload}) {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
 
@@ -192,7 +192,7 @@ export default function CalendarIcon() {
             </div>
             </div>
             <Today />
-            <AppointmentRequest />
+            <AppointmentRequest setReload={setReload}/>
         </div>
     );
 }

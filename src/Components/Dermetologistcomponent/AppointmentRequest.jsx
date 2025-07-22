@@ -2,21 +2,18 @@ import useSWR, { mutate } from "swr"
 import { apiClient, apiFetcher } from "@/api/client";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import format from "date-fns/format";
 import { BeatLoader } from "react-spinners";
 
 
-export default function AppointmentRequest() {
+export default function AppointmentRequest({setReload}) {
     const { data, isLoading, error } = useSWR("/appointments/cosmetologist?status=pending", apiFetcher)
     const navigate = useNavigate();
-    const [status, setStatus] = useState("");
-
-
-    // if (isLoading) return <p className="text-xl flex justify-center items-center text-white">Loading...</p>
-    // if (error) return <p>Failed to load</p>
+    const [status, setStatus] = useState({ id: null, type: "" });
 
 
     function reject(id) {
-        setStatus("rejected")
+        setStatus({ id, type: "rejected" });
         apiClient.patch(`https://lumea-api.onrender.com/api/appointments/${id}`, { status: 'rejected' }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
@@ -25,6 +22,7 @@ export default function AppointmentRequest() {
         })
             .then(res => {
                 mutate("/appointments/cosmetologist?status=pending");
+                setReload(true)
                 console.log('res:', res)
             })
             .catch(err => {
@@ -33,7 +31,7 @@ export default function AppointmentRequest() {
             .finally(() => { setStatus("") })
     }
     function accept(id) {
-        setStatus("accepted")
+        setStatus({ id, type: "accepted" });
         console.log('token:', localStorage.getItem("ACCESS_TOKEN"))
         apiClient.patch(`https://lumea-api.onrender.com/api/appointments/${id}`, { status: 'accepted' }, {
             headers: {
@@ -44,12 +42,29 @@ export default function AppointmentRequest() {
         })
             .then(res => {
                 mutate("/appointments/cosmetologist?status=pending");
+                setReload(true)
                 console.log(res)
             })
             .catch(err => {
                 console.log(err)
             })
-            .finally(() => {setStatus("")})
+            .finally(() => { setStatus("") })
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-[269px]">
+                <BeatLoader color="#ffffff" size={20} />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="text-white text-center py-6">
+                Failed to load appointments. Please try again.
+            </div>
+        );
     }
 
 
@@ -63,9 +78,15 @@ export default function AppointmentRequest() {
                         <h1 className="text-[#6B6A6C] text-sm">{app.time}</h1>
                         <div className=" flex mt-2 gap-3">
                             <button onClick={() => reject(app.id)}
-                                className="text-white text-sm h-7 w-18 rounded-full bg-[#DF1316] border cursor-pointer">Reject</button>
+                                className={`text-white text-sm h-7 w-18 rounded-full bg-[#DF1316] border cursor-pointer px-3 ${status.id === app.id && status.type === "rejected" ? "animate-pulse opacity-70" : ""
+                                    }`}
+                            >
+                                {status.id === app.id && status.type === "rejected" ? "Rejecting..." : "Reject"}</button>
                             <button onClick={() => accept(app.id)}
-                                className="text-white text-sm h-7 w-18 rounded-full bg-[#057A15] border cursor-pointer">Accept</button>
+                                className={`text-white text-sm h-7 w-18 rounded-full bg-[#057A15] border cursor-pointer px-3 ${status.id === app.id && status.type === "accepted" ? "animate-pulse opacity-70" : ""
+                                    }`}
+                            >
+                                {status.id === app.id && status.type === "accepted" ? "Accepting..." : "Accept"}</button>
                         </div>
                     </div>
                 ))

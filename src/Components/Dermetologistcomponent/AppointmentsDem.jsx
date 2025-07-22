@@ -11,7 +11,6 @@ import { format } from "date-fns"
 export default function AppointmentsDem() {
     const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher)
 
-        
     const navigate = useNavigate()
     
 
