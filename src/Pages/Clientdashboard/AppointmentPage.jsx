@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../Components/Navbar';
+import Navbar from '../../Components/Clientdashboardcomponent/ClientDashboardNav';
 // import Navbar from "../../Components/Dashboardnavbar"
 import Calender from '../../Components/Clientdashboardcomponent/AppointmentCalender';
 import AppointmentTable from '../../Components/Clientdashboardcomponent/ClientAppointmentTable';

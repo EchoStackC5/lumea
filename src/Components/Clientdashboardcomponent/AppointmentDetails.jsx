@@ -6,6 +6,19 @@ import { format } from 'date-fns';
 const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   if (!visible) return null;
 
+  const getStatusStyles = (status) =>{
+    switch(status.toLowerCase()) {
+      case "accepted":
+        return "bg-green-100 text-green-700 border-green-200"
+      case "rejected":
+        return "bg-red-100 text-red-700 border-red-200"
+      case "completed":
+        return "bg-green-100 text-green-700 border-green-200"
+      case "pending":
+        return "bg-blue-100 text-blue-700 border-blue-200"
+    }
+  };
+
   return (
     <div className="bg-white rounded-2xl border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
       <button
@@ -34,13 +47,13 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
           </p>
 
           <div className="mt-5">
-            <span className="inline-flex justify-center items-center w-[244px] h-[34px] text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 rounded-full">
+            <span className={`inline-flex justify-center items-center w-[244px] h-[34px] text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 rounded-full ${getStatusStyles(detail.status)}`}>
               {detail.status}
             </span>
           </div>
         </div>
 
-        <div className="flex flex-row gap-2 w-full px-4">
+        <div className="flex flex-row gap-2 w-full px-4 pb-10">
           <button className="flex-1 bg-black text-[10px] text-white h-[36px] rounded-full hover:bg-gray-800">
             View Skin Report
           </button>
