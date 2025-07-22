@@ -94,7 +94,8 @@ export default function AIAnalysisResult() {
           <div className="report-wrapper">
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] xl:grid-cols-[579px_312px_296px]  gap-4 lg:gap-6 justify-center">
-              <AnalysisImageSection analysis={analysis} />
+              {/* <AnalysisImageSection analysis={analysis} /> */}
+              <AnalysisImageSection report={latestReport} analysis={analysis} />
               <AnalysisSummaryCard analysis={analysis} />
               <AnalysisSidePanel analysis={analysis} />
             </div>

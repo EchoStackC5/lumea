@@ -6,7 +6,7 @@ export default function AnalysisSummaryCard({ analysis }) {
     <div className="bg-gradient-to-br from-[#671699] to-[#501C70] rounded-2xl p-4 sm:p-6 text-white flex flex-col justify-between  w-full max-w-[312px] h-auto  mx-auto">
       <div className='flex flex-col justify-between flex-grow'>
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg font-semibold">Healthy Skin</h2>
+          <h2 className="text-lg font-semibold">Skin Summary</h2>
           <Scan size={16} />
         </div>
 
