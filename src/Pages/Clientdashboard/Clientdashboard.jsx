@@ -5,7 +5,9 @@ import ClientSkinReport from "@/Components/Clientdashboardcomponent/ClientSkinRe
 import ClientRecentSkinAnalysis from "@/Components/Clientdashboardcomponent/ClientRecentSkinAnalysis";
 import ClientDashboardNav from "@/Components/Clientdashboardcomponent/ClientDashboardNav";
 import UserFaceAnalysis from "@/Components/Clientdashboardcomponent/UserFaceAnalysis";
-import LeftPanel from "./leftPanel";
+import LeftPanel from "../../Components/Clientdashboardcomponent/LeftPanel";
+// import LeftPanel from "./leftPanel";
+import LeftPanel from "../../Components/Clientdashboardcomponent/LeftPanel";
 
 export default function Clientdashboard() {
   return (
