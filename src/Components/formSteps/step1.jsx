@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormStep1 from "./FormStep1";
 import FormStep2 from "./FormStep2";
 import FormStep3 from "./FormStep3";
@@ -10,6 +10,12 @@ import { useNavigate } from "react-router";
 
 export default function Step1({ steps }) {
   const navigate = useNavigate();
+  
+   useEffect(() => {
+          if (!localStorage.getItem("ACCESS_TOKEN")) {
+              navigate("/clientlogin");
+          }
+      }, []);
 
   const [toast, setToast] = useState({ show: false, message: '', type: '' })
 
@@ -65,6 +71,7 @@ export default function Step1({ steps }) {
           },
         }
       );
+      
 
       console.log("Appointment created:", response.data);
       // alert("Appointment booked successfully!");
