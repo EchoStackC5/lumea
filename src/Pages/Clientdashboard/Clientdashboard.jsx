@@ -7,7 +7,7 @@ import ClientDashboardNav from "@/Components/Clientdashboardcomponent/ClientDash
 import UserFaceAnalysis from "@/Components/Clientdashboardcomponent/UserFaceAnalysis";
 import LeftPanel from "../../Components/Clientdashboardcomponent/LeftPanel";
 // import LeftPanel from "./leftPanel";
-import LeftPanel from "../../Components/Clientdashboardcomponent/LeftPanel";
+
 
 export default function Clientdashboard() {
   return (
