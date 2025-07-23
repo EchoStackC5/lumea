@@ -60,7 +60,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
     Rejected: "bg-[#9C071D26] text-[#9C071D]",
     Pending: "bg-[#1D10AC26] text-[#1D10AC]",
   };
-// Logic for the search bar//
+  // Logic for the search bar//
   function filterApp(value) {
     console.log(value)
     let filteredItem;
@@ -69,12 +69,12 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
       let skinType = value === app.skinType;
       let name = value === app.user.name;
 
-      if(status || skinType || name) {
+      if (status || skinType || name) {
         return app;
       }
     })
 
-    if(filteredItem.length > 0) {
+    if (filteredItem.length > 0) {
       setsubArray(filteredItem);
       setstartindex(0);
       setendIndex(limit)
@@ -139,11 +139,11 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
     setendIndex(newEndIndex)
   }
 
-  
+
 
 
   return (
-    <section style={{ width: showDetail ? '53%' : '75%' }} className="h-auto w-[686px] bg-white rounded-lg">
+    <section style={{ width: showDetail ? '53%' : '55%' }} className="h-auto w-[686px] bg-white rounded-lg">
       {/* Show loader while fetching */}
       {isLoading && (
         <div className="flex justify-center items-center h-64">
@@ -159,17 +159,17 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
       )}
 
       <div style={{ display: isLoading ? 'none' : 'flex' }} className="mt-5 px-5 flex justify-between items-center">
-        <h1 className="font-bold text-xl">Appointments & Client List</h1>
-        <div className="relative">
+        <h1 className="text-lg font-medium font-dm-sans text-primary-dark">Appointments & Client List</h1>
+        <div className="relative focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-300 rounded-full">
           <input
             type="text"
             placeholder="Search list"
             value={searchTerm}
             onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-            className="w-80 pl-4 pr-12 py-3 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 focus:outline-none"
+            className="w-80 pl-4 pr-12 py-3 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 outline-none"
           />
-          <button onClick={() => {filterApp(searchTerm)}}
-           className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 cursor-pointer">
+          <button onClick={() => { filterApp(searchTerm) }}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 cursor-pointer">
             <Search size={16} />
           </button>
         </div>
@@ -178,11 +178,11 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
       <div style={{ display: isLoading ? 'none' : 'block' }} className="p-4 max-w-5xl mx-auto">
         <table className="w-full table-fixed border-collapse">
           <thead>
-            <tr className="bg-light-border text-left text-secondary-text text-lg font-semibold h-16">
-              <th className="py-2 w-[30%] px-2 rounded-l-md">Client Name</th>
+            <tr className="bg-light-border text-left text-secondary-text text-[15px] font-medium h-16 border-light-border font-poppins">
+              <th className="py-2 w-[30%] px-2">Client Name</th>
               <th className="py-2 w-[15%] px-2">Skin Type</th>
               <th className="py-2 w-[30%] px-2">Appointment Date</th>
-              <th className="py-2 w-[20%] px-2 rounded-r-md">Appointment Status</th>
+              <th className="py-2 w-[20%] px-2">Appointment Status</th>
             </tr>
           </thead>
           <tbody className="">
@@ -193,7 +193,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
                 <td className="py-2 px-0 flex items-center gap-1 text-lg">
                   {app?.user ? (
                     <img
-                      src={data?.profile?.image || cheekbone}
+                      src={app.user?.profile?.image || cheekbone}
                       alt="userProfile"
                       className="w-14 h-14 mr-1 rounded-full object-cover"
                     />
@@ -206,7 +206,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
                 <td className="py-2 px-4 text-[#6B6A6C] text-md">{format(new Date(app.date), "dd MMM yyyy, h:mm a")}</td>
                 <td className="py-2 px-4 ">
                   <span
-                    className={`px-4 py-1 rounded-full text-xl font-medium ${app.status === "accepted"
+                    className={`px-3 py-1 justify-center flex items-center rounded-full text-sm font-medium text-center ${app.status === "accepted"
                       ? statusColors.Accepted
                       : app.status === "rejected"
                         ? statusColors.Rejected
@@ -222,11 +222,11 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
         </table>
       </div>
       <div style={{ display: isLoading ? 'none' : 'flex' }} className="flex px-8 justify-between">
-        <button className="h-8 w-25 rounded-full border hover:bg-[#1A151D] hover:text-white cursor-pointer"
+        <button className="max-w-md w-[100px] py-1 rounded-full border border-light-border  hover:bg-[#1A151D] hover:text-white cursor-pointer"
           onClick={() => { showPrevious() }}
         >Previous
         </button>
-        <button className="h-8 w-25 rounded-full border hover:bg-[#1A151D] hover:text-white cursor-pointer"
+        <button className="max-w-md w-[100px] py-1 rounded-full border bg-system-primary hover:bg-[#1A151D] text-white cursor-pointer"
           onClick={() => { showNext() }}
         >Next
         </button>

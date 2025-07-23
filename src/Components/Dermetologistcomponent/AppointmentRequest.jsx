@@ -78,12 +78,12 @@ export default function AppointmentRequest({setReload}) {
                         <h1 className="text-[#6B6A6C] text-sm">{app.time}</h1>
                         <div className=" flex mt-2 gap-3">
                             <button onClick={() => reject(app.id)}
-                                className={`text-white text-sm h-7 w-18 rounded-full bg-[#DF1316] border cursor-pointer px-3 ${status.id === app.id && status.type === "rejected" ? "animate-pulse opacity-70" : ""
+                                className={`text-white text-sm h-7 w-18 rounded-full bg-[#DF1316] border cursor-pointer px-3 font-inter text-center font-normal  ${status.id === app.id && status.type === "rejected" ? "animate-pulse opacity-70" : ""
                                     }`}
                             >
                                 {status.id === app.id && status.type === "rejected" ? "Rejecting..." : "Reject"}</button>
                             <button onClick={() => accept(app.id)}
-                                className={`text-white text-sm h-7 w-18 rounded-full bg-[#057A15] border cursor-pointer px-3 ${status.id === app.id && status.type === "accepted" ? "animate-pulse opacity-70" : ""
+                                className={`text-white text-sm h-7 w-18 rounded-full bg-[#057A15] border cursor-pointer px-3 font-inter text-center font-normal ${status.id === app.id && status.type === "accepted" ? "animate-pulse opacity-70" : ""
                                     }`}
                             >
                                 {status.id === app.id && status.type === "accepted" ? "Accepting..." : "Accept"}</button>
