@@ -126,7 +126,7 @@ export default function CalendarIcon() {
     };
 
     return (
-        <div className="h-[695px] w-[300px]  bg-white rounded-xl shadow-lg p-4">
+        <div className="h-[695px] max-w-xl w-full  bg-white rounded-xl border border-light-border p-4">
             {/* Header */}
             <div className="flex items-center justify-between mb-4 ">
                 <div className="flex justify-between">
@@ -135,7 +135,7 @@ export default function CalendarIcon() {
             </div>
 
             {/* Month/Year Navigation */}
-            <div className='h-[220px] w-auto bg-[#EAD7FB] p-2 rounded-md'>
+            <div className='h-[220px] w-auto bg-backgrounds border border-light-border p-2 rounded-md'>
             <div className="flex items-center justify-between mb-2 ">
                 <button
                     onClick={goToPreviousMonth}
@@ -193,7 +193,7 @@ export default function CalendarIcon() {
             </div>
             </div>
             <Today />
-            <AppointmentRequest />
+            {/* <AppointmentRequest /> */}
         </div>
     );
 }

@@ -3,11 +3,24 @@ import FormStep1 from "./FormStep1";
 import FormStep2 from "./FormStep2";
 import FormStep3 from "./FormStep3";
 import { ArrowLeft } from 'lucide-react';
-import axios from 'axios'; // Added missing import
+
 import { apiFetcher } from "@/api/client";
 import { apiClient } from "@/api/client";
+import { useNavigate } from "react-router";
 
 export default function Step1({ steps }) {
+  const navigate = useNavigate();
+
+  const [toast, setToast] = useState({ show: false, message: '', type: '' })
+
+    const showToast = (message, type) => {
+        setToast({ show: true, message, type })
+        setTimeout(() => {
+            setToast({ show: false, message: '', type: '' })
+        }, 3000)
+    }
+
+
   const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState({
     skinType: "",
@@ -54,7 +67,12 @@ export default function Step1({ steps }) {
       );
 
       console.log("Appointment created:", response.data);
-      alert("Appointment booked successfully!");
+      // alert("Appointment booked successfully!");
+      showToast('Appointment Booked Successfully!', 'success')
+      setTimeout(() => {
+                navigate("/clientdashboard")
+            }, 1500)
+      
     } catch (err) {
       console.error("Submission failed:", err);
       alert("Something went wrong");
@@ -132,7 +150,7 @@ export default function Step1({ steps }) {
       </div>
 
       {/* Navigation Buttons - Only show if not on last step */}
-      {activeStep < totalSteps && (
+      {/* {activeStep < totalSteps && (
         <div className="mt-28 flex justify-between">
           <button
             className="flex justify-center items-center gap-2 rounded-full px-8 py-3 text-purple-900 text-base font-medium hover:bg-yellow-500 hover:text-darkest disabled:cursor-not-allowed disabled:bg-purple-300 disabled:text-purple-700"
@@ -153,7 +171,28 @@ export default function Step1({ steps }) {
             Next
           </button>
         </div>
-      )}
+      )} */}
+
+      {toast.show && (
+                <div className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${
+                    toast.type === 'success' 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-red-500 text-white'
+                }`}>
+                    <div className="flex items-center space-x-2">
+                        {toast.type === 'success' ? (
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                        ) : (
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                        )}
+                        <span className="font-medium">{toast.message}</span>
+                    </div>
+                </div>
+            )}
     </div>
   );
 }

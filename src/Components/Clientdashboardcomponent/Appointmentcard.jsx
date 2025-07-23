@@ -20,7 +20,7 @@ export default function AppointmentCard({ appointment }){
                     
                     <div className=" flex flex-col  text-start group">
                             <h1 className="font-inter text-start text-xs text-[#6B6A6C] group-hover:text-white/70 transition-colors duration-300">{formattedDate}</h1>
-                            <h2 className="font-inter text-start text-[#1A151D] text-sm group-hover:text-white transition-colors duration-300">{appointment.description}</h2>
+                            <h2 className="font-inter text-start text-[#1A151D] text-sm group-hover:text-white transition-colors duration-300">{appointment.concern || appointment.tone}</h2>
                     </div >
 
             </div>
