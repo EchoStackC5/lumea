@@ -4,7 +4,10 @@ import { Download } from "lucide-react"
 import { Link } from "react-router"
 
 export default function ClientTableDetail({ detail, visible, setShowDetail }) {
+    console.log(detail ,"user detail")
     
+    
+
     return (
         <section className="bg-white rounded-xl p-3 shadow-md w-[22%] h-auto space-y-4 mb-4" style={{ display: visible ? 'block' : 'none' }}>
             <div className="flex justify-between">
@@ -25,12 +28,16 @@ export default function ClientTableDetail({ detail, visible, setShowDetail }) {
                     className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">View User Data
                 </Link>
                 <div className="md:h-10 md:w-35 text-xs border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">
-                    <Link
-                        to={`/ai-analyze/${detail.id}`}
-                        state={{ analysisData: detail.analysis }} // <-- pass the data
-                    >
-                        View Ai Skin Report
+                    <Link to= "/ai-analyze">
+                        View AI Skin Report
                     </Link>
+
+                    {/* <Link
+                        to={`/ai-analyze/report/${detail.id}`}
+                        state={{ analysisData: detail.analysisReport?.analysis }}
+                    >
+                        View AI Skin Report
+                    </Link> */}
                 </div>
             </div>
         </section>

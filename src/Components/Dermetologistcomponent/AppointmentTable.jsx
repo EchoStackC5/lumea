@@ -54,6 +54,8 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
       setReassign(true)
     }
   }, [reload])
+  // console.log(data , "table data")
+
 
   const statusColors = {
     Accepted: "bg-[#079C4326] text-[#079C43]",
@@ -81,6 +83,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
     }
 
   }
+  
 
 
   useEffect(() => {

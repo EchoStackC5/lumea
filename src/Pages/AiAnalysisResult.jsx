@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import { Download } from 'lucide-react';
 import AnalysisImageSection from '../Components/AIAnalysisResult/AnalysisImageSection';
 import AnalysisSummaryCard from '../Components/AIAnalysisResult/AnalysisSummaryCard';
@@ -17,15 +17,19 @@ import AnalysisReportPDF from '@/Components/custom/PdfDownloader';
 // import html2canvas from 'html2canvas';
 
 export default function AIAnalysisResult() {
- const { userId } = useParams();
+ const {  reportId } = useParams();
  const location = useLocation();
  const analysisData = location.state?.analysisData;
 
+ console.log(reportId);
+
  
-  const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
+  // const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
   // const apiEndpoint = userId ? `/users/${userId}/history` : '/users/me/history';
-  // const { data, isLoading, error } = useSWR( userId? `/users/${userId}/history` : '/users/me/history', apiFetcher);
+  const { data, isLoading, error } = useSWR(reportId? `/skin-reports/${reportId}` : '/users/me/history', apiFetcher);
   console.log(data)
+  
+  
 
   
 
@@ -40,12 +44,15 @@ export default function AIAnalysisResult() {
   }
 
   const latestReport = data?.[0];
-  const analysis = latestReport?.analysis;
-  console.log("Analysis data:", analysis);
+  // const analysis = latestReport?.analysis;
+  const analysis = analysisData || latestReport?.analysis; 
+  // useEffect(() => {
+  //   console.log("Analysis data:", analysis);
+  // }, [analysis]);
+  
+  
 
   //a function to download analysis report
-
-
   const handlePDFdownload = async () => {
     try {
       const reportElement = document.querySelector(".report-wrapper");
@@ -116,5 +123,3 @@ export default function AIAnalysisResult() {
     </>
   );
 };
-
-
