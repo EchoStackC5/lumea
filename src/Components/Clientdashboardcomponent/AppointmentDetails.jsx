@@ -20,17 +20,21 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
-      <button
+    <div className="bg-white rounded-2xl gap-3 border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
+      <div className='flex justify-between'>
+        <button
         onClick={() => setShowDetail(false)}
         className="absolute top-4 right-4 bg-gray-900 text-white rounded-full p-2 hover:bg-gray-800"
       >
         <X size={20} />
       </button>
+      <h2 className="text-lg font-semibold text-gray-900 mb-3">Appointment Details</h2>
+      </div>
+      
 
       <div className="text-center flex flex-col items-center flex-1 justify-between">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-3">Appointment Details</h2>
+          
 
           <div className="w-45 h-45 rounded-full overflow-hidden border-2  mx-auto mb-3">
             <img 
@@ -40,9 +44,9 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
             />
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-900 mb-1">{detail.doctorName}</h3>
+          <h3 className="text-lg font-inter font-semibold flex justify-between text-gray-900 mb-1"><span className='font-medium text-dashboar-secondary font-inter'>Doctor Name:</span> {detail.doctorName}</h3>
 
-          <p className="text-gray-600 text-sm pt-3">
+          <p className="text-gray-600 text-sm pt-3"> Appointment Date: 
             {format(new Date(detail.date), "MMMM d,yyyy")} – {detail.time}
           </p>
 

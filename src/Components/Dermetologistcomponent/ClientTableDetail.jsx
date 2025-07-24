@@ -28,16 +28,16 @@ export default function ClientTableDetail({ detail, visible, setShowDetail }) {
                     className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">View User Data
                 </Link>
                 <div className="md:h-10 md:w-35 text-xs border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">
-                    <Link to= "/ai-analyze">
+                    {/* <Link to= "/ai-analyze">
                         View AI Skin Report
-                    </Link>
+                    </Link> */}
 
-                    {/* <Link
-                        to={`/ai-analyze/report/${detail.id}`}
+                    <Link
+                        to={`/ai-analyze/report/${detail.user.id}`}
                         state={{ analysisData: detail.analysisReport?.analysis }}
                     >
                         View AI Skin Report
-                    </Link> */}
+                    </Link>
                 </div>
             </div>
         </section>
