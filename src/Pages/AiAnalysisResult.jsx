@@ -10,13 +10,24 @@ import Loaders from '@/Components/Loaders';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import domtoimage from 'dom-to-image-more';
-
+import { useParams, useLocation } from 'react-router';
 // import domtoimage from 'dom-to-image';
 import AnalysisReportPDF from '@/Components/custom/PdfDownloader';
+
 // import html2canvas from 'html2canvas';
 
 export default function AIAnalysisResult() {
+ const { userId } = useParams();
+ const location = useLocation();
+ const analysisData = location.state?.analysisData;
+
+ 
   const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
+  // const apiEndpoint = userId ? `/users/${userId}/history` : '/users/me/history';
+  // const { data, isLoading, error } = useSWR( userId? `/users/${userId}/history` : '/users/me/history', apiFetcher);
+  console.log(data)
+
+  
 
   if (isLoading) return <Loaders />;
 
