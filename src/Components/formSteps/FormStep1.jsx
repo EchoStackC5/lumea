@@ -76,7 +76,7 @@ export default function FormStep1({ onNext, defaultValues }) {
 
              <button 
                 type="submit" 
-                className="w-full mt-6 bg-system-primary text-white py-3 px-4 rounded-md hover:bg-purple-600 transition-colors"
+                className="w-full mt-6 bg-system-primary text-white py-3 px-4 rounded-full hover:bg-purple-600 transition-colors"
             >
                 Next
             </button>

@@ -42,18 +42,28 @@ export default function FormStep3({ onNext, defaultValues }) {
         {visibleCosmetologists.map((cosmetologist) => (
           <div
             key={cosmetologist.id}
-            className={`flex flex-col space-y-3 w-full bg-white p-4 border rounded-lg cursor-pointer transition-all ${
-              selectedId === cosmetologist.id 
-                ? 'border-system-primary bg-purple-50' 
+            className={`flex flex-col space-y-3 w-full bg-white p-4 border rounded-lg cursor-pointer transition-all relative ${selectedId === cosmetologist.id
+                ? 'border-system-primary bg-purple-50'
                 : 'border-light-border hover:border-purple-300'
-            }`}
+              }`}
             onClick={() => setSelectedId(cosmetologist.id)}
           >
-            <img
-              src={cosmetologist.profile?.image || GloriaDeoDoc}
-              alt="Doctor"
-              className="rounded-md object-cover w-full h-40"
-            />
+            <div className="relative">
+              <input
+                type="radio"
+                name="cosmetologist"
+                value={cosmetologist.id}
+                checked={selectedId === cosmetologist.id}
+                onChange={() => setSelectedId(cosmetologist.id)}
+                className="absolute top-2 left-2 w-5 h-5 accent-purple-600 cursor-pointer z-10"
+              />
+              <img
+                src={cosmetologist.profile?.image || GloriaDeoDoc}
+                alt="Doctor"
+                className="rounded-md object-cover w-full h-40"
+              />
+            </div>
+
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-medium text-primary-dark">
                 {cosmetologist.name}
@@ -63,27 +73,16 @@ export default function FormStep3({ onNext, defaultValues }) {
             <p className="text-sm text-gray-600">
               {cosmetologist.profile?.areaOfExpertise || "No specialization listed"}
             </p>
-            
-            {/* Selection indicator */}
-            <div className="flex justify-center">
-              <input
-                type="radio"
-                name="cosmetologist"
-                value={cosmetologist.id}
-                checked={selectedId === cosmetologist.id}
-                onChange={() => setSelectedId(cosmetologist.id)}
-                className="w-4 h-4 text-system-primary"
-              />
-            </div>
           </div>
         ))}
+
       </div>
 
       {/* Pagination */}
       <div className="flex justify-between mt-6">
         <button
           type="button"
-          className="px-4 py-2 rounded bg-light-border text-primary-dark font-medium disabled:opacity-50"
+          className="px-4 py-2 cursor-pointer bg-light-border rounded-full text-primary-dark font-inter font-medium disabled:opacity-50"
           onClick={() => setPage(page - 1)}
           disabled={page === 0}
         >
@@ -91,7 +90,7 @@ export default function FormStep3({ onNext, defaultValues }) {
         </button>
         <button
           type="button"
-          className="px-4 py-2 rounded bg-system-primary text-white font-medium disabled:opacity-50"
+          className="px-4 py-2 rounded-full font-inter hover:bg-system-primary hover:text-white text-system-primary cursor-pointer border border-system-primary font-medium disabled:opacity-50"
           onClick={() => setPage(page + 1)}
           disabled={data && (page + 1) * pageSize >= data.length}
         >
@@ -99,9 +98,9 @@ export default function FormStep3({ onNext, defaultValues }) {
         </button>
       </div>
 
-      <button 
-        type="submit" 
-        className="w-full mt-6 bg-system-primary text-white py-3 px-4 rounded-md hover:bg-purple-600 transition-colors"
+      <button
+        type="submit"
+        className="w-full mt-6 cursor-pointer  bg-system-primary text-white py-3 px-4 rounded-full hover:bg-purple-600 transition-colors"
       >
         Book Appointment
       </button>

@@ -11,9 +11,11 @@ import { Link } from "react-router"
 import { apiFetcher } from "@/api/client";
 import useSWR from "swr";
 import Loaders from "../Loaders";
+import useUserByID from "@/hooks/UserById";
 
 
 export default function UserDetails() {
+    const {user} = useUserByID()
      const {data, isLoading, error} = useSWR('/appointments' ,apiFetcher);
         if (isLoading)
             return
@@ -26,18 +28,19 @@ export default function UserDetails() {
         </div>
         )
         const appointment = data?.[0];
+        
     return (
-        <section className="bg-white rounded-xl p-3 border border-light-border max-w-full md:max-w-xs space-y-4 mb-4">
+        <section className="bg-white rounded-xl p-3 border border-light-border  max-w-full md:max-w-md lg:max-w-xs xl:max-w-sm 2xl:max-w-4xl space-y-4 mb-4">
             <div className="flex justify-between">
                 <h1 className="md:text-lg text-md  text-primary-dark font-dm-sans font-semibold">Details</h1>
                 <Link to= "/skin-analysis-form" className="font-poppins px-3 py-2 hover:bg-amber-500 hover:text-darkest txt-xs rounded-full bg-[#1A151D] text-white flex justify-center items-center text-sm">Analyze Skin</Link>
             </div>
             {/* Client name & Pic */}
             <div className="flex gap-2 items-center justify-start">
-                <img src={face} alt="" className="md:h-[35px] md:w-[35px] h-7 w-8 rounded-full" />
+                <img src={user?.profile?.image || face} alt="" className="md:h-[35px] md:w-[35px] h-7 w-8 rounded-full" />
                 <div className="flex flex-col">
-                    <h1 className="md:text-md text-sm font-inter">Abigail Adams</h1>
-                    <p className="md:text-sm text-xs text-[#6B6A6C] font-inter">Female</p>
+                    <h1 className="md:text-md text-sm font-inter">{user?.name || "Anonymous"}</h1>
+                    <p className="md:text-sm text-xs text-[#6B6A6C] font-inter">{appointment?.gender || "N/A"}</p>
                 </div>
             </div>
             {/* Client Info */}
@@ -54,7 +57,7 @@ export default function UserDetails() {
                     
                     <div className=" flex flex-col text-xs items-center">
                         <h1 className="text-[#6B6A6C] font-inter">Weight</h1>
-                        <h2 className="font-inter text-[#1A151D]">{appointment?.weight}</h2>
+                        <h2 className="font-inter text-[#1A151D]">{appointment?.weight || "N/A"}</h2>
                     </div>
                 </div>
                 <div className=" flex  rounded-md border border-white bg-[#F6EBFD] p-2 gap-3">

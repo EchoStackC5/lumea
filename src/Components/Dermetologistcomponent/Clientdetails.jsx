@@ -6,7 +6,10 @@ import vector2 from "../../assets/images/vector2.png"
 import vector3 from "../../assets/images/vector3.png"
 
 
-export default function clientDetailsDem() {
+export default function clientDetailsDem({analysis}) {
+
+
+    
     return (
         <section className="bg-white rounded-xl p-3 shadow-md w-[296px] h-[239.2px] space-y-4 mb-4">
             <div className="flex justify-between">
@@ -15,10 +18,10 @@ export default function clientDetailsDem() {
             </div>
             {/* Client name & Pic */}
             <div className="flex md:gap-5 items-center">
-                <img src={face} alt="" className="md:h-[35px] md:w-[35px] h-7 w-8 rounded-full" />
+                <img src={analysis?.user?.profile?.image || face} alt="" className="md:h-[35px] md:w-[35px] h-7 w-8 rounded-full" />
                 <div>
-                    <h1 className="md:text-md text-sm">Abigail Adams</h1>
-                    <p className="md:text-sm text-xs text-[#6B6A6C]">Female</p>
+                    <h1 className="md:text-md text-sm">{analysis?.user?.name}</h1>
+                    <p className="md:text-sm text-xs text-[#6B6A6C]">{analysis?.gender}</p>
                 </div>
             </div>
             {/* Client Info */}
@@ -28,8 +31,8 @@ export default function clientDetailsDem() {
                         <img src={vector} alt="" />
                     </div>
                     <div className=" flex flex-col text-xs items-center">
-                        <h1 className="text-[#6B6A6C]">Age</h1>
-                        <h2>43</h2>
+                    <h1 className="text-[#6B6A6C]">Age</h1>
+                        <h2>{analysis?.age}</h2>
                     </div>
                 </div>
                 <div className=" flex md:h-[50px] w-[100%] h-[30px] md:rounded-md rounded-md border border-white bg-[#F6EBFD] p-2 gap-3">
@@ -38,7 +41,7 @@ export default function clientDetailsDem() {
                     </div>
                     <div className=" flex flex-col text-xs items-center">
                         <h1 className="text-[#6B6A6C]">Weight</h1>
-                        <h2>85 Kg</h2>
+                        <h2>{analysis?.weight}</h2>
                     </div>
                 </div>
                 <div className=" flex md:h-[50px] w-[100%] h-[30px] md:rounded-md rounded-md border border-white bg-[#F6EBFD] p-2 gap-3">
@@ -47,7 +50,7 @@ export default function clientDetailsDem() {
                     </div>
                     <div className=" flex flex-col text-xs items-center">
                         <h1 className="text-[#6B6A6C]">Height</h1>
-                        <h2>182 cm</h2>
+                        <h2>{analysis?.height}</h2>
                     </div>
                 </div>
                 <div className=" flex md:h-[50px] w-[100%] h-[30px] md:rounded-md rounded-md border border-white bg-[#F6EBFD] p-2 gap-3">
@@ -56,7 +59,7 @@ export default function clientDetailsDem() {
                     </div>
                     <div className="text-xs">
                         <h1 className="text-[#6B6A6C]">SkinType</h1>
-                        <h2>Oily</h2>
+                        <h2>{analysis?.skinType}</h2>
                     </div>
                 </div>
             </div>

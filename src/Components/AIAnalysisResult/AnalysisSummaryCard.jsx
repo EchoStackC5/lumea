@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scan, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router';
 
 export default function AnalysisSummaryCard({ analysis }) {
   return (
@@ -67,10 +68,10 @@ export default function AnalysisSummaryCard({ analysis }) {
 
 
       </div>
-      <button className="w-full max-w-[280px] mt-6 h-[44px] flex justify-between items-center px-[25px] py-[10px] rounded-full bg-gradient-to-br from-[#8964A0]/60 to-[#6B3D88]/60 text-white shadow-lg hover:opacity-90 mx-auto">
+      <Link to= "/appointment-form" className="w-full max-w-[280px] mt-6 h-[44px] flex justify-between items-center px-[25px] py-[10px] rounded-full bg-gradient-to-br from-[#8964A0]/60 to-[#6B3D88]/60 text-white shadow-lg hover:opacity-90 mx-auto">
         Find an Expert
         <ArrowRight size={18} />
-      </button>
+      </Link>
     </div>
   );
 };

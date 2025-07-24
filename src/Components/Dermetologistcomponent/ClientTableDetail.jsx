@@ -11,17 +11,17 @@ export default function ClientTableDetail({detail, visible, setShowDetail}) {
                 <button onClick={() => {setShowDetail(false)}} className="md:h-[25px] md:w-[25px] h-4 w-4 rounded-full bg-gradient-to-r from-[#1A151D] to-[#755F83] text-white flex justify-center items-center"><X /></button>
             </div>
             <div className="flex flex-col justify-center mt-3 items-center">
-                <img src={cheekbone} alt="" className="rounded-full md:h-[185px] md:w-[185px]" />
-                <p>{detail.name}</p>
+                <img src={detail.user?.profile?.image || cheekbone} alt="" className="rounded-full md:h-[185px] md:w-[185px]" />
+                <p>{detail.user?.name}</p>
             </div>
-            <div className="flex md:px-2 md:gap-22">
+            <div className="flex justify-between px-2">
                 <h1>{detail.gender}</h1>
                 <p>{detail.skinType}</p>
             </div>
             <p className="text-[#6B6A6C] px-2 ">{detail.description}</p>
             <div className="flex gap-3 py-4">
                 <Link to="/demoverview" 
-                    className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">+ Add new note
+                    className="md:h-10 md:w-35 text-sm border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">View User Data
                 </Link>
                 <div className="md:h-10 md:w-35 text-xs border rounded-full hover:bg-secondary-text hover:text-white cursor-pointer flex justify-center items-center">
                     <Link to="/ai-analyze" className="">View Ai Skin Report</Link>

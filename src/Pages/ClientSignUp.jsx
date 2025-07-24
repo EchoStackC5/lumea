@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate,useLocation } from "react-router";
 import upload from "../assets/images/upload.png";
 import google from "../assets/images/google.png";
 import { useState } from "react";
@@ -8,6 +8,9 @@ import { Link } from "react-router";
 
 export default function ClientSignUp() {
   const navigate = useNavigate();
+  // const location = useLocation();
+  // const from = location.state?.from || "/";
+
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
 
@@ -22,6 +25,7 @@ export default function ClientSignUp() {
     try {
       const response = await apiClient.post("auth/register", formData);
       console.log(response);
+      // navigate("/clientlogin", { state: { from } });
       navigate("/clientlogin");
     } catch (error) {
       console.log(error);
@@ -149,7 +153,7 @@ export default function ClientSignUp() {
 
             <p className="text-center  text-xl text-gray-600">
               Already have an account?{" "}
-              <Link to="/clientlogin" className="text-[#0066CC] font-medium hover:underline">
+              <Link to="/clientlogin"  className="text-[#0066CC] font-medium hover:underline">
                 Login
               </Link>
             </p>

@@ -32,7 +32,7 @@ export default function AppointmentsDem() {
 
 
     return (
-        <section className="bg-white rounded-xl p-3 border border-light-border max-w-full md:max-w-xs space-y-4 mb-4">
+        <section className="bg-white rounded-xl p-3 border border-light-border max-w-full md:max-w-md lg:max-w-xs xl:max-w-sm 2xl:max-w-4xl space-y-4 mb-4">
             <div className="flex justify-between">
                 <h1 className="text-lg font-dm-sans text-[#1A151D] font-semibold">Appointments</h1>
                 <Link to="/appointmentpage" className="h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83]  text-white flex justify-center items-center"><ArrowUpRight /></Link>
@@ -40,7 +40,7 @@ export default function AppointmentsDem() {
             {/* Cards */}
             <div className="flex flex-col gap-3">
                 {data?.length > 0 ? (
-                    data.map((appointment) => (
+                    data.slice(0, 4).map((appointment) => (
                         <AppointmentCard key={appointment.id} appointment={appointment} />
                     ))
                 ) : (
