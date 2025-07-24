@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, VideoIcon, Plus } from 'lucide-react';
+import { format } from 'date-fns';
+import useSWR from 'swr';
+import { apiFetcher } from '@/api/client';
 
 
 export default function CalendarComponent() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
+
+
+ // Or your fetch logic
+ 
+
+const { data: appointments, isLoading, error } = useSWR('/appointments', apiFetcher);
+
   
 
   const months = [
@@ -54,6 +64,11 @@ export default function CalendarComponent() {
       selectedDate.getMonth() === currentDate.getMonth() &&
       selectedDate.getFullYear() === currentDate.getFullYear();
   };
+  const todayFormatted = format(new Date(), 'yyyy-MM-dd');
+const todayAppointments = appointments?.filter(appt =>
+  format(new Date(appt.date), 'yyyy-MM-dd') === todayFormatted
+) || [];
+
 
   const generateCalendarDays = () => {
     const days = [];
@@ -174,15 +189,16 @@ export default function CalendarComponent() {
       <div className="bg-[#EAD7FB] p-3 rounded-md w-full h-[124px] mt-2 flex flex-col justify-between mb-7">
         <div className="flex justify-between text-sm font-semibold text-gray-800 mb-2">
           <h1>Today</h1>
-          <h2>5th July 2025</h2>
+          <h2>{format(new Date(), 'do MMMM yyyy')}</h2>
         </div>
 
         {/* Appointment 1 */}
-        <div className="flex items-center justify-between">
+        
+        <div  className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="bg-[#12B76A] h-2 w-2 rounded-full mr-2"></div>
+            <div className="bg-[#12B76A] h-2 w-2 rounded-full mr-2" ></div>
             <div>
-              <h1 className="text-xs text-[#6B6A6C]">8:30PM - 9:00PM</h1>
+              <h1 className="text-xs text-[#6B6A6C]">9:00PM - 9:30PM</h1>
               <p className="text-[10px]">Monthly skin checkup</p>
             </div>
           </div>
@@ -190,7 +206,7 @@ export default function CalendarComponent() {
             <VideoIcon className="text-blue-600 h-5 w-5" />
           </div>
         </div>
-
+        
         {/* Appointment 2 */}
         <div className="flex items-center justify-between mt-1">
           <div className="flex items-center">
