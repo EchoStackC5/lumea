@@ -73,21 +73,21 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
 
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-[16px] font-bold text-gray-900">Appointments</h1>
+          <h1 className="text-lg font-dm-sans font-medium text-primary-dark ">Appointments</h1>
           <div className="flex items-center space-x-4">
-            <div className="relative">
+            <div className="relative focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-300 rounded-full">
               <input
                 type="text"
                 placeholder="Search list"
                 value={searchTerm}
                 onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
-                className="w-80 pl-4 pr-12 py-3 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 focus:outline-none"
+                className="w-70 pl-4 pr-12 py-3 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 focus:outline-none *:"
               />
               <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800">
                 <Search size={16} />
               </button>
             </div>
-            <Link to="/appointment-form" className="bg-black text-white text-[13px] px-7 py-3 rounded-full hover:bg-gray-800">
+            <Link to="/appointment-form" className="bg-primary text-white font-poppins text-[13px] px-7 py-3 rounded-full hover:bg-gray-800">
               Book Appointment
             </Link>
           </div>
@@ -95,7 +95,7 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
 
         {/* Table */}
         <div className="overflow-hidden overflow-x-auto">
-          <div className="bg-purple-100 px-6 py-4 border-b grid grid-cols-3 font-semibold text-sm text-gray-900">
+          <div className="bg-light-border px-6 py-4 border-b grid grid-cols-3  text-[15px] font-medium font-poppins text-secondary-text ">
             <div>Dermatologist Name</div>
             <div>Appointment Date</div>
             <div>Appointment Status</div>
@@ -111,18 +111,18 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
               >
                 <div className="grid grid-cols-3 gap-4 items-center">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-purple-200">
+                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-purple-200">
                       <img
                         src={appointment.cosmetologist?.profile?.image || 'https://via.placeholder.com/150'}
                         alt={appointment.cosmetologist?.name || "Doctor"}
-                        className="w-full h-full object-cover"
+                        className="w-14 h-14  object-cover"
                       />
                     </div>
-                    <span className="text-sm font-medium text-gray-900">{appointment.cosmetologist?.name || "Unknown Doctor"}</span>
+                    <span className="text-md font-medium text-primary font-inter">{appointment.cosmetologist?.name || "Unknown Doctor"}</span>
                   </div>
-                  <div className="text-[14px] text-gray-700">{format(new Date(appointment.date), "MMMM d,yyyy")}</div>
+                  <div className="text-[14px] text-[#6B6A6C] font-inter">{format(new Date(appointment.date), "do MMMM yyyy")}</div>
                   <div>
-                    <span className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-medium ${getStatusColor(appointment.status)}`}>
+                    <span className={`px-3 py-1 flex justify-center item-center rounded-full text-sm font-inter font-medium text-center ${getStatusColor(appointment.status)}`}>
                       {appointment.status}
                     </span>
                   </div>
@@ -140,14 +140,14 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={` rounded-full max-w-md w-[100px] py-1 border border-light-border hover:text-white hover:bg-[#1A151D] ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               Prev
             </button>
             <button
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className={`bg-purple-100 rounded-2xl w-20 h-8 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`bg-system-primary rounded-full max-w-md w-[100px] py-1 text-white hover:bg-[#1A151D] ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               Next
             </button>
