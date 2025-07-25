@@ -25,6 +25,7 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/dermetologistdashboard", element: <Dermetologistdashboard/>},
   {path: "/clientdashboard", element: <Clientdashboard/>},
   {path: "/ai-analyze", element: <AiAnalysisResult/>},
+  {path: "/ai-analyze/report/:reportId", element: <AiAnalysisResult/>},
   {path: "/appointmentpage", element: <AppointmentPage />},
   {path: "/appointment", element: <Appointment />},
   {path: "*", element: <Notfound/>},
