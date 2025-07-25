@@ -33,7 +33,7 @@ export default function ClientTableDetail({ detail, visible, setShowDetail }) {
                     </Link> */}
 
                     <Link
-                        to={`/ai-analyze/report/${detail.user.id}`}
+                        to={`/ai-analyze/report/${detail.user?.id}`}
                         state={{ analysisData: detail.analysisReport?.analysis }}
                     >
                         View AI Skin Report

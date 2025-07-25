@@ -20,7 +20,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl gap-3 border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
+    <div className="bg-white rounded-2xl  border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
       <div className='flex justify-between'>
         <button
         onClick={() => setShowDetail(false)}
@@ -32,7 +32,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
       </div>
       
 
-      <div className="text-center flex flex-col items-center flex-1 justify-between">
+      <div className="text-center flex flex-col items-center ">
         <div>
           
 
@@ -44,24 +44,25 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
             />
           </div>
 
-          <h3 className="text-lg font-inter font-semibold flex justify-between text-gray-900 mb-1"><span className='font-medium text-dashboar-secondary font-inter'>Doctor Name:</span> {detail.doctorName}</h3>
+          <h3 className="text-lg font-inter font-semibold flex gap-3 text-gray-900 mb-1"><span className='font-medium text-dashboar-secondary font-inter'>Doctor Name: </span> {detail.doctorName}</h3>
 
-          <p className="text-gray-600 text-sm pt-3"> Appointment Date: 
-            {format(new Date(detail.date), "MMMM d,yyyy")} – {detail.time}
+          <p className="text-gray-600 text-sm pt-3 font-inter flex gap-3"> <span className='font-medium '> Appointment Date:  </span>
+            {format(new Date(detail.date), "MMMM d,yyyy")}  
           </p>
 
+          
+        </div>
+
+        <div className=" w-full flex flex-col gap-3">
           <div className="mt-5">
-            <span className={`inline-flex justify-center items-center w-[244px] h-[34px] text-xs font-medium bg-blue-100 text-blue-700 border border-blue-200 rounded-full ${getStatusStyles(detail.status)}`}>
+            <span className={`inline-flex justify-center text-sm font-poppins items-center w-full py-2 font-medium   bg-blue-100 text-blue-700 border border-blue-200 rounded-full ${getStatusStyles(detail.status)}`}>
               {detail.status}
             </span>
           </div>
-        </div>
-
-        <div className="flex flex-row gap-2 w-full px-4 pb-10">
-          <button className="flex-1 bg-black text-[10px] text-white h-[36px] rounded-full hover:bg-gray-800">
+          {/* <button className="flex-1 bg-black text-[10px] text-white h-[36px] rounded-full hover:bg-gray-800">
             View Skin Report
-          </button>
-          <button className="flex-1 bg-transparent text-xs text-gray-900 h-[36px] rounded-full border border-gray-300 hover:bg-gray-50">
+          </button> */}
+          <button className="flex-1 w-full py-2 text-sm bg-transparent font-poppins text-gray-900 cursor-pointer  rounded-full border border-gray-300 hover:bg-gray-50">
             Reschedule
           </button>
         </div>

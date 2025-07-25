@@ -6,6 +6,8 @@ import { apiClient } from "@/api/client";
 import glassesOff from "../assets/glassesOff.svg";
 import makeupIcon from "../assets/makeuplcon.svg";
 import Loaders from "@/Components/Loaders";
+import Webcam from "react-webcam";
+import { useEffect, } from "react";
 import {
     Dialog,
     DialogContent,
@@ -27,7 +29,7 @@ export default function SkinAnalysisForm() {
         const formData = new FormData(e.target);
         setIsloading(true);
         try {
-            const response = await apiClient.post("/skin-reports/upload", formData, {
+            const response = await apiClient.post("/skin-reports/", formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
                 },
@@ -79,6 +81,7 @@ export default function SkinAnalysisForm() {
                             <input
                                 type="file"
                                 name="image"
+                                capture="user"
                                 accept="image/*"
                                 className="hidden"
                                 onClick={handleInputClick}
