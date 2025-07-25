@@ -74,7 +74,7 @@ export default function AppointmentRequest({setReload}) {
             {
                 data?.map((app) => (
                     <div key={app.id} className="h-[90px] rounded-md w-auto bg-backgrounds border border-backgrounds mt-2 px-2">
-                        <p className="">{app.date}</p>
+                        <p className="">{format(new Date(app.date), "do MMM yyyy")}</p>
                         <h1 className="text-[#6B6A6C] text-sm">{app.time}</h1>
                         <div className=" flex mt-2 gap-3">
                             <button onClick={() => reject(app.id)}

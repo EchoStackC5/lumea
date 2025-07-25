@@ -143,7 +143,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
 
 
   return (
-    <section style={{ width: showDetail ? '53%' : '55%' }} className="h-auto w-[686px] bg-white rounded-lg">
+    <section md:style={ { width: showDetail ? '53%' : '68%' }} className="h-auto w-full max-w-3xl bg-white rounded-lg mx-auto px-4 sm:px-6">
       {/* Show loader while fetching */}
       {isLoading && (
         <div className="flex justify-center items-center h-64">
@@ -158,7 +158,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
         </div>
       )}
 
-      <div style={{ display: isLoading ? 'none' : 'flex' }} className="mt-5 px-5 flex justify-between items-center">
+      <div style={{ display: isLoading ? 'none' : 'flex' }} className="mt-5 px-5 justify-between flex flex-col sm:flex-row sm:justify-between gap-4 items-start sm:items-center">
         <h1 className="text-lg font-medium font-dm-sans text-primary-dark">Appointments & Client List</h1>
         <div className="relative focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-300 rounded-full">
           <input
@@ -177,12 +177,12 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
 
       <div style={{ display: isLoading ? 'none' : 'block' }} className="p-4 max-w-5xl mx-auto">
         <table className="w-full table-fixed border-collapse">
-          <thead>
-            <tr className="bg-light-border text-left text-secondary-text text-[15px] font-medium h-16 border-light-border font-poppins">
-              <th className="py-2 w-[30%] px-2">Client Name</th>
-              <th className="py-2 w-[15%] px-2">Skin Type</th>
-              <th className="py-2 w-[30%] px-2">Appointment Date</th>
-              <th className="py-2 w-[20%] px-2">Appointment Status</th>
+          <thead className="w-full bg-light-border">
+            <tr className=" text-left text-secondary-text text-[10px] sm:text-[8px] md:text-[15px] font-medium h-16 border-light-border font-poppins">
+              <th className="py-2 w-[30%] pl-2">Client Name</th>
+              <th className="py-2 w-[15%] ">Skin Type</th>
+              <th className="py-2 w-[30%] ">Appointment Date</th>
+              <th className="py-2 w-[20%] ">Appointment Status</th>
             </tr>
           </thead>
           <tbody className="">
@@ -190,23 +190,23 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
               <tr key={app.id} className="border-b border-gray-200 hover:bg-backgrounds cursor-pointer"
                 onClick={() => { setDetail(app); setShowDetail(true) }}
               >
-                <td className="py-2 px-0 flex items-center gap-1 text-lg">
+                <td className="py-2 flex items-center gap-1 text-lg font-inter font-medium text-primary">
                   {app?.user ? (
                     <img
                       src={app.user?.profile?.image || cheekbone}
                       alt="userProfile"
-                      className="w-14 h-14 mr-1 rounded-full object-cover"
+                      className="md:w-14 md:h-14 w-8 h-8 mr-1 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-14 h-14 mr-1 rounded-full bg-gray-200" />
+                    <div className="w-14 h-14  rounded-full bg-gray-200" />
                   )}
-                  <span>{app.user.name}</span>
+                  <span className="text-sm md:text-lg font-inter">{app.user.name}</span>
                 </td>
-                <td className="py-2 px-4 text-[#6B6A6C] text-lg">{app.skinType}</td>
-                <td className="py-2 px-4 text-[#6B6A6C] text-md">{format(new Date(app.date), "dd MMM yyyy, h:mm a")}</td>
+                <td className=" text-[#6B6A6C] md:text-lg text-xs font-inter">{app.skinType}</td>
+                <td className="py-2 px-4 text-[#6B6A6C] md:text-sm text-[10px] font-inter">{format(new Date(app.date), "do MMM yyyy, h:mm a")}</td>
                 <td className="py-2 px-4 ">
                   <span
-                    className={`px-3 py-1 justify-center flex items-center rounded-full text-sm font-medium text-center ${app.status === "accepted"
+                    className={`md:px-3 py-1 justify-center flex items-center rounded-full md:text-sm text-[9px] font-inter font-medium text-center md:h-8 md:w-25 w-15 h-5 ${app.status === "accepted"
                       ? statusColors.Accepted
                       : app.status === "rejected"
                         ? statusColors.Rejected
