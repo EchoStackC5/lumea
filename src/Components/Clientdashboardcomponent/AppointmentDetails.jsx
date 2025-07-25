@@ -32,7 +32,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
         <div>
           <h2 className="text-lg font-semibold text-gray-900 mb-3">Appointment Details</h2>
 
-          <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-orange-300 mx-auto mb-3">
+          <div className="w-45 h-45 rounded-full overflow-hidden border-2  mx-auto mb-3">
             <img 
               src={detail.avatar || Face}
               alt="Doctor Avatar" 
