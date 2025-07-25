@@ -17,7 +17,7 @@ export default function Clientdashboard() {
         {/* <Dashboardnavbar/> */}
         <div className="flex px-1 md:px-6 gap-6 justify-between lg:flex-row flex-col">
           <LeftPanel/>
-        <UserFaceAnalysis />
+        <UserFaceAnalysis   />
         <ClientSkinReport />
         </div>
        

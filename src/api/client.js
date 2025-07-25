@@ -6,6 +6,7 @@ export const apiClient = axios.create({
 }); 
 
 export const apiFetcher = async (url) => {
+    console.log(url, "api request ")
     const response = await apiClient.get(url,{
         headers: {
             Authorization: `Bearer ${localStorage.getItem(`ACCESS_TOKEN`)}`
@@ -13,6 +14,8 @@ export const apiFetcher = async (url) => {
     });
     return response.data;
 
+
 }
+
 
 export const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
