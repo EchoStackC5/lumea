@@ -13,7 +13,7 @@ export default function Dermetologistdashboard() {
     <>
     <Navbar/>
       <section className="bg-backgrounds  min-h-screen w-full">
-        <div className="flex gap-6 py-5 flex-col justify-between md:flex-row md:px-6 w-full">
+        <div className="flex gap-6 py-5 flex-col justify-between md:flex-row px-6 w-full">
           <CalendarAndDay/>
           <Skeletal />
           <AppointmentsDem />
