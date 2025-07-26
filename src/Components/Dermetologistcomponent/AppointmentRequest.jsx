@@ -6,7 +6,7 @@ import format from "date-fns/format";
 import { BeatLoader } from "react-spinners";
 
 
-export default function AppointmentRequest({setReload}) {
+export default function AppointmentRequest({ setReload }) {
     const { data, isLoading, error } = useSWR("/appointments/cosmetologist?status=pending", apiFetcher)
     const navigate = useNavigate();
     const [status, setStatus] = useState({ id: null, type: "" });
@@ -91,6 +91,11 @@ export default function AppointmentRequest({setReload}) {
                     </div>
                 ))
             }
+            <div className="flex items-center justify-center h-full">
+                <p className="text-white font-semibold text-center text-xl font-inter animate-bounce">
+                    No Appointments
+                </p>
+            </div>
         </section>
     )
 }

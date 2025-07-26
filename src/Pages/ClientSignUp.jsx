@@ -1,21 +1,29 @@
-import { useNavigate,useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import upload from "../assets/images/upload.png";
 import google from "../assets/images/google.png";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { apiClient } from "../api/client";
 import { Link } from "react-router";
+import SubmitButton from "@/Components/SubmitButton";
 
 export default function ClientSignUp() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   // const location = useLocation();
   // const from = location.state?.from || "/";
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
 
   const signUpUser = async (e) => {
     e.preventDefault();
+    setLoading(true); 
+    await new Promise((r) => setTimeout(r, 5000));
+    setLoading(false);
     const form = e.target;
     const formData = new FormData(form);
 
@@ -49,7 +57,7 @@ export default function ClientSignUp() {
               </label>
               <input
                 type="text"
-                name="name" 
+                name="name"
                 placeholder="First and Last Name"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
                 required
@@ -63,7 +71,7 @@ export default function ClientSignUp() {
               </label>
               <input
                 type="email"
-                name="email" 
+                name="email"
                 placeholder="ayimaah@gmail.com"
                 className="w-full h-[48px] px-4 border-2 border-[#F6EBFD] rounded-md"
                 required
@@ -82,7 +90,21 @@ export default function ClientSignUp() {
                   type="file"
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
                   required
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setSelectedImage(file);
+                      setPreviewUrl(URL.createObjectURL(file));
+                    }
+                  }}
                 />
+                {previewUrl && (
+                  <div className="mt-3 flex flex-col items-center gap-2">
+                    <p className="text-sm text-green-600">Image uploaded!</p>
+                    
+                  </div>
+                )}
+
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
                   <img src={upload} alt="Upload Icon" className="w-5 h-5" />
                 </div>
@@ -97,7 +119,7 @@ export default function ClientSignUp() {
               <div className="relative">
                 <input
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? "password" : "text"}
                   placeholder="Enter your password"
                   className="w-full h-[48px] px-4 pr-10 border-2 border-[#F6EBFD] rounded-md"
                   required
@@ -119,7 +141,7 @@ export default function ClientSignUp() {
               <div className="relative">
                 <input
                   name="repassword"
-                  type={showRePassword ? "text" : "password"}
+                  type={showRePassword ? "password" : "text"}
                   placeholder="Re-enter your password"
                   className="w-full h-[48px] px-4 pr-10 border-2 border-[#F6EBFD] rounded-md"
                   required
@@ -136,12 +158,7 @@ export default function ClientSignUp() {
 
           {/* Buttons Section */}
           <div className="space-y-6">
-            <button
-              type="submit"
-              className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  hover:border-transparent transition"
-            >
-              Create Account
-            </button>
+            <SubmitButton className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  " loading={loading} title="Create Account" />
 
             <button
               type="button"
@@ -153,7 +170,7 @@ export default function ClientSignUp() {
 
             <p className="text-center  text-xl text-gray-600">
               Already have an account?{" "}
-              <Link to="/clientlogin"  className="text-[#0066CC] font-medium hover:underline">
+              <Link to="/clientlogin" className="text-[#0066CC] font-medium hover:underline">
                 Login
               </Link>
             </p>

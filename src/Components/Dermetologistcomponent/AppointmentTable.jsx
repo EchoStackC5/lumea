@@ -220,7 +220,11 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
                   </span>
                 </td>
               </tr>
-            ))}
+            ))
+            }
+            <div style={{ display: subArray?.length === 0 ? 'flex' : 'none' }} className="flex items-center justify-center h-full">
+              <p className="font-semibold text-center text-xl font-inter animate-bounce">No Avalaible Appointments</p>
+            </div>
           </tbody>
         </table>
       </div>

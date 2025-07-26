@@ -4,12 +4,14 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router";
 import { apiClient } from "../api/client"; 
+import SubmitButton from "@/Components/SubmitButton";
 
 export default function ClientLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,6 +20,10 @@ export default function ClientLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 5000));
+    
+
     try {
       const response = await apiClient.post("/auth/login", form);
       localStorage.setItem("ACCESS_TOKEN", response.data.token);
@@ -97,12 +103,8 @@ export default function ClientLogin() {
 
           {/* Buttons Section */}
           <div className="space-y-6">
-            <button
-              type="submit"
-              className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  hover:border-transparent transition"
-            >
-              Log In
-            </button>
+            <SubmitButton title="Log In" loading={loading} className="w-full h-[48px] bg-black text-white rounded-full" />
+
 
             <button
               type="button"
