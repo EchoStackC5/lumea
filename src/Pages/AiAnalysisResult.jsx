@@ -26,7 +26,7 @@ export default function AIAnalysisResult() {
  
   // const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
   // const apiEndpoint = userId ? `/users/${userId}/history` : '/users/me/history';
-  const { data, isLoading, error } = useSWR(reportId? `/skin-reports/${reportId}` : '/users/me/history', apiFetcher);
+  const { data, isLoading, error } = useSWR(reportId? `/skin-reports/user/${reportId}` : '/users/me/history', apiFetcher);
   console.log(data)
   
   

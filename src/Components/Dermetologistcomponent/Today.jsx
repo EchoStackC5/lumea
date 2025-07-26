@@ -1,4 +1,6 @@
 import { Video } from "lucide-react"
+import format from "date-fns/format"
+
 
 
 export default function Today() {
@@ -7,7 +9,7 @@ export default function Today() {
 
             <div className="flex justify-between font-semibold text-sm font-dm-sans">
                 <h1 className="">Today</h1>
-                <h2>5th July 2025</h2>
+                <h2>{format(new Date(), "do MMM yyyy")}</h2>
             </div>
             <div>
                 <div className="flex justify-between">
