@@ -1,13 +1,14 @@
 import SkinAnalysisNav from "../Components/SkinAnalysNav";
 import { CloudUpload, Sun, Flame } from 'lucide-react';
-import { useState, useEffect } from "react";
+import { useState, useEffect, } from "react";
 import { useNavigate } from "react-router";
 import { apiClient } from "@/api/client";
 import glassesOff from "../assets/glassesOff.svg";
 import makeupIcon from "../assets/makeuplcon.svg";
 import Loaders from "@/Components/Loaders";
 import Webcam from "react-webcam";
-import { useEffect, } from "react";
+import React from "react";
+
 import {
     Dialog,
     DialogContent,
@@ -22,26 +23,55 @@ export default function SkinAnalysisForm() {
     const [open, setOpen] = useState(false);
     const [hasSeenDialog, setHasSeenDialog] = useState(false);
     const [previewUrl, setPreviewUrl] = useState(null);
-
+    const [showCamera, setShowCamera] = useState(false);
+    const [captureImage, setCaptureImage] = useState(null);
+    const webCamRef = React.useRef(null);
 
     const postSkin = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        setIsloading(true);
-        try {
-            const response = await apiClient.post("/skin-reports/", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
-                },
-            });
-            console.log(response.data);
-            navigate("/ai-analyze");
-        } catch (error) {
-            console.error("Error uploading image:", error);
-        } finally {
-            setIsloading(false);
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    setIsloading(true);
+
+    try {
+        if (captureImage) {
+            const res = await fetch(captureImage);
+            const blob = await res.blob();
+            formData.append("image", blob, "captured.jpg");
+        } else {
+            const fileInput = e.target.elements.image;
+            if (fileInput && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+
+                // Optional: Check file type and size
+                if (!file.type.startsWith("image/")) {
+                    throw new Error("Please upload a valid image file.");
+                }
+
+                formData.append("image", file, file.name);
+            } else {
+                throw new Error("No image selected.");
+            }
         }
-    };
+
+        const response = await apiClient.post("/skin-reports/", formData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+               
+            },
+        });
+
+        console.log(response.data);
+        navigate("/ai-analyze");
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        alert("Failed to upload image. Try a different image format or smaller size.");
+    } finally {
+        setIsloading(false);
+    }
+};
+
 
     const handleInputClick = () => {
         if (!hasSeenDialog) {
@@ -51,10 +81,10 @@ export default function SkinAnalysisForm() {
     };
 
     useEffect(() => {
-    if (!localStorage.getItem("ACCESS_TOKEN")) {
-        navigate("/clientlogin");
-    }
-}, []);
+        if (!localStorage.getItem("ACCESS_TOKEN")) {
+            navigate("/clientlogin");
+        }
+    }, []);
 
     if (isLoading) {
         return <Loaders />;
@@ -73,6 +103,34 @@ export default function SkinAnalysisForm() {
                         onSubmit={postSkin}
                         className="bg-white h-[300px] flex flex-col justify-center items-center w-full p-6 rounded-lg border border-light-border space-y-6"
                     >
+                        <button
+                            type="button"
+                            className="w-full border border-system-primary max-w-md font-inter py-3 rounded-md"
+                            onClick={() => setShowCamera(true)}
+                        >
+                            Take a photo
+                        </button>
+
+
+                        {showCamera && (<div className=" flex flex-col items-center space-y-4">
+                            <Webcam
+                                audio={false}
+                                ref={webCamRef}
+                                screenshotFormat="image/jpeg"
+
+                            />
+                            <button type="button"
+                                className="w-full border border-system-primary max-w-md font-inter py-3 rounded-md"
+                                onClick={() => {
+                                    const imageSrc = webCamRef.current.getScreenshot();
+                                    setCaptureImage(imageSrc);
+                                    setShowCamera(false);
+                                    setPreviewUrl(imageSrc);
+
+                                }}>Take a photo</button>
+                        </div>)}
+
+                        <p>or</p>
                         <label className="flex flex-col items-center justify-center w-full max-w-md h-48 p-6 gap-2 bg-[#F4E8FC] rounded-lg cursor-pointer">
                             <CloudUpload className="text-[#322F2F]" />
                             <p className="text-system-primary font-medium text-sm text-center">
@@ -81,18 +139,18 @@ export default function SkinAnalysisForm() {
                             <input
                                 type="file"
                                 name="image"
-                                capture="user"
                                 accept="image/*"
                                 className="hidden"
                                 onClick={handleInputClick}
                                 onFocus={handleInputClick}
+                                required={!captureImage}
                                 onChange={(e) => {
                                     const file = e.target.files[0];
                                     if (file) {
                                         setPreviewUrl(URL.createObjectURL(file));
                                     }
                                 }}
-                                required
+
                             />
                         </label>
 
