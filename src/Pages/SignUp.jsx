@@ -11,9 +11,16 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [profilePreviewUrl, setProfilePreviewUrl] = useState(null);
+  const [certificatePreviewUrl, setCertificatePreviewUrl] = useState(null);
+
+
 
   const signUpUser = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 5000));
     const form = e.target;
     const formData = new FormData(form);
 
@@ -96,7 +103,21 @@ export default function SignUp() {
                   accept="image/*"
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
                   required
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setProfilePreviewUrl(URL.createObjectURL(file));
+                    }
+                  }}
+
                 />
+                {profilePreviewUrl && (
+                  <div className="mt-3 flex flex-col items-center gap-2">
+                    <p className="text-sm text-green-600">Image uploaded!</p>
+
+                  </div>
+                )}
+
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
                   <img src={upload} alt="Upload Icon" className="w-5 h-5" />
                 </div>
@@ -114,7 +135,21 @@ export default function SignUp() {
                   accept="image/*,application/pdf"
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
                   required
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setCertificatePreviewUrl(URL.createObjectURL(file));
+                    }
+                  }}
+
                 />
+                {certificatePreviewUrl && (
+                  <div className="mt-3 flex flex-col items-center gap-2">
+                    <p className="text-sm text-green-600">Certificate uploaded!</p>
+
+                  </div>
+                )}
+
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
                   <img src={upload} alt="Upload Icon" className="w-5 h-5" />
                 </div>
@@ -168,7 +203,7 @@ export default function SignUp() {
 
           {/* Buttons Section */}
           <div className="space-y-6">
-            <SubmitButton className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  " title={"Create Account"} />
+            <SubmitButton className="w-full h-[48px] bg-black border border-gray-300 text-white rounded-full  " loading={loading} title="Create Account" />
           </div>
 
           <button
