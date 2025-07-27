@@ -91,7 +91,7 @@ export default function AppointmentRequest({ setReload }) {
                     </div>
                 ))
             }
-            <div className="flex items-center justify-center h-full">
+            <div style={{ display: data?.length === 0 ? 'flex' : 'none' }} className="flex items-center justify-center h-full">
                 <p className="text-white font-semibold text-center text-xl font-inter animate-bounce">
                     No Appointments
                 </p>

@@ -7,7 +7,7 @@ import Loaders from "../Loaders"
 import useSWR from "swr"
 
 
-export default function AppointmentsDem() {
+export default function AppointmentsDem({setDisplay}) {
 
     const {data, isLoading, error} = useSWR('/appointments' ,apiFetcher);
         if (isLoading)
@@ -36,7 +36,7 @@ export default function AppointmentsDem() {
             <div className="flex flex-col gap-3">
                 {data?.length > 0 ? (
                     data.slice(0, 4).map((appointment) => (
-                        <AppointmentCard key={appointment.id} appointment={appointment} />
+                        <AppointmentCard setDisplay={setDisplay} key={appointment.id} appointment={appointment} />
                     ))
                 ) : (
                     <p className="text-sm text-gray-500">No appointments found.</p>
