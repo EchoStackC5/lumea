@@ -10,25 +10,24 @@ import SubmitButton from "@/Components/SubmitButton";
 export default function ClientSignUp() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  // const location = useLocation();
-  // const from = location.state?.from || "/";
+  
 
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [profileFile, setProfileFile] = useState(null);
 
 
   const signUpUser = async (e) => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
     await new Promise((r) => setTimeout(r, 5000));
     setLoading(false);
     const form = e.target;
     const formData = new FormData(form);
 
-    // Optionally, you can check if passwords match here
-    // if (form.password.value !== form.repassword.value) { ... }
+    
 
     try {
       const response = await apiClient.post("auth/register", formData);
@@ -93,20 +92,24 @@ export default function ClientSignUp() {
                   onChange={(e) => {
                     const file = e.target.files[0];
                     if (file) {
+                      setProfileFile(file);
                       setSelectedImage(file);
                       setPreviewUrl(URL.createObjectURL(file));
                     }
                   }}
                 />
-                {previewUrl && (
-                  <div className="mt-3 flex flex-col items-center gap-2">
-                    <p className="text-sm text-green-600">Image uploaded!</p>
-                    
-                  </div>
-                )}
+                
 
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
-                  <img src={upload} alt="Upload Icon" className="w-5 h-5" />
+                  {profileFile ? (
+                    <>
+                      <p className="text-sm text-gray-800 truncate">{profileFile.name}</p>
+                    </>
+                  ) : (
+                    <>
+                      <img src={upload} alt="Upload Icon" className="w-5 h-5" />
+                    </>
+                  )}
                 </div>
               </div>
             </div>
