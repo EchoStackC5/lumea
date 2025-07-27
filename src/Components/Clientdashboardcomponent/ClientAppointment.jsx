@@ -1,9 +1,4 @@
 import { ArrowUpRight } from "lucide-react"
-import cheekbone from "../../assets/images/cheekbone.jpg"
-import face1 from "../../assets/images/face1.jpg"
-import face2 from "../../assets/images/face2.jpg"
-import face3 from "../../assets/images/face3.jpg"
-import { ChevronRight } from "lucide-react"
 import AppointmentCard from "./Appointmentcard"
 import { Link } from "react-router"
 

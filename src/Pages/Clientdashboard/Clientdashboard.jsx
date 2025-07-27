@@ -21,12 +21,7 @@ export default function Clientdashboard() {
         <ClientSkinReport />
         </div>
        
-        <div className="flex flex-col justify-between md:flex-row gap-6 px-6">
-          {/* <div>
-            <UserDetails />
-            <ClientAppointment />
-            <ClientRecentSkinAnalysis />
-          </div> */}
+        
           
           <div className="flex flex-col gap-6 lg:flex-row md:flex-col ">
             <div className="w-full flex-1 ">
@@ -35,7 +30,6 @@ export default function Clientdashboard() {
             
            
           </div>
-        </div>
       </section>
     </>
   );
