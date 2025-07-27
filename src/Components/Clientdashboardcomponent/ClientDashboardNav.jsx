@@ -65,8 +65,8 @@ export default function ClientDashboardNav() {
                         Appointments
                     </Link>
                     <Link
-                        to="/dem-calls"
-                        className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/dem-calls" ? "text-active-state font-bold" : ""
+                        to="/clientcalls"
+                        className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/clientcalls" ? "text-active-state font-bold" : ""
                             }`}
                     >
                         Calls
@@ -110,8 +110,8 @@ export default function ClientDashboardNav() {
                             Appointments
                         </Link>
                         <Link
-                            to="/dem-calls"
-                            className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/dem-calls" ? "text-active-state font-bold" : ""
+                            to="/clientcalls"
+                            className={`hover:text-primary-color hover:font-bold transition-all duration-200 font-medium ${location.pathname === "/clientcalls" ? "text-active-state font-bold" : ""
                                 }`}
                         >
                             Calls

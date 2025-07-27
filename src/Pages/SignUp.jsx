@@ -14,6 +14,9 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [profilePreviewUrl, setProfilePreviewUrl] = useState(null);
   const [certificatePreviewUrl, setCertificatePreviewUrl] = useState(null);
+  const [certificateFile, setCertificateFile] = useState(null);
+  const [profileFile, setProfileFile] = useState(null);
+
 
 
 
@@ -24,8 +27,7 @@ export default function SignUp() {
     const form = e.target;
     const formData = new FormData(form);
 
-    // Optionally, you can check if passwords match here
-    // if (form.password.value !== form.repassword.value) { ... }
+    
 
     try {
       const response = await apiClient.post("cosmetologist/register", formData, {
@@ -106,20 +108,25 @@ export default function SignUp() {
                   onChange={(e) => {
                     const file = e.target.files[0];
                     if (file) {
+                       setProfileFile(file);
                       setProfilePreviewUrl(URL.createObjectURL(file));
                     }
                   }}
 
                 />
-                {profilePreviewUrl && (
-                  <div className="mt-3 flex flex-col items-center gap-2">
-                    <p className="text-sm text-green-600">Image uploaded!</p>
-
-                  </div>
-                )}
+                
 
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
-                  <img src={upload} alt="Upload Icon" className="w-5 h-5" />
+
+                  { profileFile ? (
+                    <>
+                      <p className="text-sm text-gray-800 truncate">{profileFile.name}</p>
+                    </>
+                  ) : (
+                    <>
+                      <img src={upload} alt="Upload Icon" className="w-5 h-5" />
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -138,20 +145,27 @@ export default function SignUp() {
                   onChange={(e) => {
                     const file = e.target.files[0];
                     if (file) {
+                      setCertificateFile(file); 
                       setCertificatePreviewUrl(URL.createObjectURL(file));
                     }
                   }}
 
-                />
-                {certificatePreviewUrl && (
-                  <div className="mt-3 flex flex-col items-center gap-2">
-                    <p className="text-sm text-green-600">Certificate uploaded!</p>
 
-                  </div>
-                )}
+                />
+                
+
 
                 <div className="w-full h-full flex items-center justify-center border-2 border-[#F6EBFD] bg-white rounded-md pointer-events-none">
-                  <img src={upload} alt="Upload Icon" className="w-5 h-5" />
+                  {certificateFile ? (
+                    <>
+                      <p className="text-sm text-gray-800 truncate">{certificateFile.name}</p>
+                    </>
+                  ) : (
+                    <>
+                      <img src={upload} alt="Upload Icon" className="w-5 h-5" />
+                    </>
+                  )}
+
                 </div>
               </div>
             </div>
@@ -178,7 +192,7 @@ export default function SignUp() {
               </div>
             </div>
 
-            {/* Re-enter Password */}
+            {/* Re-enter ur Password */}
             <div className="space-y-2">
               <label htmlFor="repassword" className="block text-sm text-gray-700">
                 Re-Enter Password

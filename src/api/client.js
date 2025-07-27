@@ -14,7 +14,6 @@ export const apiFetcher = async (url) => {
     });
     return response.data;
 
-
 }
 
 
