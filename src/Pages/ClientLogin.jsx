@@ -29,6 +29,7 @@ export default function ClientLogin() {
       
       // localStorage.setItem("token", response.data.token);
       localStorage.setItem("ACCESS_TOKEN", response.data.token);
+       localStorage.setItem("USER_ID", response.data.user._id);
       
       navigate("/clientdashboard"); 
       // navigate(from, { replace: true });

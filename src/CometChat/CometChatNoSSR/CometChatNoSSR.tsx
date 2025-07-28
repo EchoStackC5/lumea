@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+
 import {
   CometChatUIKit,
   UIKitSettingsBuilder,
@@ -42,7 +43,7 @@ const CometChatNoSSR: React.FC = () => {
         setupLocalization();
         setInitialized(true);
 
-        const UID = "cometchat-uid-1";  // Replace with your actual UID
+        const UID = localStorage.getItem("USER_ID");  // Replace with your actual UID
 
         CometChatUIKit.getLoggedinUser().then((loggedInUser) => {
           if (!loggedInUser) {

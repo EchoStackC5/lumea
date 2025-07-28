@@ -69,7 +69,7 @@ export default function AppointmentRequest({ setReload }) {
 
 
     return (
-        <section className="h-[269px] overflow-scroll w-auto bg-[#310E47] p-2 mt-3 rounded-md">
+        <section className="h-[269px] w-full md:w-[300px] overflow-scroll  bg-[#310E47] p-2 mt-3 rounded-md">
             <h1 className="text-white py-1">Appointment Requests</h1>
             {
                 data?.map((app) => (

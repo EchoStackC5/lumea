@@ -13,7 +13,7 @@ export default function CalendarDemo() {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="rounded-md border border-light-border shadow-none bg-backgrounds"
+      className="rounded-md border border-light-border shadow-none bg-backgrounds w-full"
       captionLayout="dropdown"
     />
   )

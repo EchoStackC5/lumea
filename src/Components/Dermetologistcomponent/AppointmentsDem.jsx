@@ -15,7 +15,7 @@ export default function AppointmentsDem() {
     const navigate = useNavigate()
     
     return (
-        <section className="bg-white rounded-xl p-3 border border-light-border max-w-xs w-full space-y-4 mb-4">
+        <section className="bg-white rounded-xl  p-3 border border-light-border max-w-xs w-full space-y-4 mb-4">
             <div className="flex justify-between items-center">
                 <h1 className="text-lg font-inter text-[#1A151D]">Appointments</h1>
                 <button 

@@ -27,6 +27,7 @@ export default function ClientLogin() {
     try {
       const response = await apiClient.post("/auth/login", form);
       localStorage.setItem("ACCESS_TOKEN", response.data.token);
+      localStorage.setItem("USER_ID", response.data.user._id);
       
       // localStorage.setItem("token", response.data.token);
       
@@ -116,7 +117,7 @@ export default function ClientLogin() {
 
             <p className="text-center  text-xl text-gray-600">
               Don't Have An Account Yet?{" "}
-              <a href="#" className="text-[#0066CC] font-medium hover:underline">
+              <a href="/signUp" className="text-[#0066CC] font-medium hover:underline">
                 Sign Up
               </a>
             </p>

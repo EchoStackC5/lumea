@@ -6,6 +6,8 @@ import { Link } from "react-router"
 export default function ClientTableDetail({ detail, visible, setShowDetail }) {
     console.log(detail, "user detail")
 
+    
+
 
 
     return (

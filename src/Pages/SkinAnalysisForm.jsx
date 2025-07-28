@@ -8,6 +8,8 @@ import makeupIcon from "../assets/makeuplcon.svg";
 import Loaders from "@/Components/Loaders";
 import Webcam from "react-webcam";
 import React from "react";
+import FrameMan from "../assets/FrameManClound.svg";
+import { Camera } from "lucide-react";
 
 import {
     Dialog,
@@ -94,20 +96,24 @@ export default function SkinAnalysisForm() {
         <>
             <SkinAnalysisNav />
             <section className="bg-backgrounds min-h-screen flex flex-col p-4 sm:p-8 md:p-12 lg:p-16">
-                <div className="w-full max-w-3xl mx-auto flex flex-col justify-center space-y-8">
+                <div className="w-full  flex flex-col justify-center space-y-4">
                     <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-dm-sans font-medium text-center text-primary-dark">
-                        Analyze your Skin
+                        Analyze your <span className="font-system-curved"> Skin</span>
                     </h1>
 
-                    <form
+                    <div className="flex flex-col lg:flex-row w-full">
+                         <img src={FrameMan} alt="lumea" className=" max-w-full w-full flex- justify-center md:max-w-xl">
+                    </img>
+                     <form
                         onSubmit={postSkin}
-                        className="bg-white h-[300px] flex flex-col justify-center items-center w-full p-6 rounded-lg border border-light-border space-y-6"
+                        className=" bg-white mt-[-15px] md:mt-[-50px] lg:mt-[80px]  h-[400px] flex flex-col justify-center items-center w-full p-6  rounded-lg border border-light-border space-y-3"
                     >
                         <button
                             type="button"
-                            className="w-full border border-system-primary max-w-md font-inter py-3 rounded-md"
+                            className="w-full flex justify-center items-center gap-2 bg-yellow-600 max-w-md font-inter py-3 rounded-md"
                             onClick={() => setShowCamera(true)}
                         >
+                             <span><Camera/></span>
                             Take a photo
                         </button>
 
@@ -120,7 +126,7 @@ export default function SkinAnalysisForm() {
 
                             />
                             <button type="button"
-                                className="w-full border border-system-primary max-w-md font-inter py-3 rounded-md"
+                                className="w-full  border  border-system-primary max-w-md font-inter py-3 rounded-md"
                                 onClick={() => {
                                     const imageSrc = webCamRef.current.getScreenshot();
                                     setCaptureImage(imageSrc);
@@ -128,9 +134,10 @@ export default function SkinAnalysisForm() {
                                     setPreviewUrl(imageSrc);
 
                                 }}>Take a photo</button>
+                               
                         </div>)}
 
-                        <p>or</p>
+                        <p className="text-dashboar-secondary mt-8">or</p>
                         <label className="flex flex-col items-center justify-center w-full max-w-md h-48 p-6 gap-2 bg-[#F4E8FC] rounded-lg cursor-pointer">
                             <CloudUpload className="text-[#322F2F]" />
                             <p className="text-system-primary font-medium text-sm text-center">
@@ -169,6 +176,11 @@ export default function SkinAnalysisForm() {
                             Analyze Skin
                         </button>
                     </form>
+                    </div>
+
+                   
+
+                   
 
                     <Dialog open={open} onOpenChange={setOpen}>
                         <DialogContent className="flex justify-center items-center w-full max-w-full sm:max-w-md md:max-w-md lg:max-w-xs mx-auto">
