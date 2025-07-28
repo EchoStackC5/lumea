@@ -68,7 +68,7 @@ const AppointmentTable = ({ setDetail, setShowDetail, showDetail, detail }) => {
   };
 
   return (
-    <div className="w-[800px] h-auto max-w-full px-4 sm:px-6 lg:px-0">
+    <div className="flex-1 h-auto max-w-full px-4 sm:px-6 lg:px-0">
   <div className="p-4 sm:p-6 bg-white rounded-2xl border border-gray-200 mt-5">
 
     {/* Header */}
