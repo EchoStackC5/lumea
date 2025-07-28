@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { format } from "date-fns";
+import cheekbone from "../../assets/images/cheekbone.jpg"
 
 
 export default function AppointmentCard({ appointment , setDisplay }) {
@@ -11,7 +12,7 @@ export default function AppointmentCard({ appointment , setDisplay }) {
 
                         <div className="flex gap-2">
                                 <div className=" rounded-full flex justify-center items-center">
-                                        <img src={appointment?.cosmetologist?.profile?.image} alt="" className="h-10 w-10 rounded-full" />
+                                        <img src={appointment?.cosmetologist?.profile?.image || cheekbone } alt="" className="h-10 w-10 rounded-full" />
                                 </div>
 
                                 <div className=" flex flex-col  text-start group">

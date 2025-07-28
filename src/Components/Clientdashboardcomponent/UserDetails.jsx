@@ -30,7 +30,7 @@ export default function UserDetails() {
         const appointment = data?.[0];
         
     return (
-        <section className="bg-white rounded-xl p-3 border border-light-border  max-w-full md:max-w-md lg:max-w-xs xl:max-w-sm 2xl:max-w-4xl space-y-4 mb-4">
+        <section className="bg-white rounded-xl p-3 border border-light-border md:w-[300px] w-full  space-y-4 mb-4">
             <div className="flex justify-between">
                 <h1 className="md:text-lg text-md  text-primary-dark font-dm-sans font-semibold">Details</h1>
                 <Link to= "/skin-analysis-form" className="font-poppins px-3 py-2 hover:bg-amber-500 hover:text-darkest txt-xs rounded-full bg-[#1A151D] text-white flex justify-center items-center text-sm">Analyze Skin</Link>

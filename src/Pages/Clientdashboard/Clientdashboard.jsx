@@ -13,7 +13,7 @@ export default function Clientdashboard() {
     <>
     <ClientDashboardNav/>
       <section className="bg-[#F6EBFD] h-full w-full p-5 ">
-        <div className="flex px-1 md:px-6 gap-6 justify-between lg:flex-row flex-col">
+        <div className="flex px-1 md:px-6 gap-6 lg:flex-row flex-col">
           <LeftPanel setDisplay={setDisplay}/>
         <UserFaceAnalysis   />
         <ClientSkinReport display={display} setDisplay={setDisplay}/>

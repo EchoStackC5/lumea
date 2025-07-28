@@ -30,7 +30,7 @@ export default function ClientRecentSkinAnalysis() {
   console.log("Analysis data:", analysis);
 
     return(
-        <section className="bg-white rounded-xl p-4 border border-light-border max-w-full md:max-w-md lg:max-w-2xs xl:max-w-sm 2xl:max-w-4xl space-y-4">
+        <section className="bg-white rounded-xl p-4 border border-light-border w-full md:w-[300px] space-y-4">
             <div className="flex justify-between">
                 <h1 className="text-lg font-dm-sans text-[#1A151D]">Recent skin Analysis</h1>
                 <Link to="/ai-analyze" className=" h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-white flex justify-center items-center"><ArrowUpRight /></Link>
