@@ -40,7 +40,7 @@ export default function UserFaceAnalysis({ initialAnalysis, report }) {
         <div className="relative mt-4">
           <img src={imageUrl} alt="Analyzed face" className="rounded-xl w-full object-cover h-[300px] sm:h-[400px] lg:h-[500px]" />
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full flex justify-center items-center">
-            <img src={scan} alt="Highlight" className="w-[70%] h-[65%] object-contain" />
+            {/* <img src={scan} alt="Highlight" className="w-[70%] h-[65%] object-contain" /> */}
           </div>
         </div>
       </div>
