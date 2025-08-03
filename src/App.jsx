@@ -15,6 +15,7 @@ import AppointmentForm from "./Pages/AppointmentForm"
 import DemCalls from "./Pages/demertologistdashboard/DemCalls"
 import AiAnalysisResult from "./Pages/AiAnalysisResult"
 import ClientCalls from "./Pages/Clientdashboard/ClientCalls"
+import SkeletonLoader from "./Components/custom/Skeleton"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -35,6 +36,7 @@ const lumeaRoutes = createBrowserRouter([
   {path: "/dem-calls", element: <DemCalls />},
   {path: "/demoverview", element: <DemOverview />},
   {path: "/clientcalls", element: <ClientCalls />},
+  {path: "/skeleton" , element: <SkeletonLoader/>}
   
   
   

@@ -23,9 +23,9 @@ export default function UserProfile() {
   // }
 
   return (
-    <div className="bg-white max-w-[200px] lg:max-w-2xs py-1 flex items-start text-darkest-heading rounded-full hover:bg-none">
+    <div className="bg-white max-w-[150px] lg:max-w-2xs py-1 flex  text-darkest-heading rounded-full hover:bg-none">
       <DropdownMenu >
-        <DropdownMenuTrigger asChild className="ml-auto ">
+        <DropdownMenuTrigger asChild className=" ">
          <Button variant="ghost" className="flex  hover:bg-transparent border-none">
   {data?.name ? (
     <Avatar className="w-10 ml-[-15px] h-10 border-2 rounded-full border-purple-600">

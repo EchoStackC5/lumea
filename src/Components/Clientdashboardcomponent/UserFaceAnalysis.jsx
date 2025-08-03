@@ -9,7 +9,7 @@ import Loaders from '../Loaders';
 export default function UserFaceAnalysis({ initialAnalysis, report }) {
   const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
 
-  if (isLoading) return <Loaders />;
+  // if (isLoading) return <Loaders />;
 
   if (error) {
     return (
@@ -26,7 +26,7 @@ export default function UserFaceAnalysis({ initialAnalysis, report }) {
   const imageUrl = latestReport?.imageUrl || userFace;
 
   return (
-    <div className="bg-gradient-to-br from-[#EAC8FF] to-[#FEF8FE] shadow-xs rounded-2xl p-4 border border-light-border h-auto lg:h-[659px] w-full md:w-[800px]">
+    <div className="bg-gradient-to-br from-[#EAC8FF] to-[#FEF8FE] shadow-xs rounded-2xl p-4 border border-light-border h-auto lg:h-[659px] w-full lg:w-[800px]">
       <div className="flex justify-between text-sm text-gray-700 mb-6">
         <div>
           <p>Area ratio: <strong>4.2%</strong></p>

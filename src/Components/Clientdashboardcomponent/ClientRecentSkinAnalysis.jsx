@@ -7,15 +7,14 @@ import dateline from "../../assets/images/dateline.png"
 import { Link } from "react-router";
 import { apiFetcher } from "@/api/client";
 import useSWR from "swr";
+import Loaders from "../Loaders"
 
 export default function ClientRecentSkinAnalysis() {
    const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
 
-  if (isLoading) return (
-    <div>
-      <p className="animate animate-pulse">Loading</p>
-    </div>
-  );
+  // if (isLoading) return (
+  //   <Loaders/>
+  // );
 
   if (error) {
     return (
@@ -30,7 +29,7 @@ export default function ClientRecentSkinAnalysis() {
   console.log("Analysis data:", analysis);
 
     return(
-        <section className="bg-white rounded-xl p-4 border border-light-border w-full md:w-[300px] space-y-4">
+        <section className="bg-white rounded-xl p-4 border border-light-border w-full lg:w-[300px] space-y-4">
             <div className="flex justify-between">
                 <h1 className="text-lg font-dm-sans text-[#1A151D]">Recent skin Analysis</h1>
                 <Link to="/ai-analyze" className=" h-8 w-8 rounded-full bg-gradient-to-r from-[#1A151D] shadow-md to-[#755F83] text-white flex justify-center items-center"><ArrowUpRight /></Link>

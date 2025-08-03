@@ -50,7 +50,7 @@ export default function HomeNav() {
                 <div className="cursor-pointer font-roboto font-light text-[14px] flex gap-4">
                     <a href="#home" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Home</a>
                     <a href="#about-us"  className="hover:text-primary-color hover:font-bold transition-all duration-200 active:text-primary-color active:font-bold font-medium"> About Us</a>
-                    <Link to="" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> How it Works</Link>
+                    {/* <Link to="" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> How it Works</Link> */}
                     <a href="#find-a-cosmotologist" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
                 </div>
                 <Link to="/signUp" className=" text-sm px-6 py-2 rounded-full hover:text-white font-medium bg-yellow-500 text-darkest hover:bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
@@ -89,13 +89,13 @@ export default function HomeNav() {
                         > 
                             About Us
                         </a>
-                        <Link to="" 
+                        {/* <Link to="" 
                             
                             className="hover:text-primary-color transition-all duration-200 py-2"
                             
                         > 
                            How it Works
-                        </Link>
+                        </Link> */}
                         <a href="#find-a-cosmotologist"
                             to="/blogs" 
                             className="hover:text-primary-color transition-all duration-200 py-2"
