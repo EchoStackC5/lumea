@@ -1,6 +1,5 @@
-import React, { useState , useEffect} from 'react';
+import { useState , useEffect} from 'react';
 import Navbar from '../../Components/Clientdashboardcomponent/ClientDashboardNav';
-// import Navbar from "../../Components/Dashboardnavbar"
 import Calender from '../../Components/Clientdashboardcomponent/AppointmentCalender';
 import AppointmentTable from '../../Components/Clientdashboardcomponent/ClientAppointmentTable';
 import ClientTableDetail from '../../Components/Clientdashboardcomponent/AppointmentDetails';
