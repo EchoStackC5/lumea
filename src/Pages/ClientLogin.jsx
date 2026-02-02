@@ -1,16 +1,17 @@
-import upload from "../assets/images/upload.png";
-import google from "../assets/images/google.png";
+
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router";
 import { apiClient } from "../api/client"; 
 import { Link } from "react-router";
 import SubmitButton from "@/Components/SubmitButton";
+import PlainBar from "@/Components/plainBar";
+import { toast } from "sonner"
+
 
 export default function ClientLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
   const navigate = useNavigate();
    const [loading, setLoading] = useState(false);
 
@@ -19,41 +20,42 @@ export default function ClientLogin() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 5000));
+  e.preventDefault();
+  setLoading(true);
 
-    try {
-      const response = await apiClient.post("/auth/login", form);
-      
-      // localStorage.setItem("token", response.data.token);
-      localStorage.setItem("ACCESS_TOKEN", response.data.token);
-       localStorage.setItem("USER_ID", response.data.user._id);
-      
-      navigate("/clientdashboard"); 
-      // navigate(from, { replace: true });
-    } catch (err) {
-      setError(
-        err.response?.data?.message ||
-        err.response?.data?.error ||
-        "Login failed. Please check your credentials."
-      );
-    }
-  };
+  try {
+    const response = await apiClient.post("/auth/login", form);
+
+    localStorage.setItem("ACCESS_TOKEN", response.data.token);
+    localStorage.setItem("USER_ID", response.data.user._id);
+
+    toast.success("Login successful 🎉");
+    navigate("/clientdashboard");
+  } catch (err) {
+    const message =
+      err.response?.data?.message ||
+      err.response?.data?.error ||
+      "Login failed. Please check your credentials.";
+
+    toast.error(message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-start py-10 px-4 bg-[#F6EBFD]">
-      <div className="bg-white rounded-[15px] shadow-[40px_40px_60px_#E4E6EA] px-6 pt-10 pb-12 md:pt-12 md:px-[72px] md:pb-12 w-full max-w-[540px]">
-        <h1 className="text-[24px] md:text-[28px] font-semibold text-[#09070A] leading-[28px] mb-8">
+    <main className="">
+      <PlainBar />
+    <div className="w-full min-h-screen font-inter flex justify-center items-center pt-28  px-4 bg-[#F6EBFD]">
+      <div className="bg-white rounded-[15px]  px-6 pt-10 pb-12 md:pt-12 md:px-[72px] md:pb-12 w-full max-w-[540px]">
+        <h1 className="text-xl md:text-[28px]  font-semibold text-[#09070A] leading-[28px] mb-8">
           Login To Your Account
         </h1>
 
         <form className="space-y-8" onSubmit={handleSubmit}>
           {/* Error Message */}
-          {error && (
-            <div className="text-red-600 text-center mb-4">{error}</div>
-          )}
+         
 
           {/* Input Fields Section */}
           <div className="space-y-6">
@@ -80,7 +82,7 @@ export default function ClientLogin() {
                   Password
                 </label>
                 <a href="#" className="text-sm text-[#0066CC] hover:underline leading-none">
-                  Forgot?
+                  Forgot Password?
                 </a>
               </div>
               <div className="relative">
@@ -105,18 +107,8 @@ export default function ClientLogin() {
 
           {/* Buttons Section */}
           <div className="space-y-6">
-            <SubmitButton title="Log In" loading={loading} className="w-full h-[48px] bg-black text-white rounded-full" />
-            
-
-            <button
-              type="button"
-              className="w-full h-[48px] bg-none text-black rounded-full flex items-center justify-center border-black border-1 hover:border-transition"
-            >
-              <img src={google} alt="Google" className="h-8 w-8 mr-2" />
-              continue with google
-            </button>
-
-            <p className="text-center  text-xl text-gray-600">
+            <SubmitButton title="Log In" loading={loading} className="w-full cursor-pointer h-[48px] bg-black text-white rounded-full" />
+            <p className="text-center text-sm font-medium md:text-xl text-gray-600">
               Don't Have An Account Yet?{" "}
               <Link to="/clientsignUp" className="text-[#0066CC] font-medium hover:underline">
                 Sign Up
@@ -126,5 +118,6 @@ export default function ClientLogin() {
         </form>
       </div>
     </div>
+    </main>
   );
 }
