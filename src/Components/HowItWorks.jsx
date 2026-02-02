@@ -19,7 +19,8 @@ export default function HowItWorks() {
                 </motion.div>
 
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+            
+            <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                 <motion.img 
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -36,14 +37,14 @@ export default function HowItWorks() {
                 >
                     <h1 className="uppercase lg sm:xl md:xl lg:text-3xl text-center font-dm-sans font-semibold">Get Expert Skincare Advice</h1>
                     <p className="text-center font-inter font-normal text-sm sm:text-sm lg:text-[16px] md:text-[16px]">Book a session with a certified cosmetologist who understands your unique skin</p>
-                    <Link to= "/appointment-form" className="bg-white text-darkest hover:bg-yellow-500 text-center max-w-3xl px-6 py-3 rounded-full font-medium  hover:bg-system-primary transition-all duration-200 ">Book Appointment</Link>
+                    <Link to= "/appointment-form" className="bg-white text-darkest hover:bg-yellow-500 text-center max-w-3xl px-6 py-3 rounded-full font-medium mt-12 hover:bg-system-primary transition-all duration-200 ">Book Appointment</Link>
                 </motion.div>
                 <motion.img 
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
-                    src={clearSkinImage} alt="Ice Image" className="w-full max-h-120  object-cover  " 
+                    src={clearSkinImage} alt="Ice Image" className="w-full max-h-120  object-cover md:hidden " 
                 />
             </div>
 

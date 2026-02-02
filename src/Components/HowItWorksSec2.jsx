@@ -11,7 +11,7 @@ export default function HowItWorksSec2() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="max-w-xs flex flex-col  gap-2 sm:gap-2 md:gap-3 lg:gap-4"
+                    className="max-w-xs flex flex-col  gap-6 sm:gap-2 md:gap-3 lg:gap-4"
                 >
                     <h1 className="text-2xl md:text-3xl font-dm-sans font-medium ">Find a <span className="font-system-curved">Cosmotologist </span></h1>
                     <p className="text-[16px] font-inter  ">Connect with trusted dermatologists for real, personalized solutions.</p>

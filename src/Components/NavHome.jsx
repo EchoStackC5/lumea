@@ -1,24 +1,41 @@
+
 import lumeaLogo from "../assets/lumeaYellow.svg";
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router"
-import { useLocation } from "react-router";
+
 
 
 export default function HomeNav() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
    
     
     useEffect(() => {
-        const handScroll = () => {
+        const handleScroll = () => {
             const scrollPosition = window.scrollY
             setIsScrolled(scrollPosition > 50)
+
+            // Active section logic
+            const sections = ['home', 'about-us', 'how-it-works', 'find-a-cosmotologist'];
+            
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // Check if element is roughly in view (top is within viewport or close to it)
+                    if (rect.top <= 150 && rect.bottom >= 150) {
+                        setActiveSection(section);
+                        break;
+                    }
+                }
+            }
         }
 
-        window.addEventListener('scroll', handScroll)
+        window.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handScroll)
+            window.removeEventListener('scroll', handleScroll)
         }
     }, []);
 
@@ -36,6 +53,14 @@ export default function HomeNav() {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const getLinkClass = (sectionId) => {
+        const baseClass = "transition-all duration-200 font-medium cursor-pointer";
+        const activeClass = "text-purple-300 font-bold"; 
+        const inactiveClass = "hover:text-primary-color hover:font-bold text-white";
+        
+        return `${baseClass} ${activeSection === sectionId ? activeClass : inactiveClass}`;
     };
 
     return (
@@ -56,9 +81,9 @@ export default function HomeNav() {
                 `
                     
                 }>
-                    <a href="#home" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Home</a>
-                    <a href="#about-us"  className="hover:text-primary-color hover:font-bold transition-all duration-200 active:text-primary-color active:font-bold font-medium"> About Us</a>
-                    <a href="#find-a-cosmotologist" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
+                    <a href="#home" className={getLinkClass('home')}> Home</a>
+                    <a href="#about-us"  className={getLinkClass('about-us')}> About Us</a>
+                    <a href="#find-a-cosmotologist" className={getLinkClass('find-a-cosmotologist')}> Find a Cosmetologist</a>
                 </div>
                 <Link to="/signUp" className=" text-sm px-6 py-2 rounded-full hover:text-white font-medium bg-yellow-500 text-darkest hover:bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
             </div>
@@ -85,34 +110,27 @@ export default function HomeNav() {
                     <div className="flex flex-col space-y-2 text-white">
                         <a href="#home"
     
-                            className="hover:text-primary-color transition-all duration-200 py-2"
+                            className={`transition-all duration-200 py-2 ${activeSection === 'home' ? 'text-purple-300 font-bold' : 'hover:text-primary-color'}`}
                            
                         > 
                             Home
                         </a>
                         < a href="#about-us"
-                            className="hover:text-primary-color transition-all duration-200 py-2"
+                            className={`transition-all duration-200 py-2 ${activeSection === 'about-us' ? 'text-[#9D82B6]' : 'hover:text-primary-color'}`}
                          
                         > 
                             About Us
                         </a>
-                        {/* <Link to="" 
-                            
-                            className="hover:text-primary-color transition-all duration-200 py-2"
-                            
-                        > 
-                           How it Works
-                        </Link> */}
                         <a href="#find-a-cosmotologist"
                             to="/blogs" 
-                            className="hover:text-primary-color transition-all duration-200 py-2"
+                            className={`transition-all duration-200 py-2 ${activeSection === 'find-a-cosmotologist' ? 'text-[#9D82B6]' : 'hover:text-primary-color'}`}
                            
                         > 
                             Find a Cosmetologist
                         </a>
                         <Link 
                             to="/signUp" 
-                            className="hover:bg-[#9D82B6] bg-yellow-500 text-darkest hover:text-white px-6 py-3 rounded-full text-sm font-medium text-darkest-heading hover:bg-primary-color transition-all duration-200 text-center mt-2"
+                            className="hover:bg-[#9D82B6] bg-yellow-500 text-darkest hover:text-white px-6 py-3 rounded-full text-sm font-medium text-darkest-heading hover:bg-primary-color transition-all duration-200 text-center mt-2 w-fit"
                           
                         >
                            Register as a Cosmetologist
