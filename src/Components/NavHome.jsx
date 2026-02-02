@@ -2,11 +2,13 @@ import lumeaLogo from "../assets/lumeaYellow.svg";
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router"
+import { useLocation } from "react-router";
 
 
 export default function HomeNav() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+   
     
     useEffect(() => {
         const handScroll = () => {
@@ -40,17 +42,22 @@ export default function HomeNav() {
         <nav className={`
             fixed top-0 left-0 right-0 z-50 isolate transition-all duration-300 ease-in-out 
             ${isScrolled
-                ? 'bg-black/15 backdrop-blur-xl shadow-2xl '
+                ? ' '
                 : 'bg-transparent backdrop-blur-none shadow-none border-none'
             }
         `}>
             {/* Desktop Navigation */}
             <div className="hidden lg:flex justify-between items-center text-white px-6 sm:px-8 py-4">
                 <img src={lumeaLogo} alt="Lumea Logo" className="cursor-pointer w-28"></img>
-                <div className="cursor-pointer font-roboto font-light text-[14px] flex gap-4">
+
+                <div className={`cursor-pointer font-roboto font-light text-[14px] flex gap-4
+                ${isScrolled ? 'bg-black/30 backdrop-blur-xl shadow-2xl py-3 px-6 rounded-full' : 'bg-transparent'}
+                
+                `
+                    
+                }>
                     <a href="#home" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Home</a>
                     <a href="#about-us"  className="hover:text-primary-color hover:font-bold transition-all duration-200 active:text-primary-color active:font-bold font-medium"> About Us</a>
-                    {/* <Link to="" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> How it Works</Link> */}
                     <a href="#find-a-cosmotologist" className="hover:text-primary-color hover:font-bold transition-all duration-200 font-medium"> Find a Cosmetologist</a>
                 </div>
                 <Link to="/signUp" className=" text-sm px-6 py-2 rounded-full hover:text-white font-medium bg-yellow-500 text-darkest hover:bg-[#9D82B6] py-3  transition-all duration-200">Register as a Cosmetologist</Link>
