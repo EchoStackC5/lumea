@@ -1,13 +1,16 @@
-
+import React from 'react';
 import { Scan } from 'lucide-react';
-import userFace from "../../assets/skinPage.svg";
+import userFace from "../../assets/images/u.png";
+import scan from "../../assets/images/d.png";
 import useSWR from 'swr';
 import { apiFetcher } from '@/api/client';
-
+import Loaders from '../Loaders';
+import NoFaceScan from './NoFaceScan';
 
 export default function UserFaceAnalysis({ initialAnalysis, report }) {
   const { data, isLoading, error } = useSWR('/users/me/history', apiFetcher);
 
+  // if (isLoading) return <Loaders />;
 
   if (error) {
     return (
@@ -18,14 +21,24 @@ export default function UserFaceAnalysis({ initialAnalysis, report }) {
   }
 
   const latestReport = data?.[0];
-  
+  const hasAnalysisData = latestReport && Object.keys(latestReport).length > 0;
 
-  
+  // Handle start scan action
+  const handleStartScan = () => {
+    // Add your scan logic here
+    console.log('Starting face scan...');
+    // You can navigate to scan page or trigger scan modal
+  };
+
+  // Show empty state if no analysis data
+  if (!hasAnalysisData) {
+    return <NoFaceScan onStartScan={handleStartScan} />;
+  }
+
   const imageUrl = latestReport?.imageUrl || userFace;
 
   return (
-    <div className='flex flex-col h-auto '>
-    <div className="bg-gradient-to-br from-[#EAC8FF] to-[#FEF8FE] shadow-xs rounded-2xl p-4 border border-light-border h-auto w-full ">
+    <div className="bg-gradient-to-br from-[#EAC8FF] to-[#FEF8FE] shadow-xs rounded-2xl p-4 border border-light-border h-auto lg:h-[659px] w-full lg:w-[800px]">
       <div className="flex justify-between text-sm text-gray-700 mb-6">
         <div>
           <p>Area ratio: <strong>4.2%</strong></p>
@@ -35,8 +48,14 @@ export default function UserFaceAnalysis({ initialAnalysis, report }) {
           <Scan size={16} /> Rescan
         </button>
       </div>
-    </div>
-    <img src={imageUrl} alt="Analyzed face" className="rounded-xl w-full object-cover " />
+      <div className='flex flex-col mt-[86px]'>
+        <div className="relative mt-4">
+          <img src={imageUrl} alt="Analyzed face" className="rounded-xl w-full object-cover h-[300px] sm:h-[400px] lg:h-[500px]" />
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full flex justify-center items-center">
+            {/* <img src={scan} alt="Highlight" className="w-[70%] h-[65%] object-contain" /> */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
