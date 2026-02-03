@@ -3,10 +3,7 @@ import ageIcon from "@/assets/ageIcon.svg";
 import heightIcon from "@/assets/heightIcon.svg";
 import weightIcon from "@/assets/weightIcon.svg";
 import skinIcon from '@/assets/skintypeIcon.svg';
-import vector from "../../assets/images/vector.png"
-import vector1 from "../../assets/images/vector1.png"
-import vector2 from "../../assets/images/vector2.png"
-import vector3 from "../../assets/images/vector3.png"
+
 import { Link } from "react-router"
 import { apiFetcher } from "@/api/client";
 import useSWR from "swr";

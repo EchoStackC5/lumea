@@ -26,7 +26,7 @@ export default function Clientdashboard() {
       { loading? (
         <SkeletonLoader/>
       ):
-      (<section className="bg-[#F6EBFD] h-full w-full p-5 ">
+      (<section className="bg-[#F6EBFD] h-full w-full px-2 lg:pt-8 ">
         <div className="flex px-1 md:px-6 gap-6 lg:flex-row flex-col">
           <LeftPanel setDisplay={setDisplay}/>
         <UserFaceAnalysis   />

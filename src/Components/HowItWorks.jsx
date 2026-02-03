@@ -44,7 +44,7 @@ export default function HowItWorks() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
-                    src={clearSkinImage} alt="Ice Image" className="w-full max-h-120  object-cover md:hidden " 
+                    src={clearSkinImage} alt="Ice Image" className="w-full max-h-120  object-cover hidden lg:flex" 
                 />
             </div>
 
