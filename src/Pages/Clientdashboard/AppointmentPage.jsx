@@ -26,15 +26,18 @@ export default function Appointment() {
     <>
      <Navbar />
     
-    <section className="bg-[#F6EBFD] h-screen px-5 ">
+    <section className="bg-backgrounds px-5  ">
      
       {loading? (
         <div className='flex justify-center items-center h-full'><Loaders/></div>
         
-      ):(<div className="flex flex-col md:flex-row gap-6">
-        <Calender />
+      ):(<div className="flex flex-col md:flex-row gap-3 lg:gap-6">
+        
+          <Calender  />
+        
+        
 
-       <div className=' flex flex-col md:flex-row gap-6'>
+       <div className=' flex flex-col lg:flex-row gap-6 w-full h-full'>
          <AppointmentTable 
           setDetail={setAppointmentDetail} 
           setShowDetail={setShowDetail} 

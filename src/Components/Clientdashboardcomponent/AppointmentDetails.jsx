@@ -20,7 +20,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl  border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5">
+    <div className="bg-white rounded-lg  border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5 hidden lg:flex">
       <div className='flex justify-between'>
         <button
         onClick={() => setShowDetail(false)}
@@ -28,12 +28,12 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
       >
         <X size={20} />
       </button>
-      <h2 className="text-lg font-semibold text-gray-900 mb-3">Appointment Details</h2>
+      <h2 className="text-lg font-dm-sans font-semibold text-gray-900 mb-3">Appointment Details</h2>
       </div>
       
 
-      <div className="text-center flex flex-col items-center ">
-        <div>
+      <div className="text-center flex flex-col items-center justify-center ">
+        <div className='flex flex-col justify-center items-center'>
           
 
           <div className="w-45 h-45 rounded-full overflow-hidden border-2  mx-auto mb-3">
@@ -44,7 +44,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
             />
           </div>
 
-          <h3 className="text-lg font-inter font-semibold flex gap-3 text-gray-900 mb-1"><span className='font-medium text-dashboar-secondary font-inter'>Doctor Name: </span> {detail.doctorName}</h3>
+          <h3 className="text-lg font-inter font-semibold flex gap-3 text-gray-900 mb-1"><span className='font-medium text-dashboar-secondary font-inter'></span> {detail.doctorName}</h3>
 
           <p className="text-gray-600 text-sm pt-3 font-inter flex gap-3"> <span className='font-medium '> Appointment Date:  </span>
             {format(new Date(detail.date), "MMMM d,yyyy")}  
@@ -59,9 +59,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
               {detail.status}
             </span>
           </div>
-          {/* <button className="flex-1 bg-black text-[10px] text-white h-[36px] rounded-full hover:bg-gray-800">
-            View Skin Report
-          </button> */}
+         
           <button className="flex-1 w-full py-2 text-sm bg-transparent font-poppins text-gray-900 cursor-pointer  rounded-full border border-gray-300 hover:bg-gray-50">
             Reschedule
           </button>

@@ -7,7 +7,7 @@ export default function NoFaceScan({ onStartScan }) {
   const navigate = useNavigate();
 
   const handleAnalyzeSkin = () => {
-    navigate('/skin-analysis');
+    navigate('/skin-analysis-form');
   };
 
   return (
