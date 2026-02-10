@@ -20,7 +20,7 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg  border w-[296px] h-[480px] p-4 relative flex flex-col justify-between mt-5 hidden lg:flex">
+    <div className="bg-white rounded-lg h-[504px]  border w-[296px]  p-4 relative flex flex-col justify-between mt-5 hidden lg:flex">
       <div className='flex justify-between'>
         <button
         onClick={() => setShowDetail(false)}

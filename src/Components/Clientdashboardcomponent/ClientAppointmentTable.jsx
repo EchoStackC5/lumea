@@ -83,8 +83,8 @@ const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
   };
 
   return (
-    <div className="flex-1  w-full  h-auto">
-      <div className="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 mt-5">
+    <div className="flex-1 w-full h-[529px] flex flex-col">
+      <div className="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 mt-5 flex-1">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
           <h1 className="text-base font-dm-sans font-semibold text-primary-dark">
