@@ -38,7 +38,9 @@ export default function UserProfile() {
     </div>
   )}
   <span className="flex text-darkest items-center gap-x-2 text-xs md:text-base font-semibold">
-    {data?.name ?? "Unknown User"} <ChevronDown size={16} />
+    <span className="hidden lg:inline">{data?.name ?? "Unknown User"}</span>
+    <span className="lg:hidden">{data?.name ? data.name.split(' ')[0] : "Unknown"}</span>
+    <ChevronDown size={16} />
   </span>
 </Button>
 
