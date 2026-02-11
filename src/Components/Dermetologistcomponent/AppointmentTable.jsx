@@ -13,7 +13,7 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const limit = 6;
+  const limit = 8;
   const [startIndex, setstartindex] = useState(0);
   const [endIndex, setendIndex] = useState(limit);
   const [subArray, setsubArray] = useState([]);
@@ -215,6 +215,29 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
         />
       </div>
 
+      {/* Pagination - Only show if more than 8 appointments */}
+      {!isLoading && data?.length > limit && (
+        <div className="flex px-8 py-4 justify-between">
+          <button
+            className="max-w-md w-[100px] py-2 rounded-full border border-light-border hover:bg-[#1A151D] hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => {
+              showPrevious();
+            }}
+            disabled={startIndex === 0}
+          >
+            Previous
+          </button>
+          <button
+            className="max-w-md w-[100px] py-2 rounded-full border bg-system-primary hover:bg-[#1A151D] text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => {
+              showNext();
+            }}
+            disabled={endIndex >= (data?.length || 0)}
+          >
+            Next
+          </button>
+        </div>
+      )}
       
     </section>
   );

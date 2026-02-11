@@ -14,7 +14,7 @@ const AppointmentTable = ({ setDetail, setShowDetail }) => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 3;
+  const limit = 8;
 
   const getStatusVariant = (status) => {
     const statusLower = status?.toLowerCase();
@@ -148,6 +148,26 @@ const AppointmentTable = ({ setDetail, setShowDetail }) => {
           onRowClick={handleAppointmentClick}
           emptyMessage="No appointments found"
         />
+
+        {/* Pagination - Only show if more than 8 appointments */}
+        {filteredAppointments.length > limit && (
+          <div className="flex px-8 py-4 justify-between mt-4">
+            <button
+              className="max-w-md w-[100px] py-2 rounded-full border border-light-border hover:bg-[#1A151D] hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <button
+              className="max-w-md w-[100px] py-2 rounded-full border bg-system-primary hover:bg-[#1A151D] text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage * limit >= filteredAppointments.length}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
