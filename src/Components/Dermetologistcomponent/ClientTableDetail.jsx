@@ -28,7 +28,7 @@ export default function ClientTableDetail({ detail, visible, setShowDetail, onSt
 
   return (
     <section
-      className="bg-white rounded-xl p-3 shadow-md md:w-[22%] w-full h-auto space-y-4 mb-4"
+      className="bg-white rounded-xl p-3 shadow-md w-full lg:w-[296px] h-auto space-y-4 mb-4"
       style={{ display: visible ? "block" : "none" }}
     >
       <div className="flex justify-between items-center">

@@ -55,25 +55,51 @@ export default function Appointment() {
     <>
       <Navbar />
       <section className="bg-[#F6EBFD] min-h-screen">
-        <div className="flex gap-6 py-5 px-3 flex-col md:flex-row">
-          <Calender setReload={setReload} />
-          <AppointmentTable
-            setDetail={setAppointmentDetail}
-            setShowDetail={setShowDetail}
-            showDetail={showDetail}
-            setReload={setReload}
-            reload={reload}
-            onStatusUpdate={handleStatusUpdate}
-            updatingId={updatingId}
-          />
-          <ClientTableDetail
-            detail={appointmentDetail}
-            visible={showDetail}
-            setShowDetail={setShowDetail}
-            onStatusUpdate={handleStatusUpdate}
-            updatingId={updatingId}
-          />
+        <div className="flex flex-col lg:flex-row gap-6 py-5 px-3 md:px-6 items-start">
+          {/* Calendar - Hidden on mobile, shown on md+ */}
+          <div className="hidden md:block lg:h-screen md:w-auto lg:w-auto">
+            <Calender setReload={setReload} />
+          </div>
+
+          {/* Appointment Table - Full width on mobile */}
+          <div className="flex-1 lg:h-screen w-full min-w-0 h-full">
+            <AppointmentTable
+              setDetail={setAppointmentDetail}
+              setShowDetail={setShowDetail}
+              showDetail={showDetail}
+              setReload={setReload}
+              reload={reload}
+              onStatusUpdate={handleStatusUpdate}
+              updatingId={updatingId}
+            />
+          </div>
+
+          {/* Client Detail - Hidden on mobile/tablet, shown on lg+ */}
+          <div className="hidden lg:block lg:w-auto">
+            <ClientTableDetail
+              detail={appointmentDetail}
+              visible={showDetail}
+              setShowDetail={setShowDetail}
+              onStatusUpdate={handleStatusUpdate}
+              updatingId={updatingId}
+            />
+          </div>
         </div>
+
+        {/* Mobile Detail Modal - Show as overlay on mobile/tablet */}
+        {showDetail && (
+          <div className="lg:hidden fixed inset-0 bg-black/50 z-50 flex items-end md:items-center justify-center p-4">
+            <div className="w-full max-w-md max-h-[90vh] overflow-y-auto">
+              <ClientTableDetail
+                detail={appointmentDetail}
+                visible={true}
+                setShowDetail={setShowDetail}
+                onStatusUpdate={handleStatusUpdate}
+                updatingId={updatingId}
+              />
+            </div>
+          </div>
+        )}
       </section>
     </>
   );

@@ -222,10 +222,7 @@ export default function AppointmentTable({
   ];
 
   return (
-    <section
-      style={{ width: showDetail ? "53%" : "68%" }}
-      className="h-auto w-full  bg-white rounded-lg mx-auto "
-    >
+    <section className=" w-full bg-white rounded-lg h-full">
       {/* Show loader while fetching */}
       {isLoading && (
         <div className="flex justify-center items-center h-64">
@@ -242,9 +239,9 @@ export default function AppointmentTable({
 
       <div
         style={{ display: isLoading ? "none" : "flex" }}
-        className="mt-5 px-5 justify-between flex flex-col sm:flex-row sm:justify-between gap-4 items-start sm:items-center"
+        className="px-3 md:px-5 pt-5 pb-3 justify-between flex flex-col sm:flex-row gap-4 items-start sm:items-center"
       >
-        <h1 className="text-lg font-medium font-dm-sans text-primary-dark">
+        <h1 className="text-base md:text-lg font-medium font-dm-sans text-primary-dark">
           Appointments & Client List
         </h1>
         <SearchBar
@@ -255,14 +252,13 @@ export default function AppointmentTable({
           }}
           onSearch={filterApp}
           placeholder="Search list"
-    
           className="w-full sm:w-[250px]"
         />
       </div>
 
       <div
         style={{ display: isLoading ? "none" : "block" }}
-        className="p-4 max-w-5xl mx-auto"
+        className="px-3 md:px-4 pb-4 w-full overflow-x-auto"
       >
         <DataTable
           columns={columns}
@@ -274,9 +270,9 @@ export default function AppointmentTable({
 
       {/* Pagination - Only show if more than 8 appointments */}
       {!isLoading && data?.length > limit && (
-        <div className="flex px-8 py-4 justify-between">
+        <div className="flex px-3 md:px-8 py-4 justify-between gap-2">
           <button
-            className="max-w-md w-[100px] py-2 rounded-full border border-light-border hover:bg-[#1A151D] hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 max-w-[120px] py-2 text-sm rounded-full border border-light-border hover:bg-[#1A151D] hover:text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => {
               showPrevious();
             }}
@@ -285,7 +281,7 @@ export default function AppointmentTable({
             Previous
           </button>
           <button
-            className="max-w-md w-[100px] py-2 rounded-full border bg-system-primary hover:bg-[#1A151D] text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 max-w-[120px] py-2 text-sm rounded-full border bg-system-primary hover:bg-[#1A151D] text-white transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => {
               showNext();
             }}
@@ -295,7 +291,6 @@ export default function AppointmentTable({
           </button>
         </div>
       )}
-      
     </section>
   );
 }
