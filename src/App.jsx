@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router"
+import { SWRConfig } from "swr"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import SignUp from "./Pages/SignUp"
@@ -17,6 +18,7 @@ import AiAnalysisResult from "./Pages/AiAnalysisResult"
 import ClientCalls from "./Pages/Clientdashboard/ClientCalls"
 import SkeletonLoader from "./Components/custom/Skeleton"
 import { Toaster } from "./Components/ui/sonner"
+import { swrConfig } from "./api/swrConfig"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -47,10 +49,10 @@ const lumeaRoutes = createBrowserRouter([
  export default function App() {
   
   return (
-    <>
+    <SWRConfig value={swrConfig}>
       <RouterProvider router={lumeaRoutes} />
       <Toaster position="top-right" richColors />
-    </>
+    </SWRConfig>
   )
 }
 

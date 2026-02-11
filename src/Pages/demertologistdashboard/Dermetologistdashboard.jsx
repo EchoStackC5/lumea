@@ -1,25 +1,14 @@
 import Navbar from "@/Components/Navbar";
 import AppointmentsDem from "../../Components/Dermetologistcomponent/AppointmentsDem";
 import CalendarAndDay from "@/Components/Dermetologistcomponent/CanderAndDay";
-import SkeletonLoader from "@/Components/custom/Skeleton";
 import DashboardAnalytics from "@/Components/Dermetologistcomponent/DashboardAnalytics";
 import TodaysSummary from "@/Components/Dermetologistcomponent/TodaysSummary";
 import RecentActivity from "@/Components/Dermetologistcomponent/RecentActivity";
 import QuickStats from "@/Components/Dermetologistcomponent/QuickStats";
 import PerformanceMetrics from "@/Components/Dermetologistcomponent/PerformanceMetrics";
 
-import { useState, useEffect } from "react";
-
 export default function Dermetologistdashboard() {
-  const [loading, setIsloading] = useState(true);
-
-  useEffect(() => {
-    const loadPage = setTimeout(() => {
-      setIsloading(false);
-    }, 3000);
-
-    return () => clearTimeout(loadPage);
-  }, []);
+  // Removed artificial loading delay for better performance
 
   // Mock data - replace with real API calls
   const todaysSummary = {
@@ -103,35 +92,31 @@ export default function Dermetologistdashboard() {
     <>
       <Navbar />
       <section className="bg-backgrounds min-h-screen w-full">
-        {loading ? (
-          <SkeletonLoader />
-        ) : (
-          <div className="py-5 px-4 md:px-6 w-full space-y-6">
-            {/* Top Analytics Cards */}
-            <DashboardAnalytics analytics={analytics} />
+        <div className="py-5 px-4 md:px-6 w-full space-y-6">
+          {/* Top Analytics Cards */}
+          <DashboardAnalytics analytics={analytics} />
 
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Left Column - Calendar */}
-              <div className="lg:col-span-3 space-y-6">
-                <CalendarAndDay />
-                <PerformanceMetrics metrics={performanceMetrics} />
-              </div>
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Left Column - Calendar */}
+            <div className="lg:col-span-3 space-y-6">
+              <CalendarAndDay />
+              <PerformanceMetrics metrics={performanceMetrics} />
+            </div>
 
-              {/* Middle Column - Charts and Activity */}
-              <div className="lg:col-span-6 space-y-6">
-                <TodaysSummary summary={todaysSummary} />
-                <RecentActivity activities={recentActivities} />
-              </div>
+            {/* Middle Column - Charts and Activity */}
+            <div className="lg:col-span-6 space-y-6">
+              <TodaysSummary summary={todaysSummary} />
+              <RecentActivity activities={recentActivities} />
+            </div>
 
-              {/* Right Column - Appointments and Stats */}
-              <div className="lg:col-span-3 space-y-6">
-                <AppointmentsDem />
-                <QuickStats stats={quickStats} />
-              </div>
+            {/* Right Column - Appointments and Stats */}
+            <div className="lg:col-span-3 space-y-6">
+              <AppointmentsDem />
+              <QuickStats stats={quickStats} />
             </div>
           </div>
-        )}
+        </div>
       </section>
     </>
   );

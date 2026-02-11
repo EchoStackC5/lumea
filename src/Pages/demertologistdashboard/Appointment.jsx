@@ -2,8 +2,7 @@ import Calender from "../../Components/Dermetologistcomponent/Calender";
 import ClientTableDetail from "../../Components/Dermetologistcomponent/ClientTableDetail";
 import AppointmentTable from "../../Components/Dermetologistcomponent/AppointmentTable";
 import Navbar from "@/Components/Navbar";
-import { useState, useEffect } from "react";
-import Loaders from "@/Components/Loaders";
+import { useState } from "react";
 import { apiClient } from "@/api/client";
 import { toast } from "sonner";
 import { mutate } from "swr";
@@ -12,15 +11,9 @@ export default function Appointment() {
   const [appointmentDetail, setAppointmentDetail] = useState({});
   const [showDetail, setShowDetail] = useState(false);
   const [reload, setReload] = useState(false);
-  const [loading, setIsloading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
 
-  useEffect(() => {
-    const loadPage = setTimeout(() => {
-      setIsloading(false);
-    }, 3000);
-    return () => clearTimeout(loadPage);
-  }, []);
+  // Removed artificial loading delay for better performance
 
   // Centralized status update function
   const handleStatusUpdate = async (appointmentId, newStatus) => {
@@ -61,32 +54,26 @@ export default function Appointment() {
   return (
     <>
       <Navbar />
-      <section className="bg-[#F6EBFD] h-full">
-        {loading ? (
-          <div className="flex justify-center items-center h-full">
-            <Loaders />
-          </div>
-        ) : (
-          <div className="flex gap-6 py-5 px-3 flex-col md:flex-row">
-            <Calender setReload={setReload} />
-            <AppointmentTable
-              setDetail={setAppointmentDetail}
-              setShowDetail={setShowDetail}
-              showDetail={showDetail}
-              setReload={setReload}
-              reload={reload}
-              onStatusUpdate={handleStatusUpdate}
-              updatingId={updatingId}
-            />
-            <ClientTableDetail
-              detail={appointmentDetail}
-              visible={showDetail}
-              setShowDetail={setShowDetail}
-              onStatusUpdate={handleStatusUpdate}
-              updatingId={updatingId}
-            />
-          </div>
-        )}
+      <section className="bg-[#F6EBFD] min-h-screen">
+        <div className="flex gap-6 py-5 px-3 flex-col md:flex-row">
+          <Calender setReload={setReload} />
+          <AppointmentTable
+            setDetail={setAppointmentDetail}
+            setShowDetail={setShowDetail}
+            showDetail={showDetail}
+            setReload={setReload}
+            reload={reload}
+            onStatusUpdate={handleStatusUpdate}
+            updatingId={updatingId}
+          />
+          <ClientTableDetail
+            detail={appointmentDetail}
+            visible={showDetail}
+            setShowDetail={setShowDetail}
+            onStatusUpdate={handleStatusUpdate}
+            updatingId={updatingId}
+          />
+        </div>
       </section>
     </>
   );
