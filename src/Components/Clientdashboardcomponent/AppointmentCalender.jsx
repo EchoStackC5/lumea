@@ -7,7 +7,7 @@ export default function CalendarComponent() {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div className="bg-white border space-y-3 rounded-lg mt-5 p-4 w-full h-full lg:w-sm flex flex-col justify-between md:hidden lg:flex ">
+    <div className="bg-white border space-y-3 rounded-lg mt-5 p-4 w-full h-full lg:w-md flex flex-col justify-between md:hidden lg:flex ">
       {/* Top Header - Calendar Icon & Plus Button */}
 
       <h2 className="font-medium text-lg font-dm-sans">Calendar</h2>

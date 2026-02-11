@@ -1,43 +1,34 @@
 "use client";
 import { useState } from "react";
-import { Search } from "lucide-react";
 import useSWR from "swr";
-
 import { Link } from "react-router";
 import { apiFetcher } from "@/api/client";
 import { format } from "date-fns";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
-("use client");
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../ui/table";
+import { Badge } from "../ui/badge";
+import SearchBar from "../ui/SearchBar";
+import DataTable from "../ui/DataTable";
 
-const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
+const AppointmentTable = ({ setDetail, setShowDetail }) => {
   const { isLoading, error, data } = useSWR("/appointments", apiFetcher);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 3;
 
-  const getStatusColor = (status) => {
-    switch (status) {
+  const getStatusVariant = (status) => {
+    const statusLower = status?.toLowerCase();
+    switch (statusLower) {
       case "completed":
-        return "bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3";
       case "accepted":
-        return "bg-green-100 text-green-700 border border-green-200 w-[101px] ml-3";
+        return "accepted";
       case "rejected":
-        return "bg-red-100 text-red-700 border border-red-200 w-[101px] ml-4";
+        return "rejected";
       case "pending":
-        return "bg-blue-100 text-blue-600 border border-blue-200 ";
-      case "In progress":
-        return "bg-blue-100 text-blue-700 border border-blue-200 w-[101px] ml-4";
+      case "in progress":
+        return "pending";
       default:
-        return "bg-gray-100 text-gray-700 border border-gray-200";
+        return "default";
     }
   };
 
@@ -53,7 +44,7 @@ const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
     );
   }
 
-  const appointments = data || []; // Use fetched data
+  const appointments = data || [];
 
   // Filter by search term
   const filteredAppointments = appointments.filter(
@@ -62,14 +53,13 @@ const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       appointment.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      appointment.status.toLowerCase().includes(searchTerm.toLowerCase()),
+      appointment.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Pagination
-  const totalPages = Math.ceil(filteredAppointments.length / limit);
   const paginatedAppointments = filteredAppointments.slice(
     (currentPage - 1) * limit,
-    currentPage * limit,
+    currentPage * limit
   );
 
   const handleAppointmentClick = (appointment) => {
@@ -82,6 +72,48 @@ const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
     setShowDetail(true);
   };
 
+  // Define table columns
+  const columns = [
+    {
+      header: "Dermatologist Name",
+      accessorKey: "cosmetologist.name",
+      cell: (row) => (
+        <div className="flex items-center gap-3">
+          <Avatar className="w-10 h-10">
+            <AvatarImage src={row.cosmetologist?.profile?.image} />
+            <AvatarFallback>
+              {row.cosmetologist?.name?.charAt(0) || "D"}
+            </AvatarFallback>
+          </Avatar>
+          <span className="text-sm md:text-base font-inter">
+            {row.cosmetologist?.name}
+          </span>
+        </div>
+      ),
+    },
+    {
+      header: "Appointment Date",
+      accessorKey: "date",
+      cell: (row) => (
+        <span className="text-dashboar-secondary text-sm md:text-base font-inter">
+          {format(new Date(row.date), "do MMMM yyyy")}
+        </span>
+      ),
+    },
+    {
+      header: "Appointment Status",
+      accessorKey: "status",
+      align: "center",
+      cell: (row) => (
+        <div className="flex justify-center">
+          <Badge variant={getStatusVariant(row.status)} className="min-w-[90px]">
+            {row.status}
+          </Badge>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className="flex-1 w-full h-[529px] flex flex-col">
       <div className="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 mt-5 flex-1">
@@ -91,21 +123,15 @@ const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
             Appointments
           </h1>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:space-x-4 w-full sm:w-auto">
-            <div className="relative w-full sm:w-[250px] focus-within:">
-              <input
-                type="text"
-                placeholder="Search list"
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setCurrentPage(1);
-                }}
-                className="w-full pl-4 pr-12 py-2 border-0 rounded-full bg-purple-50 text-gray-700 placeholder-gray-500 focus:outline-none"
-              />
-              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800">
-                <Search size={12} />
-              </button>
-            </div>
+            <SearchBar
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1);
+              }}
+              placeholder="Search list"
+              className="w-full sm:w-[250px]"
+            />
             <Link
               to="/appointment-form"
               className="bg-primary text-white font-poppins text-xs px-4 py-2 rounded-full hover:bg-gray-800 text-center"
@@ -115,42 +141,13 @@ const AppointmentTable = ({ setDetail, setShowDetail,  }) => {
           </div>
         </div>
 
-        {/* Responsive Table */}
-        
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Dermatologist Name</TableHead>
-              <TableHead>Appointment Date</TableHead>
-              <TableHead>Appointment Status</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {paginatedAppointments.map((appointment) => (
-              <TableRow 
-                key={appointment.id} 
-                className="hover:bg-purple-100 cursor-pointer" 
-                onClick={() => handleAppointmentClick(appointment)}
-              >
-                <TableCell className="font-medium">
-                  <div className="flex  items-center gap-2">
-                    <Avatar>
-                      <AvatarImage src={appointment.cosmetologist?.profile?.image} />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    {appointment.cosmetologist?.name}
-                  </div>
-                </TableCell>
-                <TableCell>
-                    {format(new Date(appointment.date), "do MMMM yyyy")}
-                </TableCell>
-                <TableCell>
-                    <div className={`text-center rounded-full items-center px-3 w-fit py-1 ${getStatusColor(appointment.status)}`}>{appointment.status}</div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        {/* Table */}
+        <DataTable
+          columns={columns}
+          data={paginatedAppointments}
+          onRowClick={handleAppointmentClick}
+          emptyMessage="No appointments found"
+        />
       </div>
     </div>
   );

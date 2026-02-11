@@ -53,8 +53,8 @@ export default function AppointmentRequest({ setReload }) {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-[269px]">
-                <BeatLoader color="#ffffff" size={20} />
+            <div className="flex justify-center items-center h-screen">
+                <BeatLoader color="#ffffff" size={16} />
             </div>
         );
     }
@@ -92,7 +92,7 @@ export default function AppointmentRequest({ setReload }) {
                 ))
             }
             <div style={{ display: data?.length === 0 ? 'flex' : 'none' }} className="flex items-center justify-center h-full">
-                <p className="text-white font-semibold text-center text-xl font-inter animate-bounce">
+                <p className="text-white font-semibold text-center text-xl font-inter ">
                     No Appointments
                 </p>
             </div>

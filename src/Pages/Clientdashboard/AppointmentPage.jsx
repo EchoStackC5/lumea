@@ -28,7 +28,10 @@ export default function Appointment() {
           </div>
         ) : (
           <div className="flex flex-col md:flex-row gap-3 lg:gap-6">
-            <Calender />
+            
+              <Calender />
+           
+            
 
             <div className=" flex flex-col lg:flex-row gap-6 w-full h-full">
               <AppointmentTable

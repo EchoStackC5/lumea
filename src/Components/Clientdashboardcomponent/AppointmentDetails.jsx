@@ -1,26 +1,30 @@
-import React from 'react';
+
 import { X } from 'lucide-react';
 import Face from "../../assets/images/u.png";
 import { format } from 'date-fns';
+import { Badge } from "../ui/badge";
 
 const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
   if (!visible) return null;
 
-  const getStatusStyles = (status) =>{
-    switch(status.toLowerCase()) {
-      case "accepted":
-        return "bg-green-100 text-green-700 border-green-200"
-      case "rejected":
-        return "bg-red-100 text-red-700 border-red-200"
+  const getStatusVariant = (status) => {
+    const statusLower = status?.toLowerCase();
+    switch (statusLower) {
       case "completed":
-        return "bg-green-100 text-green-700 border-green-200"
+      case "accepted":
+        return "accepted";
+      case "rejected":
+        return "rejected";
       case "pending":
-        return "bg-blue-100 text-blue-700 border-blue-200"
+      case "in progress":
+        return "pending";
+      default:
+        return "default";
     }
   };
 
   return (
-    <div className="bg-white rounded-lg h-[504px]  border w-[296px]  p-4 relative flex flex-col justify-between mt-5 hidden lg:flex">
+    <div className="bg-white rounded-lg h-[504px] border w-[296px] p-4 relative flex-col justify-between mt-5 hidden lg:flex">
       <div className='flex justify-between'>
         <button
         onClick={() => setShowDetail(false)}
@@ -54,10 +58,10 @@ const AppointmentDetailsCard = ({ detail, visible, setShowDetail }) => {
         </div>
 
         <div className=" w-full flex flex-col gap-3">
-          <div className="mt-5">
-            <span className={`inline-flex justify-center text-sm font-poppins items-center w-full py-2 font-medium   bg-blue-100 text-blue-700 border border-blue-200 rounded-full ${getStatusStyles(detail.status)}`}>
+          <div className="mt-5 flex justify-center">
+            <Badge variant={getStatusVariant(detail.status)} className="w-full py-2 text-sm font-poppins justify-center">
               {detail.status}
-            </span>
+            </Badge>
           </div>
          
           <button className="flex-1 w-full py-2 text-sm bg-transparent font-poppins text-gray-900 cursor-pointer  rounded-full border border-gray-300 hover:bg-gray-50">
