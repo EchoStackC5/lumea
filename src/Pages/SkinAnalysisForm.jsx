@@ -119,7 +119,7 @@ export default function SkinAnalysisForm() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-darkest mb-3">
               Analyze Your <span className="text-system-primary font-system-curved">Skin</span>
             </h1>
-            <p className="text-dashboar-secondary text-sm md:text-base max-w-2xl mx-auto">
+            <p className="text-dashboar-secondary text-sm text-center flex lg:hidden justify-center items-center md:text-base max-w-2xl mx-auto">
               Get instant insights about your skin health with our advanced AI technology
             </p>
           </div>
@@ -136,25 +136,25 @@ export default function SkinAnalysisForm() {
                   Before You Start
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
+                  <div className="flex gap-3 items-center p-3 bg-backgrounds rounded-lg">
                     <img src={glassesOff} alt="Glasses Off" className="w-8 h-8 flex-shrink-0" />
                     <p className="text-sm text-secondary-text">
                       Remove glasses and ensure your forehead is visible
                     </p>
                   </div>
-                  <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
+                  <div className="flex gap-3 items-center p-3 bg-backgrounds rounded-lg">
                     <Sun className="w-8 h-8 text-yellow-500 flex-shrink-0" />
                     <p className="text-sm text-secondary-text">
                       Use good lighting for clear, accurate results
                     </p>
                   </div>
-                  <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
+                  <div className="flex gap-3 items-center p-3 bg-backgrounds rounded-lg">
                     <img src={makeupIcon} alt="No Makeup" className="w-8 h-8 flex-shrink-0" />
                     <p className="text-sm text-secondary-text">
                       Avoid filters and heavy makeup for best accuracy
                     </p>
                   </div>
-                  <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
+                  <div className="flex gap-3 items-center p-3 bg-backgrounds rounded-lg">
                     <Flame className="w-8 h-8 text-orange-500 flex-shrink-0" />
                     <p className="text-sm text-secondary-text">
                       Use high-resolution images for detailed analysis
