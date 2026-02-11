@@ -43,8 +43,11 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submission started");
+    console.log("Current values:", values);
     
     if (!validate()) {
+      console.log("Validation failed", errors);
       return;
     }
 
@@ -58,15 +61,19 @@ export default function SignUp() {
         }
       });
 
-      const response = await apiClient.post("cosmetologist/register", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      });
+      // Log formData entries for debugging
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
+      console.log("Sending API request to cosmetologist/register");
+      const response = await apiClient.post("cosmetologist/register", formData);
       
+      console.log("API Response:", response);
       toast.success("Account created successfully! 🎉");
       navigate("/login");
     } catch (error) {
+      console.error("Registration Error:", error);
       const message = 
         error.response?.data?.message ||
         error.response?.data?.error ||
