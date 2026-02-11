@@ -8,7 +8,7 @@ export default function DashboardAnalytics({ analytics }) {
       value: analytics.patientsTreated,
       change: `+${analytics.patientsGrowth}%`,
       positive: true,
-      color: "bg-system-primary"
+      color: "text-darkest bg-darkest/10",
     },
     {
       icon: Phone,
@@ -16,7 +16,7 @@ export default function DashboardAnalytics({ analytics }) {
       value: analytics.callsMade,
       change: `${analytics.callsChange}%`,
       positive: analytics.callsChange > 0,
-      color: "bg-darkest"
+      color: "text-darkest bg-darkest/10"
     },
     {
       icon: FileText,
@@ -24,7 +24,7 @@ export default function DashboardAnalytics({ analytics }) {
       value: analytics.reportsGenerated,
       change: `+${analytics.reportsGrowth}%`,
       positive: true,
-      color: "bg-system-primary"
+      color: "text-darkest bg-darkest/10"
     },
     {
       icon: Calendar,
@@ -32,7 +32,7 @@ export default function DashboardAnalytics({ analytics }) {
       value: analytics.appointments,
       change: `${analytics.appointmentsChange}%`,
       positive: analytics.appointmentsChange > 0,
-      color: "bg-darkest"
+      color: "text-darkest bg-darkest/10"
     }
   ];
 
@@ -46,8 +46,8 @@ export default function DashboardAnalytics({ analytics }) {
             className="bg-white rounded-xl p-4 border border-light-border hover:shadow-lg transition-shadow"
           >
             <div className="flex items-start justify-between mb-3">
-              <div className={`${stat.color} w-10 h-10 rounded-lg flex items-center justify-center`}>
-                <Icon className="w-5 h-5 text-white" />
+              <div className={`${stat.color} w-10 h-10 rounded-full flex items-center justify-center`}>
+                <Icon className="w-5 h-5 " />
               </div>
               <div className={`text-xs font-medium px-2 py-1 rounded-full ${
                 stat.positive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'

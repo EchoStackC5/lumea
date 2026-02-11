@@ -1,38 +1,55 @@
 import { useState, useEffect } from "react";
-import ClientSkinReport from "@/Components/Clientdashboardcomponent/ClientSkinReport";
 import ClientDashboardNav from "@/Components/Clientdashboardcomponent/ClientDashboardNav";
-import UserFaceAnalysis from "@/Components/Clientdashboardcomponent/UserFaceAnalysis";
 import LeftPanel from "../../Components/Clientdashboardcomponent/LeftPanel";
 import SkeletonLoader from "@/Components/custom/Skeleton";
-
+import ClientDashboardStats from "@/Components/Clientdashboardcomponent/ClientDashboardStats";
+import FaceAnalysisHistory from "@/Components/Clientdashboardcomponent/FaceAnalysisHistory";
+import SkinHealthProgress from "@/Components/Clientdashboardcomponent/SkinHealthProgress";
+import UpcomingAppointments from "@/Components/Clientdashboardcomponent/UpcomingAppointments";
 
 export default function Clientdashboard() {
+  const [loading, setIsloading] = useState(true);
 
-  const [display , setDisplay] = useState(false)
-  const [loading, setIsloading] = useState(true)
-
-  useEffect(() =>{
-    const laodPage = setTimeout(() =>{
+  useEffect(() => {
+    const laodPage = setTimeout(() => {
       setIsloading(false);
-    }, 3000)
+    }, 3000);
 
-    return() => clearTimeout(laodPage);
+    return () => clearTimeout(laodPage);
   }, []);
-
 
   return (
     <>
-    <ClientDashboardNav/>
-      { loading? (
-        <SkeletonLoader/>
-      ):
-      (<section className="bg-[#F6EBFD] h-full w-full px-2 lg:pt-8 ">
-        <div className="flex px-1 md:px-6 gap-6 lg:flex-row flex-col">
-          <LeftPanel setDisplay={setDisplay}/>
-        <UserFaceAnalysis   />
-        <ClientSkinReport display={display} setDisplay={setDisplay}/>
-        </div>
-      </section>)}
+      <ClientDashboardNav />
+      {loading ? (
+        <SkeletonLoader />
+      ) : (
+        <section className="bg-backgrounds min-h-screen w-full px-4 md:px-6 lg:px-8 py-6">
+          {/* Top Stats */}
+          <div className="mb-6">
+            <ClientDashboardStats />
+          </div>
+
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Left Column - User Info */}
+            <div className="lg:col-span-3">
+              <LeftPanel />
+            </div>
+
+            {/* Middle Column - Analysis History & Progress */}
+            <div className="lg:col-span-6 space-y-6">
+              <FaceAnalysisHistory />
+              <SkinHealthProgress />
+            </div>
+
+            {/* Right Column - Appointments */}
+            <div className="lg:col-span-3">
+              <UpcomingAppointments />
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
