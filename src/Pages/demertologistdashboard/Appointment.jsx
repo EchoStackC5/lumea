@@ -2,6 +2,7 @@ import Calender from "../../Components/Dermetologistcomponent/Calender";
 import ClientTableDetail from "../../Components/Dermetologistcomponent/ClientTableDetail";
 import AppointmentTable from "../../Components/Dermetologistcomponent/AppointmentTable";
 import Navbar from "@/Components/Navbar";
+import DashboardTabs from "@/Components/ui/DashboardTabs";
 import { useState } from "react";
 import { apiClient } from "@/api/client";
 import { toast } from "sonner";
@@ -14,6 +15,12 @@ export default function Appointment() {
   const [updatingId, setUpdatingId] = useState(null);
 
   // Removed artificial loading delay for better performance
+
+  const dermatologistTabs = [
+    { label: "Overview", path: "/dermetologistdashboard" },
+    { label: "Appointments", path: "/appointment" },
+    { label: "Calls", path: "/dem-calls" },
+  ];
 
   // Centralized status update function
   const handleStatusUpdate = async (appointmentId, newStatus) => {
@@ -54,6 +61,7 @@ export default function Appointment() {
   return (
     <>
       <Navbar />
+      <DashboardTabs tabs={dermatologistTabs} />
       <section className="bg-[#F6EBFD] min-h-screen">
         <div className="flex flex-col lg:flex-row gap-6 py-5 px-3 md:px-6 items-start">
           {/* Calendar - Hidden on mobile, shown on md+ */}

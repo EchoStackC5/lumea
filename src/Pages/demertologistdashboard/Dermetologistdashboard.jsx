@@ -6,9 +6,16 @@ import TodaysSummary from "@/Components/Dermetologistcomponent/TodaysSummary";
 import RecentActivity from "@/Components/Dermetologistcomponent/RecentActivity";
 import QuickStats from "@/Components/Dermetologistcomponent/QuickStats";
 import PerformanceMetrics from "@/Components/Dermetologistcomponent/PerformanceMetrics";
+import DashboardTabs from "@/Components/ui/DashboardTabs";
 
 export default function Dermetologistdashboard() {
   // Removed artificial loading delay for better performance
+
+  const dermatologistTabs = [
+    { label: "Overview", path: "/dermetologistdashboard" },
+    { label: "Appointments", path: "/appointment" },
+    { label: "Calls", path: "/dem-calls" },
+  ];
 
   // Mock data - replace with real API calls
   const todaysSummary = {
@@ -91,6 +98,7 @@ export default function Dermetologistdashboard() {
   return (
     <>
       <Navbar />
+      <DashboardTabs tabs={dermatologistTabs} />
       <section className="bg-backgrounds min-h-screen w-full">
         <div className="py-5 px-4 md:px-6 w-full space-y-6">
           {/* Top Analytics Cards */}

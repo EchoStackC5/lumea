@@ -4,13 +4,21 @@ import ClientDashboardStats from "@/Components/Clientdashboardcomponent/ClientDa
 import FaceAnalysisHistory from "@/Components/Clientdashboardcomponent/FaceAnalysisHistory";
 import SkinHealthProgress from "@/Components/Clientdashboardcomponent/SkinHealthProgress";
 import UpcomingAppointments from "@/Components/Clientdashboardcomponent/UpcomingAppointments";
+import DashboardTabs from "@/Components/ui/DashboardTabs";
 
 export default function Clientdashboard() {
   // Removed artificial loading delay for better performance
 
+  const clientTabs = [
+    { label: "Overview", path: "/clientdashboard" },
+    { label: "Appointments", path: "/appointmentpage" },
+    { label: "Calls", path: "/clientcalls" },
+  ];
+
   return (
     <>
       <ClientDashboardNav />
+      <DashboardTabs tabs={clientTabs} />
       <section className="bg-backgrounds min-h-screen w-full px-4 md:px-6 lg:px-8 py-6">
         {/* Top Stats */}
         <div className="mb-6">
