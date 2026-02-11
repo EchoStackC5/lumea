@@ -16,6 +16,7 @@ import DemCalls from "./Pages/demertologistdashboard/DemCalls"
 import AiAnalysisResult from "./Pages/AiAnalysisResult"
 import ClientCalls from "./Pages/Clientdashboard/ClientCalls"
 import SkeletonLoader from "./Components/custom/Skeleton"
+import { Toaster } from "./Components/ui/sonner"
 
 
 const lumeaRoutes = createBrowserRouter([
@@ -48,6 +49,7 @@ const lumeaRoutes = createBrowserRouter([
   return (
     <>
       <RouterProvider router={lumeaRoutes} />
+      <Toaster position="top-right" richColors />
     </>
   )
 }

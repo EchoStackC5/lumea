@@ -3,12 +3,21 @@ import { useState, useEffect } from "react";
 import cheekbone from "../../assets/images/cheekbone.jpg";
 import format from "date-fns/format";
 import { apiFetcher } from "@/api/client";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import { Badge } from "@/Components/ui/badge";
 import SearchBar from "@/Components/ui/SearchBar";
 import DataTable from "@/Components/ui/DataTable";
+import { Check, XCircle } from "lucide-react";
 
-export default function AppointmentTable({ setDetail, setShowDetail, showDetail, setReload, reload }) {
+export default function AppointmentTable({
+  setDetail,
+  setShowDetail,
+  showDetail,
+  setReload,
+  reload,
+  onStatusUpdate,
+  updatingId,
+}) {
   const { data, isLoading, error } = useSWR("/appointments/cosmetologist", apiFetcher);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -110,6 +119,15 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
     setShowDetail(true);
   };
 
+  const handleStatusUpdate = async (appointmentId, newStatus, event) => {
+    // Prevent row click when clicking action buttons
+    event.stopPropagation();
+    
+    if (onStatusUpdate) {
+      await onStatusUpdate(appointmentId, newStatus);
+    }
+  };
+
   // Define table columns
   const columns = [
     {
@@ -161,6 +179,45 @@ export default function AppointmentTable({ setDetail, setShowDetail, showDetail,
           </Badge>
         </div>
       ),
+    },
+    {
+      header: "Actions",
+      accessorKey: "actions",
+      align: "center",
+      cell: (row) => {
+        const isPending = row.status?.toLowerCase() === "pending";
+        const isUpdating = updatingId === row.id;
+        const isDisabled = !isPending || isUpdating;
+
+        return (
+          <div className="flex gap-2 justify-center">
+            <button
+              onClick={(e) => !isDisabled && handleStatusUpdate(row.id, "accepted", e)}
+              disabled={isDisabled}
+              className={`p-2 rounded-full transition ${
+                isDisabled
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-green-600 text-white hover:bg-green-700 cursor-pointer"
+              }`}
+              title={isPending ? "Accept" : "Already processed"}
+            >
+              <Check size={14} />
+            </button>
+            <button
+              onClick={(e) => !isDisabled && handleStatusUpdate(row.id, "rejected", e)}
+              disabled={isDisabled}
+              className={`p-2 rounded-full transition ${
+                isDisabled
+                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-red-600 text-white hover:bg-red-700 cursor-pointer"
+              }`}
+              title={isPending ? "Reject" : "Already processed"}
+            >
+              <XCircle size={14} />
+            </button>
+          </div>
+        );
+      },
     },
   ];
 
