@@ -6,15 +6,19 @@ import { Badge } from "@/Components/ui/badge";
 
 export default function ClientTableDetail({ detail, visible, setShowDetail, onStatusUpdate, updatingId }) {
   const [error, setError] = useState(null);
+  const [processingAction, setProcessingAction] = useState(null);
 
   const handleStatusUpdate = async (newStatus) => {
     setError(null);
+    setProcessingAction(newStatus);
     
     if (onStatusUpdate) {
       try {
         await onStatusUpdate(detail.id, newStatus);
       } catch (err) {
         setError(`Failed to ${newStatus} appointment. Please try again.`);
+      } finally {
+        setProcessingAction(null);
       }
     }
   };
@@ -90,7 +94,7 @@ export default function ClientTableDetail({ detail, visible, setShowDetail, onSt
           title={detail.status?.toLowerCase() === "pending" ? "Accept appointment" : "Already processed"}
         >
           <Check size={16} />
-          {updatingId === detail.id ? "Processing..." : "Accept"}
+          {updatingId === detail.id && processingAction === "accepted" ? "Processing..." : "Accept"}
         </button>
         <button
           onClick={() => handleStatusUpdate("rejected")}
@@ -105,7 +109,7 @@ export default function ClientTableDetail({ detail, visible, setShowDetail, onSt
           title={detail.status?.toLowerCase() === "pending" ? "Reject appointment" : "Already processed"}
         >
           <XCircle size={16} />
-          {updatingId === detail.id ? "Processing..." : "Reject"}
+          {updatingId === detail.id && processingAction === "rejected" ? "Processing..." : "Reject"}
         </button>
       </div>
 

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import cheekbone from "../../assets/images/cheekbone.jpg";
 import format from "date-fns/format";
 import { apiFetcher } from "@/api/client";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import { Badge } from "@/Components/ui/badge";
 import SearchBar from "@/Components/ui/SearchBar";
 import DataTable from "@/Components/ui/DataTable";

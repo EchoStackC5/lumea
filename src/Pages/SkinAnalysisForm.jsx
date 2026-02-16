@@ -9,13 +9,6 @@ import Loaders from "@/Components/Loaders";
 import Webcam from "react-webcam";
 import { toast } from "sonner";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/Components/ui/dialog";
 
 export default function SkinAnalysisForm() {
   const navigate = useNavigate();
@@ -23,6 +16,7 @@ export default function SkinAnalysisForm() {
   const [open, setOpen] = useState(false);
   const [hasSeenDialog, setHasSeenDialog] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
   const [captureImage, setCaptureImage] = useState(null);
   const webCamRef = useRef(null);
@@ -39,19 +33,13 @@ export default function SkinAnalysisForm() {
         const res = await fetch(captureImage);
         const blob = await res.blob();
         formData.append("image", blob, "captured.jpg");
-      } else {
-        const fileInput = e.target.elements.image;
-        if (fileInput && fileInput.files.length > 0) {
-          const file = fileInput.files[0];
-
-          if (!file.type.startsWith("image/")) {
-            throw new Error("Please upload a valid image file.");
-          }
-
-          formData.append("image", file, file.name);
-        } else {
-          throw new Error("No image selected.");
+      } else if (selectedFile) {
+        if (!selectedFile.type.startsWith("image/")) {
+          throw new Error("Please upload a valid image file.");
         }
+        formData.append("image", selectedFile, selectedFile.name);
+      } else {
+        throw new Error("No image selected.");
       }
 
       const response = await apiClient.post("/skin-reports/", formData, {
@@ -93,6 +81,7 @@ export default function SkinAnalysisForm() {
   const clearImage = () => {
     setPreviewUrl(null);
     setCaptureImage(null);
+    setSelectedFile(null);
   };
 
   useEffect(() => {
@@ -242,6 +231,7 @@ export default function SkinAnalysisForm() {
                             const file = e.target.files[0];
                             if (file) {
                               setPreviewUrl(URL.createObjectURL(file));
+                              setSelectedFile(file);
                             }
                           }}
                         />
@@ -298,44 +288,6 @@ export default function SkinAnalysisForm() {
       </section>
 
       {/* Instructions Dialog */}
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-darkest">
-              Tips for Best Results
-            </DialogTitle>
-            <DialogDescription className="sr-only">
-              Follow these guidelines for accurate skin analysis
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-3 mt-4">
-            <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
-              <img src={glassesOff} alt="Glasses Off" className="w-8 h-8 flex-shrink-0" />
-              <p className="text-sm text-secondary-text">
-                Remove glasses and ensure your forehead is visible
-              </p>
-            </div>
-            <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
-              <Sun className="w-8 h-8 text-yellow-500 flex-shrink-0" />
-              <p className="text-sm text-secondary-text">
-                Use good lighting for clear, accurate results
-              </p>
-            </div>
-            <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
-              <img src={makeupIcon} alt="No Makeup" className="w-8 h-8 flex-shrink-0" />
-              <p className="text-sm text-secondary-text">
-                Avoid filters and heavy makeup for best accuracy
-              </p>
-            </div>
-            <div className="flex gap-3 items-start p-3 bg-backgrounds rounded-lg">
-              <Flame className="w-8 h-8 text-orange-500 flex-shrink-0" />
-              <p className="text-sm text-secondary-text">
-                Use high-resolution images for detailed analysis
-              </p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
